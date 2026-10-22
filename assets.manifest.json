@@ -1,0 +1,286 @@
+{
+  "_note": "Allowlist of every file the site takes from the research folders. Paths in 'from' are relative to 'root'. Run: python scripts/import_assets.py",
+  "root": "C:/Users/jjoaq/vscode-python",
+  "ffmpeg": "C:/Users/jjoaq/vscode-python/droplet-imaging/.venv/Lib/site-packages/imageio_ffmpeg/binaries/ffmpeg-win-x86_64-v7.1.exe",
+  "assets": [
+    {
+      "from": "C:/Users/jjoaq/OneDrive/Desktop/SEiL/SEiL_23-11-26/Acoustofluidic_Rotational_Manipulation_of_Drosophila_Embryos_in.pptx",
+      "to": "public/files/acoustofluidic-embryo-rotation-poster.pptx",
+      "kind": "copy"
+    },
+    {
+      "from": "CA_measure/process_mask_1_96_tiffFolder/_debug_CA_template/0075_raw_CA.png",
+      "to": "src/content/projects/inphyni-contact-angle/contact-angle-overlay.png",
+      "kind": "copy"
+    },
+    {
+      "from": "CA_measure/CA_measurement.pdf",
+      "to": "src/content/projects/inphyni-contact-angle/contact-angle-curve.png",
+      "kind": "pdf_image", "page": 5, "image": 0
+    },
+    {
+      "from": "CA_measure/raw_mask_1_96_tiffFolder",
+      "to": "public/media/inphyni-contact-angle/vibrating-droplets.mp4",
+      "kind": "sequence_video", "pattern": "%05d.tif", "start_number": 10000,
+      "frames": 204, "playback_fps": 20, "acquisition_fps": 8000
+    },
+    {
+      "from": "CA_measure/raw_mask_1_96_tiffFolder/10000.tif",
+      "to": "public/media/inphyni-contact-angle/vibrating-droplets-poster.png",
+      "kind": "image", "width": 960
+    },
+    {
+      "from": "resume_cv/documents/acute_lab/IEEE_EMBS_2022_Embryo_Rotation_AZ3_JR1 (1).pdf",
+      "to": "src/content/projects/acute-acoustofluidics/embryo-device.jpeg",
+      "kind": "pdf_image", "page": 1, "image": 0
+    },
+    {
+      "from": "resume_cv/documents/acute_lab/IEEE_EMBS_2022_Embryo_Rotation_AZ3_JR1 (1).pdf",
+      "to": "src/content/projects/acute-acoustofluidics/rotation-response.png",
+      "kind": "pdf_image", "page": 1, "image": 1
+    },
+    {
+      "from": "resume_cv/portfolio/astro-content/src/content/projects/acute-cardiac-imaging/review-interface.png",
+      "to": "src/content/projects/acute-acoustofluidics/cardiac-analysis-interface.png",
+      "kind": "copy"
+    },
+    {
+      "from": "resume_cv/portfolio/astro-content/public/media/acute-cardiac-imaging/archived-imaging-clip.mp4",
+      "to": "public/media/acute-acoustofluidics/cardiac-imaging.mp4",
+      "kind": "copy"
+    },
+    {
+      "from": "resume_cv/portfolio/astro-content/public/media/acute-cardiac-imaging/archived-imaging-poster.png",
+      "to": "public/media/acute-acoustofluidics/cardiac-imaging-poster.png",
+      "kind": "copy"
+    },
+    {
+      "from": "../Downloads/Group04_FinalReport_ENG4000.pdf",
+      "to": "src/content/projects/shield-capstone/system-architecture.png",
+      "kind": "pdf_image", "page": 18, "image": 0
+    },
+    {
+      "from": "../Downloads/Group04_FinalReport_ENG4000.pdf",
+      "to": "src/content/projects/shield-capstone/face-recognition-workflow.png",
+      "kind": "pdf_image", "page": 35, "image": 0
+    },
+    {
+      "from": "../Downloads/Group04_FinalReport_ENG4000.pdf",
+      "to": "src/content/projects/shield-capstone/team-lock-design.jpeg",
+      "kind": "pdf_image", "page": 63, "image": 1
+    },
+    {
+      "from": "droplet-imaging/paper/figures/results_finetuning_student.jpg",
+      "to": "src/content/projects/droplet-coalescence-studio/segmentation-example.jpg",
+      "kind": "copy"
+    },
+    {
+      "from": "droplet-imaging/paper/figures/results_coverage.png",
+      "to": "src/content/projects/droplet-coalescence-studio/coverage-output.png",
+      "kind": "copy"
+    },
+    {
+      "from": "personal-site/public/downloads/acute-acoustic-focusing/Tubeless Microfluidic Channel on Illuminated Stage.png",
+      "to": "src/content/projects/acute-acoustic-focusing/flow-cell-closeup-selected.png",
+      "kind": "copy"
+    },
+    {
+      "from": "resume_cv/documents/acute_lab/ODI3_Only pics.pptx",
+      "member": "ppt/media/image35.png",
+      "to": "src/content/projects/acute-acoustic-focusing/flow-cell-closeup.png",
+      "kind": "zip_member"
+    },
+    {
+      "from": "resume_cv/documents/acute_lab/ODI3_Only pics.pptx",
+      "member": "ppt/media/image35.png",
+      "to": "public/downloads/acute-acoustic-focusing/flow-cell-closeup-original.png",
+      "kind": "zip_member"
+    },
+    {
+      "from": "resume_cv/documents/acute_lab/ODI3_Only pics.pptx",
+      "member": "ppt/media/image32.png",
+      "to": "public/downloads/acute-acoustic-focusing/bench-setup-original.png",
+      "kind": "zip_member"
+    },
+    {
+      "from": "resume_cv/portfolio/focusing-additional-images/particle-band-sep16.png",
+      "to": "src/content/projects/acute-acoustic-focusing/single-band-focusing.png",
+      "kind": "copy"
+    },
+    {
+      "from": "resume_cv/portfolio/focusing-additional-images/particle-band-sep16.png",
+      "to": "public/downloads/acute-acoustic-focusing/single-band-focusing-original.png",
+      "kind": "copy"
+    },
+    {
+      "from": "resume_cv/portfolio/focusing-additional-images/dispersed-particles-sep16.png",
+      "to": "public/downloads/acute-acoustic-focusing/dispersed-particles-original.png",
+      "kind": "copy"
+    },
+    {
+      "from": "resume_cv/portfolio/focusing-additional-images/flow-cell-view-sep16.png",
+      "to": "public/downloads/acute-acoustic-focusing/wider-flow-cell-original.png",
+      "kind": "copy"
+    },
+    {
+      "from": "resume_cv/documents/acute_lab/ODI3_Only pics.pptx",
+      "member": "ppt/media/image34.png",
+      "to": "public/downloads/acute-acoustic-focusing/vibration-monitoring-original.png",
+      "kind": "zip_member"
+    },
+    {
+      "from": "resume_cv/portfolio/astro-content/src/content/projects/acute-acoustic-focusing/capillary-test-setup.jpg",
+      "to": "src/content/projects/acute-acoustic-focusing/capillary-test-setup.jpg",
+      "kind": "copy"
+    },
+    {
+      "from": "resume_cv/portfolio/astro-content/src/content/projects/acute-acoustic-focusing/three-band-focusing.jpg",
+      "to": "src/content/projects/acute-acoustic-focusing/three-band-focusing.jpg",
+      "kind": "copy"
+    },
+    {
+      "from": "resume_cv/portfolio/astro-content/public/downloads/acute-acoustic-focusing/original-experiment-slides.pptx",
+      "to": "public/downloads/acute-acoustic-focusing/original-experiment-slides.pptx",
+      "kind": "copy"
+    },
+    {
+      "from": "resume_cv/output/linkedin/electrowetting_transport_annotated.mp4",
+      "to": "public/media/electrowetting-transport.mp4",
+      "kind": "video",
+      "width": 960,
+      "crf": 28
+    },
+    {
+      "from": "resume_cv/output/linkedin/electrowetting_transport_thumbnail.png",
+      "to": "src/content/projects/electrowetting-condensation/cover.jpg",
+      "kind": "image",
+      "width": 1440
+    },
+    {
+      "from": "resume_cv/output/linkedin/electrowetting_transport_thumbnail.png",
+      "to": "public/og.jpg",
+      "kind": "image",
+      "crop": [1200, 630],
+      "crop_y": 0.75
+    },
+    {
+      "from": "MASc_dir/conference/IHTC18_Poster_JR.pdf",
+      "to": "public/files/ramirez-medina-ihtc18-poster.pdf",
+      "kind": "copy"
+    },
+    {
+      "from": "MASc_dir/conference/IHTC18_Poster_JR.pdf",
+      "to": "src/content/projects/electrowetting-condensation/poster.jpg",
+      "kind": "pdf_preview",
+      "width": 1200
+    },
+    {
+      "from": "MASc_dir/designs/candidate_1_2.png",
+      "to": "src/content/projects/electrowetting-condensation/electrodes.png",
+      "kind": "lineart",
+      "width": 1400,
+      "gain": 6,
+      "thicken": 3
+    },
+    {
+      "from": "MASc_dir/designs/mask_overview.png",
+      "to": "src/content/projects/electrowetting-device-fabrication/mask.png",
+      "kind": "lineart",
+      "width": 1400,
+      "gain": 5,
+      "thicken": 3
+    },
+    {
+      "from": "MASc_dir/circuit/pcb_renders/pcb_iso.png",
+      "to": "src/content/projects/electrowetting-drive-electronics/cover.jpg",
+      "kind": "image",
+      "width": 1600
+    },
+    {
+      "from": "MASc_dir/circuit/pcb_renders/pcb_layout_top_blue.svg",
+      "to": "src/content/projects/electrowetting-drive-electronics/layout-top.svg",
+      "kind": "svg"
+    },
+    {
+      "from": "MASc_dir/circuit/ssr_schematic/ssr_channel.svg",
+      "to": "src/content/projects/electrowetting-drive-electronics/relay-channel.svg",
+      "kind": "svg",
+      "replace": [
+        ["Solid-state relay channel: amplifier to one electrode pad", "Solid-state relay channel, from amplifier to one electrode pad"],
+        ["(ewod_10bus)", ""],
+        ["ON: charging the pad", "ON, charging the pad"],
+        ["OFF: discharging the pad", "OFF, discharging the pad"],
+        ["R_on: AQW614 typ. 27 Ω, max. 50 Ω", "AQW614 R_on typ. 27 Ω, max. 50 Ω"],
+        ["EWOD chip", "Electrowetting chip"],
+        ["Teflon / SiN", "Fluoropolymer / SiN"],
+        ["24 AWG ground lead: J8 BNC shell → Si substrate (silver epoxy) closes the EWOD circuit", "24 AWG ground lead from the J8 BNC shell to the Si substrate (silver epoxy) closes the circuit"],
+        ["Nets from circuit/ewod_10bus.kicad_pcb (designators renumbered). LED 1 → 7–8 (N.C.) and LED 2 → 5–6 (N.O.) per the Panasonic AQW614 datasheet.", "LED 1 drives 7–8 (N.C.) and LED 2 drives 5–6 (N.O.), per the Panasonic AQW614 datasheet."]
+      ]
+    },
+    {
+      "from": "MASc_dir/fabrication/fabrication_schematics/01_lpcvd.svg",
+      "to": "src/content/projects/electrowetting-device-fabrication/process-1-lpcvd.svg",
+      "kind": "svg",
+      "replace": [["Conceptual reactor; actual QNFCF precursor gases and furnace configuration were not reported.", ""]]
+    },
+    {
+      "from": "MASc_dir/fabrication/fabrication_schematics/03_photolithography.svg",
+      "to": "src/content/projects/electrowetting-device-fabrication/process-2-photolithography.svg",
+      "kind": "svg",
+      "replace": [["Positive tone represents the reported S1813 process; mask geometry is shown schematically.", ""]]
+    },
+    {
+      "from": "MASc_dir/fabrication/fabrication_schematics/04_e_beam_evaporation.svg",
+      "to": "src/content/projects/electrowetting-device-fabrication/process-3-e-beam.svg",
+      "kind": "svg",
+      "replace": [
+        ["crucible: Ti, then Au", "crucible (Ti, then Au)"],
+        ["Conceptual Nexdep e-beam configuration; Ti and Au are deposited sequentially.", ""]
+      ]
+    },
+    {
+      "from": "MASc_dir/fabrication/fabrication_schematics/05_lift_off.svg",
+      "to": "src/content/projects/electrowetting-device-fabrication/process-4-lift-off.svg",
+      "kind": "svg",
+      "replace": [["Shown with vertical resist walls; no unreported undercut is assumed for S1813.", ""]]
+    },
+    {
+      "from": "MASc_dir/fabrication/fabrication_schematics/02_pecvd.svg",
+      "to": "src/content/projects/electrowetting-device-fabrication/process-5-pecvd.svg",
+      "kind": "svg",
+      "replace": [
+        ["plasma: electron collisions form reactive fragments", "plasma, where electron collisions form reactive fragments"],
+        ["Conceptual parallel-plate PECVD; the reported Trion model name needs verification.", ""]
+      ]
+    },
+    {
+      "from": "MASc_dir/fabrication/fabrication_schematics/07_wafer_dicing.svg",
+      "to": "src/content/projects/electrowetting-device-fabrication/process-6-dicing.svg",
+      "kind": "svg",
+      "replace": [["Cutting technology was not specified in the manuscript; no blade or laser is implied.", ""]]
+    },
+    {
+      "from": "MASc_dir/fabrication/fabrication_schematics/06_spin_coating.svg",
+      "to": "src/content/projects/electrowetting-device-fabrication/process-7-spin-coating.svg",
+      "kind": "svg",
+      "replace": [["Used for S1813 resist and, later, the FluoroPel topcoat; bake follows coating.", "Used for the S1813 resist and, later, the Fluoropel topcoat. A bake follows each coating."]]
+    },
+    {
+      "from": "ew_analytical/poster_figs/transport_figure_W50.svg",
+      "to": "src/content/projects/electrowetting-force-model/transport-model.svg",
+      "kind": "svg",
+      "replace": [
+        ["Electrowetting zig-zag column transport \u2014 computed force-model illustration", "Electrowetting zig-zag column transport, computed with the force model"],
+        ["A \u2014 Asymmetric rim coverage: one ON column pulls every nearby droplet", "A. Asymmetric rim coverage lets one ON column pull every nearby droplet"],
+        ["is pulled \u2014 the coverage imbalance", "is pulled, so the coverage imbalance"],
+        ["B \u2014 Sequenced activation of progressively larger columns = transport + size focusing", "B. Sequenced activation of progressively larger columns gives transport and size focusing"],
+        ["column ON \u2014 its tips capture the rim", "column ON, its tips capture the rim"],
+        ["coverage grows \u2014 droplet funnelled & self-centred", "coverage grows, droplet funnelled and self-centred"],
+        ["C \u2014 Size selectivity: the column spacing G selects the hand-off size", "C. Size selectivity, where column spacing G selects the hand-off size"],
+        ["(R = 70 \u00b5m): rim spans", "(R = 70 \u00b5m), rim spans"],
+        ["(R = 38 \u00b5m): rim falls", "(R = 38 \u00b5m), rim falls"],
+        ["\u2192 spacing is the design knob: gap G sets the hand-off radius R* \u2014 droplets below R* must coalesce before they can advance.", "\u2192 Spacing is the design knob. Gap G sets the hand-off radius R*, and droplets below R* must coalesce before they can advance."]
+      ]
+    }
+  ]
+}

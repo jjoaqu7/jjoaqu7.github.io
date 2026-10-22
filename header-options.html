@@ -1,0 +1,71 @@
+<div id="joaquin-header-options">
+  <style>
+    #joaquin-header-options{--jh-paper:light-dark(#fff,#17212b);--jh-ink:light-dark(#173b54,#e2edf6);--jh-muted:light-dark(#526574,#b0c2d1);--jh-line:light-dark(#ccd6df,#415566);--jh-soft:light-dark(#edf3f7,#223544);font-family:Arial,Helvetica,sans-serif;color:var(--jh-ink)}
+    #joaquin-header-options *{box-sizing:border-box}
+    #joaquin-header-options .jh-option{margin:0 0 26px}
+    #joaquin-header-options .jh-label{font:500 12px/1.4 Arial,sans-serif;letter-spacing:1px;margin:0 0 9px;color:var(--jh-muted)}
+    #joaquin-header-options .jh-preview{background:var(--jh-paper);border:1px solid var(--jh-line)}
+    #joaquin-header-options .jh-nav{display:flex;gap:22px;align-items:center;flex-wrap:wrap;font:400 13px/1.5 Arial,sans-serif}
+    #joaquin-header-options .jh-nav span{white-space:nowrap}
+    #joaquin-header-options .jh-active{border-bottom:2px solid;padding-bottom:3px}
+    #joaquin-header-options .jh-name{font:600 24px/1.2 Georgia,serif;letter-spacing:-.5px}
+    #joaquin-header-options .jh-sub{font:400 12px/1.5 Arial,sans-serif;color:var(--jh-muted);margin-top:6px}
+    #joaquin-header-options .jh-body-edge{margin:0 24px;padding:12px 0;color:var(--jh-muted);font:400 12px/1.4 Georgia,serif}
+    #joaquin-header-options .jh-one{padding:22px 24px 17px;display:flex;gap:20px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jh-line);flex-wrap:wrap}
+    #joaquin-header-options .jh-one .jh-name{font-size:23px}
+    #joaquin-header-options .jh-one .jh-nav{gap:16px}
+    #joaquin-header-options .jh-two{padding:15px 24px 12px;border-top:4px solid var(--jh-ink)}
+    #joaquin-header-options .jh-two .jh-name{font:600 23px/1.25 Arial,sans-serif}
+    #joaquin-header-options .jh-two-nav{padding:9px 24px;background:var(--jh-soft);border-block:1px solid var(--jh-line);justify-content:space-between}
+    #joaquin-header-options .jh-three{background:#193d54;color:#fff;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:18px}
+    #joaquin-header-options .jh-three .jh-name{font:500 26px/1.2 Arial,sans-serif;max-width:420px}
+    #joaquin-header-options .jh-three .jh-sub{color:#cfdee8;margin-top:10px}
+    #joaquin-header-options .jh-three-nav{padding:10px 24px;justify-content:space-between;border-bottom:1px solid var(--jh-line)}
+    #joaquin-header-options .jh-diagram{width:82px;height:64px;flex-shrink:0}
+    #joaquin-header-options .jh-four{padding:20px 24px;display:flex;gap:17px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--jh-line)}
+    #joaquin-header-options .jh-monogram{font:700 30px/1 Arial,sans-serif;letter-spacing:-2px;border:2px solid var(--jh-ink);padding:10px 9px}
+    #joaquin-header-options .jh-four .jh-name{font:600 19px/1.25 Arial,sans-serif}
+    #joaquin-header-options .jh-four .jh-nav{margin-left:auto;gap:15px}
+    @media(max-width:540px){#joaquin-header-options .jh-one,#joaquin-header-options .jh-four{padding:17px}#joaquin-header-options .jh-one .jh-nav{width:100%;justify-content:space-between;gap:10px}#joaquin-header-options .jh-four .jh-nav{width:100%;justify-content:space-between;margin-top:3px}#joaquin-header-options .jh-three .jh-name{font-size:23px}#joaquin-header-options .jh-diagram{width:52px}#joaquin-header-options .jh-two-nav,#joaquin-header-options .jh-three-nav{gap:12px;padding-inline:17px}}
+  </style>
+  <section class="jh-option" aria-label="Option 1, name first">
+    <div class="jh-label">01 / NAME FIRST · RECOMMENDED</div>
+    <div class="jh-preview">
+      <header class="jh-one">
+        <div><div class="jh-name">Joaquin Ramirez-Medina</div><div class="jh-sub">Mechanical engineering &amp; research</div></div>
+        <nav class="jh-nav" aria-label="Option 1 navigation"><span class="jh-active">Home</span><span>Projects</span><span>Publications</span><span>CV</span><span>Contact</span><span style="color:#84232b;font-weight:500">Personal</span></nav>
+      </header>
+      <div class="jh-body-edge">Device design · Fabrication · Experiments · Research software</div>
+    </div>
+  </section>
+  <section class="jh-option" aria-label="Option 2, compact academic">
+    <div class="jh-label">02 / COMPACT ACADEMIC</div>
+    <div class="jh-preview">
+      <header class="jh-two"><div class="jh-name">Joaquin Ramirez-Medina</div><div class="jh-sub">Mechanical Engineering · York University · Toronto</div></header>
+      <nav class="jh-nav jh-two-nav" aria-label="Option 2 navigation"><span class="jh-active">Home</span><span>Projects</span><span>Publications</span><span>CV</span><span>Contact</span><span style="color:#84232b;font-weight:500">Personal</span></nav>
+      <div class="jh-body-edge">Devices, experiments and software for research.</div>
+    </div>
+  </section>
+  <section class="jh-option" aria-label="Option 3, work first">
+    <div class="jh-label">03 / WORK FIRST</div>
+    <div class="jh-preview">
+      <header class="jh-three">
+        <div><div class="jh-name">Devices, experiments<br>&amp; research software.</div><div class="jh-sub">Joaquin Ramirez-Medina · Mechanical engineering</div></div>
+        <svg class="jh-diagram" viewBox="0 0 82 64" fill="none" aria-hidden="true"><path d="M1 19h21l12 26h16l12-26h19M1 45h21l12-26h16l12 26h19" stroke="#94c5df" stroke-width="1.5"/><circle cx="41" cy="32" r="8" fill="#fff"/><path d="M41 1v14m0 34v14" stroke="#94c5df"/></svg>
+      </header>
+      <nav class="jh-nav jh-three-nav" aria-label="Option 3 navigation"><span class="jh-active">Home</span><span>Projects</span><span>Publications</span><span>CV</span><span>Contact</span><span style="color:#84232b;font-weight:500">Personal</span></nav>
+      <div class="jh-body-edge">Designing, fabricating and testing experimental systems.</div>
+    </div>
+  </section>
+  <section class="jh-option" aria-label="Option 4, compact monogram">
+    <div class="jh-label">04 / KEEP THE INITIALS</div>
+    <div class="jh-preview">
+      <header class="jh-four">
+        <div class="jh-monogram">JRM</div>
+        <div><div class="jh-name">Joaquin Ramirez-Medina</div><div class="jh-sub">Devices · Fabrication · Experiments</div></div>
+        <nav class="jh-nav" aria-label="Option 4 navigation"><span class="jh-active">Home</span><span>Projects</span><span>Publications</span><span>CV</span><span>Contact</span><span style="color:#84232b;font-weight:500">Personal</span></nav>
+      </header>
+      <div class="jh-body-edge">Mechanical engineering &amp; research software</div>
+    </div>
+  </section>
+</div>

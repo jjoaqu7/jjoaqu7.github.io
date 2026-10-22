@@ -10,6 +10,7 @@ export const profile = {
   links: {
     linkedin: 'https://www.linkedin.com/in/joaquin-ramirez-profile-',
     github: 'https://github.com/jjoaqu7',
+    personal: 'https://blgpr7.github.io/blg/',
   },
   headline: 'MASc researcher in Mechanical Engineering at York University',
   lab: 'Surface Engineering and Instrumentation Lab (SEiL), Lassonde School of Engineering',

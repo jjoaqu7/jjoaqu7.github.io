@@ -1,0 +1,66 @@
+Acoustic-focusing image edits
+
+Method: built-in image_gen tool, precise-object-edit mode.
+
+The source photographs and original PowerPoint files are preserved. These edits are illustrative apparatus photographs, not microscopy data. Consult the originals for equipment arrangement and instrument readings. No microscopy image was AI-edited.
+
+Edit 1
+Source: src/content/projects/acute-acoustic-focusing/capillary-test-setup.jpg
+Saved image: src/content/projects/acute-acoustic-focusing/capillary-setup-ai.png
+Download: public/downloads/acute-acoustic-focusing/capillary-setup-ai.png
+Prompt:
+Use case: precise-object-edit. Edit target: the supplied real laboratory microscope and glass-capillary setup photograph. Remove ONLY the visible strips and loose pieces of adhesive tape and tape residue from the blue microscope stage and around the tubing/petri dishes. Reconstruct only the small surfaces hidden by the tape. Preserve the original photograph's camera angle, framing, lighting, colors, microscope, actual glass capillary, transducer, wires, clear tubing paths, petri dishes and their positions. Do not invent supports, connectors, equipment, labels or experimental results. Do not alter microscope lettering. This is a cosmetic retouch of an apparatus photo, not a new apparatus design. No text, no arrows, no watermark. Opaque background.
+
+Edit 2
+Source: ODI3_Only pics.pptx, slide 6, ppt/media/image32.png
+Saved image: src/content/projects/acute-acoustic-focusing/bench-setup-ai.png
+Download: public/downloads/acute-acoustic-focusing/bench-setup-ai.png
+Prompt:
+Use case: precise-object-edit. Edit target: supplied real laboratory workbench photograph. Remove ONLY the yellow roll of adhesive tape on the bench and the loose little yellow tape scraps on the benchtop; fill those small areas with matching original beige benchtop texture. Preserve ALL equipment exactly as in the source: oscilloscope and its displayed waveform and text, function generator and its displayed numbers and text, amplifier, microscope equipment, transducers, binder clips, every wire, cable, tube, instrument label, paper, background, framing, lighting and perspective. Do not clean up or redesign anything else. Do not invent equipment or change measured values on displays. No new text, no arrows, no watermark. Opaque background.
+
+Other source images
+Flow-cell close-up: ODI3_Only pics.pptx, slide 7/8, ppt/media/image35.png, extracted without pixel changes.
+Single-band view: same deck, slide 9, ppt/media/image43.png, extracted without pixel changes. The source slide does not log a frequency. Approximately 370 kHz is the author's recalled estimate supplied during this revision, not a new recorded measurement.
+Dispersed field and wider flow-cell view: same slide 9, ppt/media/image42.png and image41.png.
+Three-band result: ODI_JR1_ppt.pptx, slide 2, ppt/media/image5.jpg. Original composite and scale bar retained; no AI editing. The displayed page omits its measured frequency as requested; the original experiment slides remain unchanged.
+
+Technical explanation
+Piyasena et al., Multinode acoustic focusing for parallel flow cytometry, https://pmc.ncbi.nlm.nih.gov/articles/PMC3325784/.
+Bruus, Acoustofluidics 2, https://doi.org/10.1039/C1LC20770A.
+The page separates the intended microplastic-handling application from the observed particle-positioning results.
+
+Revision: remove the tubes and glass connectors from the exact flow-cell close-up
+Method: built-in image_gen, precise-object-edit mode.
+Source: dist/_astro/flow-cell-closeup.BKwypRKB_2gdyq7.webp, derived from the unedited slide 7/8 image35.png.
+Saved image: src/content/projects/acute-acoustic-focusing/flow-cell-closeup-ai.png
+Download: public/downloads/acute-acoustic-focusing/flow-cell-closeup-ai.png
+This illustration omits real plumbing hardware. Its caption identifies the edit and links the unmodified photograph.
+
+Correction to the channel's left structural glass end
+Method: built-in image_gen, precise-object-edit mode.
+The first connector-removal edit damaged the left structural end of the channel. The revised edit restores a rectangular transparent left end using the intact right end as a visual reference, while leaving the upright tubes and plumbing connectors absent.
+Superseded v2 image: src/content/projects/acute-acoustic-focusing/flow-cell-closeup-ai-v2.png
+Superseded v2 download: public/downloads/acute-acoustic-focusing/flow-cell-closeup-ai-v2.png
+The v2 reconstruction added an incorrectly raised glass end block. The v3 correction below supersedes it.
+
+Current revision: flatten the incorrectly raised left glass end
+Method: built-in image_gen, precise-object-edit mode.
+Superseded v3 image: src/content/projects/acute-acoustic-focusing/flow-cell-closeup-ai-v3.png
+Superseded v3 download: public/downloads/acute-acoustic-focusing/flow-cell-closeup-ai-v3.png
+The raised left end block was removed in v3. This version was subsequently superseded by the image supplied and selected by the user.
+
+Current image selected by the user
+Source and download: public/downloads/acute-acoustic-focusing/Tubeless Microfluidic Channel on Illuminated Stage.png
+Current project asset: src/content/projects/acute-acoustic-focusing/flow-cell-closeup-selected.png
+The file is copied without edits and is used for the in-page image, cover metadata and download link. The original photograph remains available separately. No image generation was performed for this replacement.
+Prompt:
+Edit this exact photo with one small local correction. At the LEFT tip of the glass flow cell, the previous edit added a raised transparent rectangular lip/block around the end (just below the upper solder joint, above the long dark front ceramic strip). REMOVE THAT RAISED LIP/BLOCK. Make the left end a simple, low, FLUSH termination of the existing horizontal glass slab, with its upper face lying in exactly the same continuous plane as the long main glass surface. There must be no step up at the left end, no raised rim, no vertical end wall projecting above the slab, no thick cap, no pedestal, and no new piece attached on top. Keep the left glass end present as a thin flat edge, of the SAME thickness/profile as the intact RIGHT glass end, correctly foreshortened in perspective. Continue the existing flat glass surface smoothly to this left edge. Leave the thin wires, solder joints, dark ceramic bars, long channel body, right end, support blocks, microscope stage, background, framing and lighting untouched. Do not bring back the silicone tubes or upright glass connectors. Do not redesign anything else. No labels or text; opaque photo background.
+
+Earlier v2 prompt:
+Prompt:
+Use case: precise-object-edit. Edit target: this exact AI-retouched photograph of a horizontal transparent glass acoustic flow cell. Make ONE localized correction at the LEFT end of the horizontal glass channel, beside the soldered electrical wires: the previous edit mistakenly erased/opened part of the channel's structural glass end. Restore a complete transparent rectangular glass end wall/end block at this LEFT end. Use the intact RIGHT end of the SAME channel in this same photo as the structural reference: matching glass thickness, visible rectangular end face, bevelled edges, transparent layered faces, and reflections, mirrored appropriately to the left while respecting the original perspective. The glass channel must read as one continuous intact rectangular body with comparable complete structural glass ends on BOTH sides. Do not shorten the channel or the dark PZT ceramic strips. Preserve the solder joints and thin electrical wires, both dark ceramic strips, PDMS supports, all existing right-end geometry, the central channel, textures, lighting, camera view, framing, and background unchanged. Keep both previously removed upright silicone tubes and upright round glass hose connectors ABSENT. Restore only the missing horizontal channel structural glass; do NOT add upright tubes, round ports, caps, hose fittings, tall blocks, or new equipment. No text, labels, arrows, or watermark. Opaque background.
+
+The instrument-bench picture was removed from the page. The close-up appears once alongside the mechanism explanation; automatic cover display is disabled for this project. Each microscopy result appears once.
+Prompt:
+Use case: precise-object-edit. Edit the supplied exact close-up photograph of a laboratory flow cell. Remove BOTH upright translucent silicone tubes, and remove BOTH upright glass hose connectors/ports underneath them, including their circular flanges and small square mounting pads. Remove them completely so no tube, vertical glass stub, connector, flange, port hole, or mounting pad remains at either former location. Reconstruct a continuous, flat, unperforated upper surface of the existing long horizontal glass flow-cell body underneath those two connections, matching the adjacent surface. Keep the long horizontal rectangular glass channel body and the dark long rectangular piezoelectric ceramic bars, their positions, the black PDMS support blocks beneath, fine electrical wires on the left, illumination disk, original photographic lighting, camera angle, background, scale, composition and color unchanged. Do not remove the flow-cell body. Do not replace the tubes with caps, plugs or new fittings. No new equipment, no labels, no arrows, no watermark. The result is an AI-retouched apparatus illustration, with the two plumbing connections intentionally omitted. Keep the original portrait framing and an opaque background.
+

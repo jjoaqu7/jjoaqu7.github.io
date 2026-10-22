@@ -1,0 +1,318 @@
+---
+import Base from '../../layouts/Base.astro';
+import { personalMedia, livePersonalMedia } from '../../data/personal-gallery';
+import { profile } from '../../data/profile';
+---
+
+<Base
+  title="Personal"
+  description="Personal photography, moments, and quiet archive of Joaquin Ramirez-Medina."
+>
+  <div class="personal-page">
+    <header class="personal-header">
+      <div class="zen-stamp" aria-hidden="true">閒</div>
+      <span class="eyebrow personal-eyebrow">Personal archive</span>
+      <h1 class="personal-title">閒</h1>
+      <blockquote class="personal-epigraph">
+        <p>&ldquo;... burn yourself completely, like a good bonfire, leaving no trace of yourself.&rdquo;</p>
+        <cite>- Shunryu Suzuki</cite>
+      </blockquote>
+      <div class="personal-toolbar">
+        <span class="personal-counter">
+          <strong>{livePersonalMedia.length}</strong> live of {personalMedia.length} photos
+        </span>
+        <span class="personal-sep" aria-hidden="true">&middot;</span>
+        <a
+          href={profile.links.personal}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="personal-ext-link"
+        >
+          Open standalone experiential site &rarr;
+        </a>
+      </div>
+    </header>
+
+    <div class="personal-grid" id="galleryGrid">
+      {
+        livePersonalMedia.map((item) => (
+          <figure
+            class="gallery-card"
+            data-src={item.src}
+            data-date={item.date}
+            data-caption={item.caption}
+          >
+            <div class="gallery-media-wrap">
+              <img
+                src={item.src}
+                alt={item.caption || item.date || 'Personal photograph'}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption class="gallery-caption">
+              {item.date && <span class="gallery-date">{item.date}</span>}
+              {item.caption && <p class="gallery-text">{item.caption}</p>}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <!-- Lightbox Modal -->
+    <dialog id="photoModal" class="photo-modal">
+      <div class="modal-inner">
+        <button type="button" class="modal-close" id="modalClose" aria-label="Close photo viewer">&times;</button>
+        <img id="modalImg" src="" alt="" />
+        <div class="modal-meta">
+          <span id="modalDate" class="gallery-date"></span>
+          <p id="modalCaption" class="modal-caption"></p>
+        </div>
+      </div>
+    </dialog>
+  </div>
+</Base>
+
+<style>
+  .personal-page {
+    padding-top: 36px;
+    padding-bottom: 60px;
+  }
+  .personal-header {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 44px;
+    position: relative;
+  }
+  .zen-stamp {
+    display: inline-block;
+    color: #84232b;
+    border: 1.5px solid #84232b;
+    padding: 4px 10px;
+    font-size: 18px;
+    font-family: Georgia, 'Times New Roman', serif;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+    border-radius: 2px;
+    background: rgba(132, 35, 43, 0.04);
+  }
+  .personal-eyebrow {
+    display: block;
+    color: var(--portfolio-muted);
+    margin-bottom: 8px;
+  }
+  .personal-title {
+    font-size: clamp(38px, 6vw, 54px);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--portfolio-heading);
+    margin: 0 0 16px;
+    letter-spacing: -1px;
+  }
+  .personal-epigraph {
+    margin: 0 auto;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--portfolio-muted);
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+  .personal-epigraph p {
+    margin: 0;
+  }
+  .personal-epigraph cite {
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #84232b;
+  }
+  .personal-toolbar {
+    margin-top: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    font: 400 12px/1.4 Arial, Helvetica, sans-serif;
+    color: var(--portfolio-muted);
+  }
+  .personal-ext-link {
+    color: #84232b;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .personal-ext-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Gallery Grid */
+  .personal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 22px;
+  }
+  .gallery-card {
+    margin: 0;
+    background: var(--portfolio-soft);
+    border: 1px solid var(--portfolio-rule);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .gallery-card:hover {
+    transform: translateY(-2px);
+    border-color: #84232b;
+    box-shadow: 0 4px 14px rgba(132, 35, 43, 0.08);
+  }
+  .gallery-media-wrap {
+    aspect-ratio: 4 / 3;
+    background: #0e0d0c;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gallery-media-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .gallery-card:hover .gallery-media-wrap img {
+    transform: scale(1.02);
+  }
+  .gallery-caption {
+    padding: 12px 14px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: var(--portfolio-bg);
+  }
+  .gallery-date {
+    display: inline-block;
+    font: 600 11px/1 Arial, Helvetica, sans-serif;
+    color: #84232b;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .gallery-text {
+    margin: 0;
+    font: 400 13px/1.4 Georgia, 'Times New Roman', serif;
+    color: var(--portfolio-ink);
+  }
+
+  /* Modal */
+  .photo-modal {
+    border: none;
+    padding: 0;
+    background: transparent;
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+  .photo-modal::backdrop {
+    background: rgba(14, 13, 12, 0.88);
+    backdrop-filter: blur(4px);
+  }
+  .modal-inner {
+    background: #0e0d0c;
+    border: 1px solid #2a2925;
+    padding: 16px;
+    color: #f1ece2;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 850px;
+    margin: auto;
+  }
+  .modal-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: #f1ece2;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 8px;
+    opacity: 0.8;
+  }
+  .modal-close:hover {
+    opacity: 1;
+    color: #84232b;
+  }
+  .modal-inner img {
+    max-width: 100%;
+    max-height: 72vh;
+    object-fit: contain;
+    display: block;
+  }
+  .modal-meta {
+    margin-top: 14px;
+    text-align: center;
+    max-width: 580px;
+  }
+  .modal-caption {
+    margin: 6px 0 0;
+    font: 400 14px/1.5 Georgia, 'Times New Roman', serif;
+    color: #b9b4a7;
+  }
+
+  @container (max-width: 600px) {
+    .personal-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const modal = document.getElementById('photoModal') as HTMLDialogElement | null;
+  const modalImg = document.getElementById('modalImg') as HTMLImageElement | null;
+  const modalDate = document.getElementById('modalDate');
+  const modalCaption = document.getElementById('modalCaption');
+  const closeBtn = document.getElementById('modalClose');
+
+  if (modal && modalImg) {
+    document.querySelectorAll('.gallery-card').forEach((card) => {
+      card.addEventListener('click', () => {
+        const src = card.getAttribute('data-src') || '';
+        const date = card.getAttribute('data-date') || '';
+        const caption = card.getAttribute('data-caption') || '';
+
+        modalImg.src = src;
+        modalImg.alt = caption || date || 'Personal photo';
+        if (modalDate) modalDate.textContent = date;
+        if (modalCaption) {
+          modalCaption.textContent = caption;
+          modalCaption.style.display = caption ? 'block' : 'none';
+        }
+        modal.showModal();
+      });
+    });
+
+    closeBtn?.addEventListener('click', () => modal.close());
+
+    modal.addEventListener('click', (e) => {
+      const rect = modal.getBoundingClientRect();
+      const inDialog =
+        rect.top <= e.clientY &&
+        e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX &&
+        e.clientX <= rect.left + rect.width;
+      if (!inDialog) {
+        modal.close();
+      }
+    });
+  }
+</script>
+
