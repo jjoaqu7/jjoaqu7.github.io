@@ -182,7 +182,7 @@ export const personalMedia: PersonalMediaItem[] = [
     id: "596c3fb3aa6941eb.jpg",
     src: "/images/personal/596c3fb3aa6941eb.jpg",
     date: "Jul 2014",
-    caption: "my little nature",
+    caption: "",
     live: true,
   },
   {
