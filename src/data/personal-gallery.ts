@@ -250,4 +250,33 @@ export const personalMedia: PersonalMediaItem[] = [
   },
 ];
 
-export const livePersonalMedia = personalMedia.filter(item => item.live);
+const MONTHS: Record<string, number> = {
+  Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6,
+  Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12,
+};
+
+export function parseDateScore(dateStr: string): number {
+  if (!dateStr || dateStr === '-' || dateStr.charCodeAt(0) === 8212) return -999999;
+  const parts = dateStr.trim().split(/\s+/);
+  if (parts.length === 2 && MONTHS[parts[0]]) {
+    const year = parseInt(parts[1], 10);
+    const month = MONTHS[parts[0]];
+    return year * 100 + month;
+  }
+  const year = parseInt(dateStr, 10);
+  if (!isNaN(year) && year > 1900 && year < 2100) {
+    return year * 100;
+  }
+  const d = new Date(dateStr);
+  return isNaN(d.getTime()) ? -999999 : d.getTime();
+}
+
+export function getYear(dateStr: string): string {
+  if (!dateStr || dateStr === '-' || dateStr.charCodeAt(0) === 8212) return '-';
+  const match = dateStr.match(/\b(20\d\d|19\d\d)\b/);
+  return match ? match[1] : '-';
+}
+
+export const livePersonalMedia = personalMedia
+  .filter((item) => item.live)
+  .sort((a, b) => parseDateScore(b.date) - parseDateScore(a.date));

@@ -1,318 +1,900 @@
 ---
-import Base from '../../layouts/Base.astro';
-import { personalMedia, livePersonalMedia } from '../../data/personal-gallery';
+import { livePersonalMedia, getYear } from '../../data/personal-gallery';
 import { profile } from '../../data/profile';
 ---
 
-<Base
-  title="Personal"
-  description="Personal photography, moments, and quiet archive of Joaquin Ramirez-Medina."
->
-  <div class="personal-page">
-    <header class="personal-header">
-      <div class="zen-stamp" aria-hidden="true">閒</div>
-      <span class="eyebrow personal-eyebrow">Personal archive</span>
-      <h1 class="personal-title">閒</h1>
-      <blockquote class="personal-epigraph">
-        <p>&ldquo;... burn yourself completely, like a good bonfire, leaving no trace of yourself.&rdquo;</p>
-        <cite>- Shunryu Suzuki</cite>
-      </blockquote>
-      <div class="personal-toolbar">
-        <span class="personal-counter">
-          <strong>{livePersonalMedia.length}</strong> live of {personalMedia.length} photos
-        </span>
-        <span class="personal-sep" aria-hidden="true">&middot;</span>
-        <a
-          href={profile.links.personal}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="personal-ext-link"
-        >
-          Open standalone experiential site &rarr;
-        </a>
-      </div>
-    </header>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>閒 | {profile.name}</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body class="view-scroll">
+    <a href="/" class="back-home" title="Return to portfolio">&larr; portfolio</a>
 
-    <div class="personal-grid" id="galleryGrid">
+    <div class="stamp">閒</div>
+
+    <nav class="views" aria-label="layout">
+      <button type="button" data-view="scroll" aria-pressed="true">scroll</button>
+      <span aria-hidden="true">&middot;</span>
+      <button type="button" data-view="grid" aria-pressed="false">grid</button>
+    </nav>
+
+    <div class="year-tick" id="yearTick"><em>-</em></div>
+
+    <div class="scroller" id="scroller">
+      <section class="slide opener" data-year="-">
+        <h1 class="kanji">閒</h1>
+        <blockquote class="epigraph">
+          <p>... burn yourself completely, like a good bonfire, leaving no trace of yourself.</p>
+          <cite>- ss</cite>
+        </blockquote>
+        <div class="scroll-hint">descend</div>
+      </section>
+
       {
-        livePersonalMedia.map((item) => (
-          <figure
-            class="gallery-card"
-            data-src={item.src}
-            data-date={item.date}
-            data-caption={item.caption}
-          >
-            <div class="gallery-media-wrap">
+        livePersonalMedia.map((entry) => (
+          <section class="slide photo" data-year={getYear(entry.date)}>
+            <figure data-src={entry.src} data-date={entry.date} data-caption={entry.caption}>
               <img
-                src={item.src}
-                alt={item.caption || item.date || 'Personal photograph'}
+                src={entry.src}
+                alt={entry.caption || entry.date || ''}
                 loading="lazy"
                 decoding="async"
               />
-            </div>
-            <figcaption class="gallery-caption">
-              {item.date && <span class="gallery-date">{item.date}</span>}
-              {item.caption && <p class="gallery-text">{item.caption}</p>}
-            </figcaption>
-          </figure>
+            </figure>
+            {(entry.date || entry.caption) && (
+              <figcaption>
+                {entry.caption && <p>{entry.caption}</p>}
+                {entry.date && <time>{entry.date}</time>}
+              </figcaption>
+            )}
+          </section>
         ))
       }
     </div>
 
-    <!-- Lightbox Modal -->
-    <dialog id="photoModal" class="photo-modal">
-      <div class="modal-inner">
-        <button type="button" class="modal-close" id="modalClose" aria-label="Close photo viewer">&times;</button>
-        <img id="modalImg" src="" alt="" />
-        <div class="modal-meta">
-          <span id="modalDate" class="gallery-date"></span>
-          <p id="modalCaption" class="modal-caption"></p>
-        </div>
-      </div>
-    </dialog>
-  </div>
-</Base>
+    <div class="counter">
+      <span id="cur">001</span><span class="bar"></span><span id="tot">000</span>
+    </div>
 
-<style>
-  .personal-page {
-    padding-top: 36px;
-    padding-bottom: 60px;
-  }
-  .personal-header {
-    text-align: center;
-    max-width: 620px;
-    margin: 0 auto 44px;
-    position: relative;
-  }
-  .zen-stamp {
-    display: inline-block;
-    color: #84232b;
-    border: 1.5px solid #84232b;
-    padding: 4px 10px;
-    font-size: 18px;
-    font-family: Georgia, 'Times New Roman', serif;
-    letter-spacing: 2px;
-    margin-bottom: 14px;
-    border-radius: 2px;
-    background: rgba(132, 35, 43, 0.04);
-  }
-  .personal-eyebrow {
-    display: block;
-    color: var(--portfolio-muted);
-    margin-bottom: 8px;
-  }
-  .personal-title {
-    font-size: clamp(38px, 6vw, 54px);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-weight: 400;
-    line-height: 1.1;
-    color: var(--portfolio-heading);
-    margin: 0 0 16px;
-    letter-spacing: -1px;
-  }
-  .personal-epigraph {
-    margin: 0 auto;
-    font-style: italic;
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--portfolio-muted);
-    font-family: Georgia, 'Times New Roman', serif;
-  }
-  .personal-epigraph p {
-    margin: 0;
-  }
-  .personal-epigraph cite {
-    display: block;
-    margin-top: 8px;
-    font-style: normal;
-    font-size: 11px;
-    font-family: Arial, Helvetica, sans-serif;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #84232b;
-  }
-  .personal-toolbar {
-    margin-top: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    font: 400 12px/1.4 Arial, Helvetica, sans-serif;
-    color: var(--portfolio-muted);
-  }
-  .personal-ext-link {
-    color: #84232b;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  .personal-ext-link:hover {
-    text-decoration: underline;
-  }
+    <div class="progress" id="progress"><i id="pbar"></i></div>
 
-  /* Gallery Grid */
-  .personal-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 22px;
-  }
-  .gallery-card {
-    margin: 0;
-    background: var(--portfolio-soft);
-    border: 1px solid var(--portfolio-rule);
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
-    display: flex;
-    flex-direction: column;
-  }
-  .gallery-card:hover {
-    transform: translateY(-2px);
-    border-color: #84232b;
-    box-shadow: 0 4px 14px rgba(132, 35, 43, 0.08);
-  }
-  .gallery-media-wrap {
-    aspect-ratio: 4 / 3;
-    background: #0e0d0c;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .gallery-media-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s ease;
-  }
-  .gallery-card:hover .gallery-media-wrap img {
-    transform: scale(1.02);
-  }
-  .gallery-caption {
-    padding: 12px 14px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    background: var(--portfolio-bg);
-  }
-  .gallery-date {
-    display: inline-block;
-    font: 600 11px/1 Arial, Helvetica, sans-serif;
-    color: #84232b;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-  .gallery-text {
-    margin: 0;
-    font: 400 13px/1.4 Georgia, 'Times New Roman', serif;
-    color: var(--portfolio-ink);
-  }
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+      <div class="lightbox-content"></div>
+    </div>
 
-  /* Modal */
-  .photo-modal {
-    border: none;
-    padding: 0;
-    background: transparent;
-    max-width: 90vw;
-    max-height: 90vh;
-  }
-  .photo-modal::backdrop {
-    background: rgba(14, 13, 12, 0.88);
-    backdrop-filter: blur(4px);
-  }
-  .modal-inner {
-    background: #0e0d0c;
-    border: 1px solid #2a2925;
-    padding: 16px;
-    color: #f1ece2;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 850px;
-    margin: auto;
-  }
-  .modal-close {
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    background: transparent;
-    border: none;
-    color: #f1ece2;
-    font-size: 26px;
-    line-height: 1;
-    cursor: pointer;
-    padding: 4px 8px;
-    opacity: 0.8;
-  }
-  .modal-close:hover {
-    opacity: 1;
-    color: #84232b;
-  }
-  .modal-inner img {
-    max-width: 100%;
-    max-height: 72vh;
-    object-fit: contain;
-    display: block;
-  }
-  .modal-meta {
-    margin-top: 14px;
-    text-align: center;
-    max-width: 580px;
-  }
-  .modal-caption {
-    margin: 6px 0 0;
-    font: 400 14px/1.5 Georgia, 'Times New Roman', serif;
-    color: #b9b4a7;
-  }
-
-  @container (max-width: 600px) {
-    .personal-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
-
-<script>
-  const modal = document.getElementById('photoModal') as HTMLDialogElement | null;
-  const modalImg = document.getElementById('modalImg') as HTMLImageElement | null;
-  const modalDate = document.getElementById('modalDate');
-  const modalCaption = document.getElementById('modalCaption');
-  const closeBtn = document.getElementById('modalClose');
-
-  if (modal && modalImg) {
-    document.querySelectorAll('.gallery-card').forEach((card) => {
-      card.addEventListener('click', () => {
-        const src = card.getAttribute('data-src') || '';
-        const date = card.getAttribute('data-date') || '';
-        const caption = card.getAttribute('data-caption') || '';
-
-        modalImg.src = src;
-        modalImg.alt = caption || date || 'Personal photo';
-        if (modalDate) modalDate.textContent = date;
-        if (modalCaption) {
-          modalCaption.textContent = caption;
-          modalCaption.style.display = caption ? 'block' : 'none';
-        }
-        modal.showModal();
-      });
-    });
-
-    closeBtn?.addEventListener('click', () => modal.close());
-
-    modal.addEventListener('click', (e) => {
-      const rect = modal.getBoundingClientRect();
-      const inDialog =
-        rect.top <= e.clientY &&
-        e.clientY <= rect.top + rect.height &&
-        rect.left <= e.clientX &&
-        e.clientX <= rect.left + rect.width;
-      if (!inDialog) {
-        modal.close();
+    <style is:global>
+      :root {
+        --bg: #0e0d0c;
+        --bg-soft: #16151320;
+        --ink: #f1ece2;
+        --ink-soft: #b9b4a7;
+        --mute: #6a6457;
+        --rule: #2a2925;
+        --seal: #b9986a;
+        --serif: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+        --sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
       }
-    });
-  }
-</script>
 
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--serif);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      /* soft vignette so the photograph reads as the lit object */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 2;
+        background: radial-gradient(120% 80% at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.55) 100%);
+      }
+
+      /* back link to main site */
+      .back-home {
+        position: fixed;
+        top: 1.6rem;
+        left: 1.8rem;
+        font-family: var(--sans);
+        font-size: 0.58rem;
+        letter-spacing: 0.42em;
+        text-transform: lowercase;
+        color: var(--mute);
+        text-decoration: none;
+        z-index: 6;
+        transition: color 0.4s ease;
+      }
+      .back-home:hover {
+        color: var(--ink-soft);
+      }
+
+      /* scroller (snap container) */
+      .scroller {
+        height: 100vh;
+        height: 100svh;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+      }
+
+      .scroller::-webkit-scrollbar {
+        display: none;
+      }
+      .scroller {
+        scrollbar-width: none;
+      }
+
+      section.slide {
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+        height: 100vh;
+        height: 100svh;
+        display: grid;
+        place-items: center;
+        padding: 5rem 2rem 4rem;
+        position: relative;
+      }
+
+      /* opener */
+      section.slide.opener {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .kanji {
+        font-family: var(--serif);
+        font-size: 4.4rem;
+        font-weight: 400;
+        line-height: 1;
+        color: var(--ink);
+        margin: 0;
+      }
+
+      .epigraph {
+        max-width: 32rem;
+        margin: 1.5rem 0 0;
+        padding: 0 1rem;
+        font-style: italic;
+        font-size: 1.05rem;
+        color: var(--ink);
+        line-height: 1.55;
+      }
+
+      .epigraph p {
+        margin: 0;
+      }
+
+      .epigraph cite {
+        display: block;
+        margin-top: 0.8rem;
+        font-family: var(--sans);
+        font-style: normal;
+        font-size: 0.58rem;
+        letter-spacing: 0.55em;
+        color: var(--ink-soft);
+        text-transform: lowercase;
+      }
+
+      .opener .scroll-hint {
+        position: absolute;
+        bottom: 2.6rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: var(--sans);
+        font-size: 0.55rem;
+        letter-spacing: 0.55em;
+        color: var(--mute);
+        text-transform: lowercase;
+        animation: drift 3.4s ease-in-out infinite;
+      }
+
+      .opener .scroll-hint::after {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 26px;
+        background: linear-gradient(180deg, var(--mute), transparent);
+        margin: 0.7rem auto 0;
+      }
+
+      @keyframes drift {
+        0%,
+        100% {
+          transform: translate(-50%, 0);
+          opacity: 0.8;
+        }
+        50% {
+          transform: translate(-50%, 6px);
+          opacity: 0.4;
+        }
+      }
+
+      /* photo slide */
+      section.slide.photo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+      }
+
+      .photo figure {
+        margin: 0;
+        max-width: min(72vw, 920px);
+        max-height: 64vh;
+        cursor: zoom-in;
+        opacity: 0;
+        transform: translateY(10px) scale(0.992);
+        transition:
+          opacity 1.4s ease,
+          transform 1.4s ease;
+        position: relative;
+        z-index: 3;
+      }
+
+      .photo.in figure {
+        opacity: 1;
+        transform: none;
+      }
+
+      .photo img,
+      .photo video {
+        display: block;
+        width: 100%;
+        max-height: 64vh;
+        height: auto;
+        object-fit: contain;
+        background: transparent;
+        box-shadow:
+          0 30px 80px rgba(0, 0, 0, 0.55),
+          0 0 0 1px rgba(255, 250, 238, 0.04);
+      }
+
+      .photo figcaption {
+        margin-top: 1.5rem;
+        text-align: center;
+        font-family: var(--sans);
+        font-size: 0.58rem;
+        letter-spacing: 0.48em;
+        color: var(--mute);
+        text-transform: lowercase;
+        opacity: 0;
+        transition: opacity 1.4s ease 0.25s;
+        z-index: 4;
+        max-width: 38rem;
+        padding: 0 1rem;
+      }
+
+      .photo.in figcaption {
+        opacity: 1;
+      }
+
+      .photo figcaption p {
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 0.95rem;
+        letter-spacing: 0.01em;
+        text-transform: none;
+        color: var(--ink);
+        line-height: 1.55;
+      }
+
+      .photo figcaption time {
+        display: block;
+        margin-top: 0.8rem;
+        color: var(--ink-soft);
+        letter-spacing: 0.55em;
+      }
+
+      /* persistent chrome */
+      .stamp {
+        position: fixed;
+        top: 1.6rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: var(--serif);
+        font-size: 1.15rem;
+        color: var(--ink-soft);
+        opacity: 0.8;
+        pointer-events: none;
+        z-index: 5;
+      }
+
+      .stamp::after {
+        content: '';
+        display: block;
+        width: 14px;
+        height: 1px;
+        background: var(--seal);
+        margin: 0.55rem auto 0;
+        opacity: 0.8;
+      }
+
+      .counter {
+        position: fixed;
+        bottom: 1.6rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: var(--sans);
+        font-size: 0.58rem;
+        letter-spacing: 0.55em;
+        text-transform: lowercase;
+        color: var(--mute);
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .counter .bar {
+        display: inline-block;
+        width: 1px;
+        height: 9px;
+        background: var(--rule);
+      }
+
+      .counter #cur {
+        color: var(--ink-soft);
+      }
+
+      .progress {
+        position: fixed;
+        right: 1.4rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 44vh;
+        z-index: 5;
+        cursor: pointer;
+        touch-action: none;
+      }
+
+      .progress::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        transform: translateX(-50%);
+        background: var(--rule);
+      }
+
+      .progress > i {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 1px;
+        height: 0%;
+        transform: translateX(-50%);
+        background: var(--seal);
+        transition: height 0.35s ease;
+        pointer-events: none;
+      }
+
+      .progress > i::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 7px;
+        height: 7px;
+        background: var(--seal);
+        border-radius: 50%;
+        transform: translate(-50%, 50%);
+        box-shadow: 0 0 0 4px rgba(185, 152, 106, 0.14);
+        transition:
+          width 0.2s ease,
+          height 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .progress:hover > i::after {
+        width: 9px;
+        height: 9px;
+        box-shadow: 0 0 0 5px rgba(185, 152, 106, 0.18);
+      }
+
+      .progress.dragging > i {
+        transition: none;
+      }
+
+      .progress.dragging > i::after {
+        width: 10px;
+        height: 10px;
+        box-shadow: 0 0 0 6px rgba(185, 152, 106, 0.22);
+      }
+
+      .scroller.dragging {
+        scroll-snap-type: none;
+        scroll-behavior: auto;
+      }
+
+      .year-tick {
+        position: fixed;
+        left: 1.8rem;
+        top: 50%;
+        transform: translateY(-50%) rotate(-90deg);
+        transform-origin: left center;
+        font-family: var(--sans);
+        font-size: 0.58rem;
+        letter-spacing: 0.55em;
+        text-transform: lowercase;
+        color: var(--mute);
+        z-index: 5;
+        transition:
+          opacity 0.4s ease,
+          color 0.4s ease;
+        white-space: nowrap;
+      }
+
+      .year-tick em {
+        font-style: normal;
+        color: var(--ink-soft);
+        letter-spacing: 0.55em;
+      }
+
+      /* view toggle */
+      .views {
+        position: fixed;
+        top: 1.6rem;
+        right: 1.8rem;
+        font-family: var(--sans);
+        font-size: 0.58rem;
+        letter-spacing: 0.42em;
+        text-transform: lowercase;
+        color: var(--mute);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        z-index: 6;
+      }
+
+      .views button {
+        background: none;
+        border: 0;
+        padding: 0.35rem 0.25rem;
+        margin: -0.35rem 0;
+        font: inherit;
+        letter-spacing: inherit;
+        color: var(--mute);
+        cursor: pointer;
+        transition: color 0.4s ease;
+        touch-action: manipulation;
+      }
+
+      .views button:hover {
+        color: var(--ink-soft);
+      }
+
+      .views button[aria-pressed='true'] {
+        color: var(--seal);
+      }
+
+      .views span {
+        color: var(--rule);
+      }
+
+      /* grid view overrides */
+      body.view-grid .scroller {
+        scroll-snap-type: none;
+        scroll-behavior: auto;
+      }
+
+      body.view-grid section.slide.opener {
+        display: none;
+      }
+
+      body.view-grid .scroller {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+        padding: 5rem 1.8rem 4rem;
+        height: auto;
+        min-height: 100vh;
+        min-height: 100svh;
+        align-content: start;
+      }
+
+      body.view-grid section.slide.photo {
+        scroll-snap-align: none;
+        height: auto;
+        padding: 0;
+        display: block;
+        position: relative;
+      }
+
+      body.view-grid .photo figure {
+        max-width: 100%;
+        max-height: none;
+        opacity: 1;
+        transform: none;
+        transition: none;
+        overflow: hidden;
+      }
+
+      body.view-grid .photo img,
+      body.view-grid .photo video {
+        aspect-ratio: 1 / 1;
+        max-height: none;
+        object-fit: cover;
+        box-shadow: none;
+        transition:
+          transform 0.9s ease,
+          filter 0.5s ease;
+        filter: saturate(0.92);
+      }
+
+      body.view-grid .photo figure:hover img,
+      body.view-grid .photo figure:hover video {
+        transform: scale(1.02);
+        filter: saturate(1);
+      }
+
+      body.view-grid .photo figcaption {
+        display: none;
+      }
+
+      body.view-grid .progress,
+      body.view-grid .year-tick,
+      body.view-grid .counter {
+        display: none;
+      }
+
+      body.view-grid::before {
+        background: none;
+      }
+
+      @media (max-width: 900px) {
+        body.view-grid .scroller {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 520px) {
+        body.view-grid .scroller {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* lightbox */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(8, 7, 6, 0.96);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        z-index: 100;
+        cursor: zoom-out;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+
+      .lightbox.open {
+        display: flex;
+        opacity: 1;
+      }
+
+      .lightbox-content {
+        max-width: 96vw;
+        max-height: 92vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+
+      .lightbox-content img,
+      .lightbox-content video {
+        max-width: 96vw;
+        max-height: 78vh;
+        width: auto;
+        height: auto;
+        display: block;
+        background: transparent;
+        cursor: default;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+      }
+
+      .lightbox-caption {
+        text-align: center;
+        font-family: var(--sans);
+        font-size: 0.58rem;
+        letter-spacing: 0.48em;
+        color: var(--mute);
+        text-transform: lowercase;
+        cursor: default;
+        max-width: 40rem;
+        padding: 0 1rem;
+      }
+
+      .lightbox-caption p {
+        display: block;
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 0.95rem;
+        letter-spacing: 0.01em;
+        text-transform: none;
+        color: var(--ink);
+        line-height: 1.55;
+      }
+
+      .lightbox-caption time {
+        display: block;
+        margin-top: 0.8rem;
+        color: var(--ink-soft);
+        letter-spacing: 0.55em;
+      }
+
+      body.lightbox-open {
+        overflow: hidden;
+      }
+
+      /* responsive */
+      @media (max-width: 640px) {
+        .photo figure {
+          max-width: 92vw;
+        }
+        .progress,
+        .year-tick {
+          display: none;
+        }
+        .kanji {
+          font-size: 3.2rem;
+        }
+        .epigraph {
+          margin-top: 0.85rem;
+          font-size: 0.95rem;
+          line-height: 1.5;
+        }
+        .epigraph cite {
+          margin-top: 0.6rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .opener .scroll-hint {
+          animation: none;
+        }
+        .photo figure {
+          transition: opacity 0.3s ease;
+          transform: none;
+        }
+        .scroller {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+
+    <script>
+      // Lightbox
+      const lightbox = document.getElementById('lightbox');
+      const lightboxContent = lightbox ? lightbox.querySelector('.lightbox-content') : null;
+
+      function openLightbox(src: string, date: string, caption: string) {
+        if (!lightbox || !lightboxContent) return;
+        lightboxContent.innerHTML = '';
+
+        const el = document.createElement('img');
+        el.src = src;
+        el.alt = caption || '';
+        lightboxContent.appendChild(el);
+
+        const hasDate = date && date !== '-';
+        const hasCaption = caption && caption !== '-';
+        if (hasDate || hasCaption) {
+          const cap = document.createElement('figcaption');
+          cap.className = 'lightbox-caption';
+          if (hasCaption) {
+            const p = document.createElement('p');
+            p.textContent = caption;
+            cap.appendChild(p);
+          }
+          if (hasDate) {
+            const t = document.createElement('time');
+            t.textContent = date;
+            cap.appendChild(t);
+          }
+          lightboxContent.appendChild(cap);
+        }
+
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('lightbox-open');
+      }
+
+      function closeLightbox() {
+        if (!lightbox || !lightboxContent) return;
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('lightbox-open');
+        setTimeout(() => {
+          if (lightboxContent) lightboxContent.innerHTML = '';
+        }, 250);
+      }
+
+      lightbox?.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox?.classList.contains('open')) closeLightbox();
+      });
+
+      // Bind photo click events
+      document.querySelectorAll('.photo figure').forEach((fig) => {
+        fig.addEventListener('click', () => {
+          const src = fig.getAttribute('data-src') || '';
+          const date = fig.getAttribute('data-date') || '';
+          const caption = fig.getAttribute('data-caption') || '';
+          openLightbox(src, date, caption);
+        });
+      });
+
+      // View toggle
+      const VIEW_KEY = 'gallery-view';
+      const viewButtons = document.querySelectorAll('.views button');
+
+      function setView(view: string) {
+        document.body.classList.remove('view-scroll', 'view-grid');
+        document.body.classList.add('view-' + view);
+        viewButtons.forEach((b) => {
+          b.setAttribute('aria-pressed', (b as HTMLElement).dataset.view === view ? 'true' : 'false');
+        });
+        try {
+          localStorage.setItem(VIEW_KEY, view);
+        } catch {}
+      }
+
+      const savedView = (() => {
+        try {
+          return localStorage.getItem(VIEW_KEY);
+        } catch {
+          return null;
+        }
+      })();
+      setView(savedView === 'grid' ? 'grid' : 'scroll');
+
+      viewButtons.forEach((b) => {
+        b.addEventListener('click', () => {
+          const v = (b as HTMLElement).dataset.view || 'scroll';
+          setView(v);
+        });
+      });
+
+      // Scroller, Observer, Progress, and Counter
+      const scroller = document.getElementById('scroller');
+      if (scroller) {
+        const slides = scroller.querySelectorAll<HTMLElement>('section.slide');
+        const cur = document.getElementById('cur');
+        const tot = document.getElementById('tot');
+        const pbar = document.getElementById('pbar');
+        const progressEl = document.getElementById('progress');
+        const yearTick = document.getElementById('yearTick');
+        const total = slides.length;
+        const pad = (n: number) => String(n).padStart(3, '0');
+
+        if (tot) tot.textContent = pad(total);
+        if (cur) cur.textContent = pad(1);
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add('in');
+
+                const idx = Array.from(slides).indexOf(e.target as HTMLElement);
+                if (cur) {
+                  cur.textContent = idx >= 0 ? pad(idx + 1) : '-';
+                }
+
+                const y = (e.target as HTMLElement).dataset.year;
+                if (yearTick) {
+                  const em = document.createElement('em');
+                  em.textContent = y && y !== '-' && y !== 'undefined' ? y : '-';
+                  yearTick.replaceChildren(em);
+                }
+              } else {
+                e.target.classList.remove('in');
+              }
+            });
+          },
+          { root: scroller, threshold: 0.6 }
+        );
+
+        slides.forEach((s) => io.observe(s));
+
+        // Progress scrubber
+        function updateThumb() {
+          if (!scroller || !pbar) return;
+          const max = scroller.scrollHeight - scroller.clientHeight;
+          const ratio = max > 0 ? scroller.scrollTop / max : 0;
+          pbar.style.height = Math.max(0, Math.min(1, ratio)) * 100 + '%';
+        }
+
+        scroller.addEventListener('scroll', updateThumb, { passive: true });
+        updateThumb();
+
+        if (progressEl) {
+          let dragging = false;
+          function scrubTo(clientY: number) {
+            if (!scroller || !progressEl) return;
+            const rect = progressEl.getBoundingClientRect();
+            const ratio = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height));
+            const max = scroller.scrollHeight - scroller.clientHeight;
+            scroller.scrollTop = ratio * max;
+          }
+
+          progressEl.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
+            dragging = true;
+            progressEl.classList.add('dragging');
+            scroller.classList.add('dragging');
+            progressEl.setPointerCapture(e.pointerId);
+            scrubTo(e.clientY);
+          });
+
+          progressEl.addEventListener('pointermove', (e) => {
+            if (!dragging) return;
+            scrubTo(e.clientY);
+          });
+
+          const endDrag = (e: PointerEvent) => {
+            if (!dragging) return;
+            dragging = false;
+            progressEl.classList.remove('dragging');
+            scroller.classList.remove('dragging');
+            if (e && e.pointerId != null && progressEl.hasPointerCapture(e.pointerId)) {
+              progressEl.releasePointerCapture(e.pointerId);
+            }
+          };
+
+          progressEl.addEventListener('pointerup', endDrag);
+          progressEl.addEventListener('pointercancel', endDrag);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+          if (lightbox && lightbox.classList.contains('open')) return;
+          if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+            e.preventDefault();
+            scroller.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+          } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+            e.preventDefault();
+            scroller.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
+          } else if (e.key === 'Home') {
+            e.preventDefault();
+            scroller.scrollTo({ top: 0, behavior: 'smooth' });
+          } else if (e.key === 'End') {
+            e.preventDefault();
+            scroller.scrollTo({ top: scroller.scrollHeight, behavior: 'smooth' });
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
