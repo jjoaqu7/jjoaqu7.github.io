@@ -42,7 +42,7 @@ export const personalMedia: PersonalMediaItem[] = [
     id: "L.png",
     src: "/images/personal/L.png",
     date: "2026",
-    caption: "",
+    caption: "lm",
     live: true,
   },
   {
@@ -50,7 +50,7 @@ export const personalMedia: PersonalMediaItem[] = [
     src: "/images/personal/ef1dbddbc6d842bb.jpg",
     date: "May 2026",
     caption: "luna",
-    live: false,
+    live: true,
   },
   {
     id: "79b95d42cc7c48b7.jpeg",
@@ -63,7 +63,7 @@ export const personalMedia: PersonalMediaItem[] = [
     id: "edc260b040fed787.jpg",
     src: "/images/personal/edc260b040fed787.jpg",
     date: "Nov 2025",
-    caption: "mer, mon cœur pèse des tonnes ... et pleure ses vagues",
+    caption: "nice",
     live: true,
   },
   {
