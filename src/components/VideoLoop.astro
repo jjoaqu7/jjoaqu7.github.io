@@ -1,0 +1,40 @@
+---
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+
+interface Props {
+  src: string;
+  poster?: ImageMetadata;
+  label: string;
+  class?: string;
+}
+
+const { src, poster, label, class: cls } = Astro.props;
+const posterImg = poster ? await getImage({ src: poster, width: 1200, format: 'jpg' }) : undefined;
+---
+
+<video
+  class:list={['loop', cls]}
+  src={src}
+  poster={posterImg?.src}
+  aria-label={label}
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="metadata"
+  width={posterImg?.attributes.width}
+  height={posterImg?.attributes.height}
+>
+</video>
+
+<script is:inline>
+  // Respect reduced-motion settings: no autoplay, show controls instead.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video.loop').forEach((v) => {
+      v.removeAttribute('autoplay');
+      v.pause();
+      v.controls = true;
+    });
+  }
+</script>

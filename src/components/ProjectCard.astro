@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import { fmtRange } from '../lib/format';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const p = project.data;
+// Diagrams and CAD art sit on a light plate and are shown whole; photos fill the thumbnail.
+const range = fmtRange(p.start, p.end);
+const isDiagram = (p.coverStyle ?? (p.cover?.format === 'svg' ? 'diagram' : 'photo')) === 'diagram';
+---
+
+<a class:list={['card', { plain: !p.cover }]} href={`/projects/${project.id}/`}>
+  {
+    p.cover && (
+      <div class:list={['thumb', { contain: isDiagram }]}>
+        <Image src={p.cover} alt="" width={300} />
+      </div>
+    )
+  }
+  <div>
+    <h3>{p.title}</h3>
+    <p>{p.summary}</p>
+    <p class="meta">{p.org}{range && ` · ${range}`}</p>
+  </div>
+</a>

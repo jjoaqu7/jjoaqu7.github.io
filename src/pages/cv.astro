@@ -1,0 +1,169 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { awards, education, mentoring, positions, profile, skills, teaching } from '../data/profile';
+import { fmtWhen } from '../lib/format';
+
+const pubs = (await getCollection('publications', ({ data }) => data.kind === 'paper' || data.kind === 'preprint')).sort(
+  (a, b) => b.data.date.localeCompare(a.data.date),
+);
+const talks = (await getCollection('publications', ({ data }) => data.kind === 'talk' || data.kind === 'poster')).sort(
+  (a, b) => b.data.date.localeCompare(a.data.date),
+);
+---
+
+<Base title="CV" description="Curriculum vitae of Joaquin Ramirez-Medina: education, research, teaching, publications and awards.">
+  <header class="proj-head" style="padding-top:48px">
+    <span class="eyebrow">Curriculum vitae</span>
+    <h1>{profile.name}</h1>
+    <p class="meta">
+      {profile.location} · <a href={`mailto:${profile.email}`}>{profile.email}</a> ·
+      <a href={profile.links.linkedin}>LinkedIn</a> · <a href={profile.links.github}>GitHub</a>
+    </p>
+    <div class="btns no-print">
+      <a class="btn primary" href="/files/ramirez-medina-cv.pdf">Download PDF</a>
+    </div>
+  </header>
+
+  <div class="cv section" style="padding-top:44px">
+    <section>
+      <h2>Education</h2>
+      {
+        education.map((e) => (
+          <div class="cv-item">
+            <span class="what">{e.degree}</span>
+            <span class="when">{e.dates}</span>
+            <span class="where">{e.school}</span>
+            {e.detail.length > 0 && (
+              <ul>
+                {e.detail.map((d) => (
+                  <li>{d}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))
+      }
+    </section>
+
+    <section>
+      <h2>Research experience</h2>
+      {
+        positions.map((e) => (
+          <div class="cv-item">
+            <span class="what">{e.title}</span>
+            <span class="when">{e.dates}</span>
+            <span class="where">{e.org}</span>
+            <ul>
+              {e.detail.map((d) => (
+                <li>{d}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </section>
+
+    <section>
+      <h2>Publications</h2>
+      {
+        pubs.map(({ data: d }) => (
+          <div class="cv-item">
+            <span class="what">{d.title}</span>
+            <span class="when">{fmtWhen(d.date)}</span>
+            <span class="where">
+              {d.authors}. {d.venue}.
+            </span>
+          </div>
+        ))
+      }
+    </section>
+
+    <section>
+      <h2>Talks and posters</h2>
+      <table class="cv-table">
+        <tbody>
+          {
+            talks.map(({ data: d }) => (
+              <tr>
+                <td>{d.kind === 'poster' ? 'Poster' : 'Talk'}</td>
+                <td>
+                  {d.title}
+                  <br />
+                  <span class="meta">{d.venue}</span>
+                </td>
+                <td>{fmtWhen(d.date)}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Teaching</h2>
+      <div class="cv-item">
+        <span class="what">{teaching.role}</span>
+        <span class="when">{teaching.dates}</span>
+      </div>
+      <table class="cv-table">
+        <tbody>
+          {
+            teaching.courses.map((c) => (
+              <tr>
+                <td>{c.code}</td>
+                <td>{c.title}</td>
+                <td>{c.term}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Mentoring</h2>
+      <div class="cv-item">
+        <ul style="margin:0">{mentoring.map((m) => <li>{m}</li>)}</ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Awards</h2>
+      <table class="cv-table">
+        <tbody>
+          {
+            awards.map((a) => (
+              <tr>
+                <td>{a.date}</td>
+                <td>
+                  {a.name}
+                  <br />
+                  <span class="meta">{a.issuer}</span>
+                </td>
+                <td />
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <table class="cv-table">
+        <tbody>
+          {
+            skills.map((s) => (
+              <tr>
+                <td>{s.group}</td>
+                <td>{s.items}</td>
+                <td />
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </section>
+  </div>
+</Base>

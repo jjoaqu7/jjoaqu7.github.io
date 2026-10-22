@@ -1,0 +1,14 @@
+---
+import StyleConcept from '../../components/StyleConcept.astro';
+import AcademicClassic from '../../components/AcademicClassic.astro';
+import { styleConcepts } from '../../data/style-concepts';
+export function getStaticPaths() { return styleConcepts.map((style, index) => ({ params: { slug: style.slug }, props: { style, index } })); }
+const { style, index } = Astro.props;
+const previous = styleConcepts[(index + styleConcepts.length - 1) % styleConcepts.length];
+const next = styleConcepts[(index + 1) % styleConcepts.length];
+---
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="robots" content="noindex"/><meta name="description" content={style.description}/><title>{style.name} · Style preview</title></head><body>
+<aside class="preview-bar" aria-label="Style preview navigation"><a href="/style-lab/">← All styles</a><span>{style.number} / {String(styleConcepts.length).padStart(2, '0')} <strong>{style.name}</strong></span><div><a href={`/style-lab/${previous.slug}/`} aria-label={`Previous style, ${previous.name}`}>← Previous</a><a href={`/style-lab/${next.slug}/`} aria-label={`Next style, ${next.name}`}>Next →</a></div></aside>
+<main>{style.slug === 'academic-classic' ? <AcademicClassic/> : <StyleConcept theme={style.slug}/>}</main>
+</body></html>
+<style is:global>body{margin:0}.preview-bar{box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;justify-content:space-between;background:#fff;color:#41413d;border-bottom:1px solid #e4e4df;padding:13px 24px;font:11px/1.5 Arial,sans-serif;color-scheme:light}.preview-bar a{color:inherit;text-decoration:none}.preview-bar a:hover{text-decoration:underline}.preview-bar strong{font-weight:500;margin-left:14px}.preview-bar div{display:flex;gap:20px}.preview-bar a:focus-visible{outline:2px solid #353b37;outline-offset:4px}@media(max-width:480px){.preview-bar{padding:12px 16px}.preview-bar>span{order:3;width:100%;text-align:center}}</style>

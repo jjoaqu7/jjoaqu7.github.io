@@ -1,0 +1,20 @@
+/* Shared presentation for project, CV, and publication pages. */
+.sidewall-equation{max-width:100%;overflow-x:auto;padding:12px 2px;margin:12px 0 18px}.sidewall-equation math{width:max-content;min-width:100%;font-size:1.1em}
+.prose tr:has(.wall-thickness-reference){background:var(--portfolio-navigation);font-weight:700}.prose tr:has(.wall-thickness-reference) td:first-child{border-left:4px solid var(--portfolio-heading)}.wall-thickness-callout{margin:18px 0;padding:14px 16px;border-left:4px solid var(--portfolio-heading);background:var(--portfolio-navigation)}.wall-thickness-callout>strong{display:block}.wall-thickness-callout p{margin:8px 0 0}
+:root{--bg:var(--portfolio-bg);--surface:var(--portfolio-bg);--ink:var(--portfolio-ink);--ink-2:var(--portfolio-muted);--ink-3:var(--portfolio-muted);--rule:var(--portfolio-rule);--accent:var(--portfolio-link);--accent-hover:var(--portfolio-heading);--accent-soft:var(--portfolio-navigation);--plate:var(--portfolio-soft);--shadow:none;--font:'Times New Roman',Times,serif;--maxw:900px;--radius:0px;--gutter:28px;color-scheme:light}
+body{font-size:16px;background:var(--portfolio-bg);color:var(--portfolio-ink)}
+.shell{padding-top:14px;container-type:inline-size}
+h1,h2,h3{font-family:Arial,Helvetica,sans-serif;color:var(--portfolio-heading)}
+h1{font-size:clamp(25px,3.5vw,33px)}h2{font-size:20px}h3{font-size:16px}
+.eyebrow{font-family:Arial,Helvetica,sans-serif;font-size:11px;text-transform:none;letter-spacing:0}
+.btn{border-radius:0;box-shadow:none;font:13px/1.5 Arial,Helvetica,sans-serif}
+.tags li{border-radius:0}.prose h2{font-size:20px}.prose h3{font-size:17px}
+.footer{font:11px/1.6 Arial,Helvetica,sans-serif;margin-top:45px;padding-bottom:32px}
+.proj-head{padding-top:22px}.proj-head .lede{font-size:18px}.proj-body{grid-template-columns:minmax(0,1fr) 230px;gap:35px}
+.proj-media{margin-top:28px}.aside{font-family:Arial,Helvetica,sans-serif;font-size:12px}.aside h2{font-size:11px}
+.pubs .t{font-family:Arial,Helvetica,sans-serif;font-size:15px}.pubs .a,.pubs .v{font-size:15px}
+.section{padding-top:40px}.section-head{margin-bottom:18px}.cv{gap:34px}
+.skip:focus{background:var(--portfolio-bg)}
+@media(max-width:860px){.proj-body{grid-template-columns:1fr}.aside{position:static;order:-1}}
+@media(max-width:600px){:root{--gutter:16px}.shell{padding-top:16px}.footer{margin-top:32px}}
+@media print{.academic-banner,.academic-navigation,.skip{display:none!important}.shell{padding-top:0}h1,h2,h3{color:#000}.academic-profile-image{display:none}.academic-profile{grid-template-columns:1fr}.academic-classic{min-height:0}}

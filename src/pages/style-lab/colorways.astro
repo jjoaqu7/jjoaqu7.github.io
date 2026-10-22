@@ -1,0 +1,23 @@
+---
+import AcademicClassic from '../../components/AcademicClassic.astro';
+import { colorways, defaultColorway } from '../../data/colorways';
+---
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="robots" content="noindex"/><title>Portfolio colorways · Joaquin Ramirez-Medina</title></head><body>
+<div class="colorway-lab"><header class="colorway-intro"><a href="/">← Current portfolio</a><h1>Same layout. Five colorways.</h1><p>Choose a palette to preview the header, links, headings, and portrait placeholder together.</p></header><div class="colorway-options" role="group" aria-label="Preview a colorway">{colorways.map(palette => <button type="button" data-palette={palette.id} aria-pressed={palette.id === defaultColorway}><span class="palette-swatches" aria-hidden="true"><i style={`background:${palette.banner}`}></i><i style={`background:${palette.heading}`}></i><i style={`background:${palette.link}`}></i></span><strong>{palette.name}</strong><span>{palette.description}</span></button>)}</div><div class="colorway-preview-link"><p aria-live="polite" id="palette-caption">Slate blue</p><a id="open-palette" href={`/?colorway=${defaultColorway}`}>Open full site in this palette ↗</a></div><div id="palette-preview"><AcademicClassic colorway={defaultColorway}/></div></div>
+<script>
+  const preview = document.querySelector<HTMLElement>('#palette-preview .academic-classic')!;
+  const caption = document.getElementById('palette-caption')!;
+  const open = document.querySelector<HTMLAnchorElement>('#open-palette')!;
+  const buttons = document.querySelectorAll<HTMLButtonElement>('button[data-palette]');
+  buttons.forEach(button => button.addEventListener('click', () => {
+    const palette = button.dataset.palette!;
+    preview.dataset.colorway = palette;
+    caption.textContent = button.querySelector('strong')!.textContent;
+    open.href = `/?colorway=${palette}`;
+    buttons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
+  }));
+</script>
+</body></html>
+<style is:global>
+body{margin:0;background:#f7f8f8;color:#293640;font:14px/1.6 Arial,Helvetica,sans-serif;color-scheme:light}.colorway-lab{max-width:1100px;margin:0 auto;padding:30px 24px 50px}.colorway-intro>a{font-size:12px;color:#36566e;text-decoration:none}.colorway-intro h1{font:400 36px/1.2 Georgia,serif;margin:30px 0 12px;letter-spacing:-1px}.colorway-intro p{color:#596570;max-width:580px;margin:0 0 24px}.colorway-options{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.colorway-options button{font:12px/1.5 Arial,sans-serif;text-align:left;border:1px solid #d3d9dd;background:white;padding:14px;cursor:pointer;color:#354651}.colorway-options button[aria-pressed='true']{outline:2px solid #4a687f;outline-offset:2px}.colorway-options button:focus-visible{outline:3px solid #345c7a;outline-offset:3px}.colorway-options strong,.colorway-options button>span:last-child{display:block}.colorway-options strong{font-size:13px;margin:10px 0 4px}.colorway-options button>span:last-child{color:#59656d;font-size:11px}.palette-swatches{display:flex;gap:4px}.palette-swatches i{width:24px;height:24px;display:block;border:1px solid #00000008}.colorway-preview-link{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:24px 0 12px;font-size:12px}.colorway-preview-link p{margin:0}.colorway-preview-link a{color:#36566e}#palette-preview{border:1px solid #d3d9dd}@media(max-width:720px){.colorway-options{grid-template-columns:repeat(2,minmax(0,1fr))}.colorway-options button:last-child{grid-column:1/-1}.colorway-lab{padding:20px 14px 32px}.colorway-intro h1{font-size:30px}}
+</style>

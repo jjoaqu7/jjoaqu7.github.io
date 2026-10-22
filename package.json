@@ -1,0 +1,17 @@
+{
+  "name": "jjoaqu7-site",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "check:copy": "node scripts/check-copy.mjs",
+    "build": "node scripts/check-copy.mjs && astro build",
+    "preview": "astro preview",
+    "audit": "node scripts/audit-dist.mjs",
+    "import:assets": "python scripts/import_assets.py"
+  },
+  "dependencies": {
+    "astro": "5.18.2"
+  }
+}

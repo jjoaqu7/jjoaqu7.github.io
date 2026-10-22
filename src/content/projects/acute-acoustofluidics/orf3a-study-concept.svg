@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560" role="img" aria-labelledby="title desc">
+  <title id="title">ORF3a cardiac study: from question to measurement</title>
+  <desc id="desc">The proposed study question connects ORF3a expression and larval cardiac function. Microfluidic imaging provides recordings for region selection, signal and M-mode review, and quantitative measurements. Conceptualization and data curation were the portfolio author's contributions within collaborative research.</desc>
+  <rect width="960" height="560" fill="#fafcfd"/>
+  <g font-family="Arial, sans-serif" fill="#243b4a">
+    <text x="40" y="49" font-size="25" font-weight="700">From research question to measurable heart motion</text>
+    <text x="40" y="82" font-size="17" fill="#536b79">ORF3a cardiac study · conceptual workflow</text>
+    <rect x="40" y="113" width="880" height="104" rx="5" fill="#e6eff3" stroke="#b7cbd5"/>
+    <text x="63" y="145" font-size="16" font-weight="700">1  STUDY QUESTION · MY CONCEPTUALIZATION</text>
+    <text x="63" y="177" font-size="21">How does ORF3a expression affect cardiac function</text>
+    <text x="63" y="202" font-size="21">in Drosophila larvae?</text>
+    <path d="M480 221v29m-7-8 7 8 7-8" stroke="#6b8999" stroke-width="2" fill="none"/>
+    <rect x="40" y="262" width="265" height="157" rx="5" fill="#fff" stroke="#b7cbd5"/>
+    <rect x="347" y="262" width="265" height="157" rx="5" fill="#fff" stroke="#b7cbd5"/>
+    <rect x="654" y="262" width="266" height="157" rx="5" fill="#fff" stroke="#b7cbd5"/>
+    <text x="60" y="294" font-size="17" font-weight="700">2  RECORD</text>
+    <text x="60" y="331" font-size="18">Microfluidic platform</text>
+    <text x="60" y="358" font-size="18">Larval heart imaging</text>
+    <text x="60" y="390" font-size="16" fill="#536b79">Source recordings</text>
+    <text x="367" y="294" font-size="17" font-weight="700">3  REVIEW</text>
+    <text x="367" y="331" font-size="18">Time window and region</text>
+    <text x="367" y="358" font-size="18">Signals and M-mode</text>
+    <text x="367" y="390" font-size="16" fill="#536b79">Check against the images</text>
+    <text x="674" y="294" font-size="17" font-weight="700">4  MEASURE &amp; CURATE</text>
+    <text x="674" y="331" font-size="18">Cardiac measurements</text>
+    <text x="674" y="358" font-size="18">Organized study data</text>
+    <text x="674" y="390" font-size="16" fill="#536b79">Traceable to recordings</text>
+    <path d="M311 340h28m-8-7 8 7-8 7 M618 340h28m-8-7 8 7-8 7" stroke="#6b8999" stroke-width="2" fill="none"/>
+    <text x="40" y="469" font-size="18" font-weight="700">My contribution</text>
+    <text x="40" y="500" font-size="18">Study concept · imaging-data curation · MATLAB analysis and review</text>
+    <text x="40" y="536" font-size="15" fill="#536b79">Collaborative research. Diagram describes the approach, rather than a measured outcome.</text>
+  </g>
+</svg>

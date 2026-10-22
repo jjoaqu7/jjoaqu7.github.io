@@ -1,0 +1,75 @@
+---
+import '../styles/site.css';
+import '../styles/portfolio-colors.css';
+import '../styles/academic-classic.css';
+import '../styles/portfolio.css';
+import PortfolioHeader from '../components/PortfolioHeader.astro';
+import { defaultColorway } from '../data/colorways';
+import { profile } from '../data/profile';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Absolute path of the link-preview image under public/ */
+  image?: string;
+}
+
+const {
+  title,
+  description = 'Joaquin Ramirez-Medina. Mechanical engineering, device fabrication, experiments, control electronics, and software for research. MASc research at York University.',
+  image = '/og.jpg',
+} = Astro.props;
+
+const fullTitle = title ? `${title} | ${profile.name}` : `${profile.name} | Mechanical engineering and R&D`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
+---
+
+<!doctype html>
+<html lang="en" data-colorway={defaultColorway}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="color-scheme" content="light" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="shell">
+      <PortfolioHeader/>
+
+      <main id="main">
+        <slot />
+      </main>
+
+      <footer class="footer">
+        <span class="grow">{profile.name}, {profile.location}</span>
+        <a href={`mailto:${profile.email}`}>{profile.email}</a>
+        <a href={profile.links.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
+        <a href={profile.links.github} rel="me noopener" target="_blank">GitHub</a>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<script>
+  import { colorways } from '../data/colorways';
+  const requested = new URLSearchParams(location.search).get('colorway');
+  if (requested && colorways.some(palette => palette.id === requested)) {
+    document.documentElement.dataset.colorway = requested;
+    document.querySelectorAll<HTMLAnchorElement>('a[href^="/"]').forEach(link => {
+      const target = new URL(link.href);
+      target.searchParams.set('colorway', requested);
+      link.href = `${target.pathname}${target.search}${target.hash}`;
+    });
+  }
+</script>

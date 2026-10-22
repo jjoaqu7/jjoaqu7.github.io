@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { fmtWhen } from '../lib/format';
+
+interface Props {
+  items: CollectionEntry<'publications'>[];
+  showProject?: boolean;
+}
+
+const { items, showProject = true } = Astro.props;
+const sorted = [...items].sort((a, b) => b.data.date.localeCompare(a.data.date));
+---
+
+<ul class="pubs">
+  {
+    sorted.map(({ data: d }) => (
+      <li>
+        <div>
+          <span class="t">{d.title}</span>
+          {d.href && (
+            <a class="ext" href={d.href} target={d.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
+              {d.href.endsWith('.pdf') ? 'PDF' : d.href.includes('arxiv') ? 'arXiv' : d.href.includes('doi.org') ? 'DOI' : 'Link'}
+            </a>
+          )}
+        </div>
+        {d.authors && <div class="a">{d.authors}</div>}
+        <div class="v">
+          {d.venue}, {fmtWhen(d.date)}
+        </div>
+        {(d.note || (showProject && d.project)) && (
+          <div class="n">
+            {d.note}
+            {showProject && d.project && (
+              <>
+                {d.note ? ' ' : ''}
+                <a href={`/projects/${d.project.id}/`}>Project page</a>
+              </>
+            )}
+          </div>
+        )}
+      </li>
+    ))
+  }
+</ul>

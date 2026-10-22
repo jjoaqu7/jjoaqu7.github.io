@@ -1,0 +1,140 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import PubList from '../../components/PubList.astro';
+import VideoLoop from '../../components/VideoLoop.astro';
+import { fmtRange } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects', ({ data }) => !data.draft);
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const p = project.data;
+const { Content } = await render(project);
+
+const pubs = await getCollection('publications', ({ data }) => data.project?.id === project.id);
+const range = fmtRange(p.start, p.end);
+const coverStyle = p.coverStyle ?? (p.cover?.format === 'svg' ? 'diagram' : 'photo');
+// Link previews need a raster image, so SVG covers fall back to the site default.
+const og = p.cover && p.cover.format !== 'svg' ? (await getImage({ src: p.cover, width: 1200, format: 'jpg' })).src : undefined;
+---
+
+<Base title={p.title} description={p.summary} image={og}>
+  <a class="crumb" href={p.track === 'software' ? '/#software' : '/#research'}>← All work</a>
+
+  <header class="proj-head">
+    <span class="eyebrow">{p.track === 'software' ? 'Software' : 'Research'}</span>
+    <h1>{p.title}</h1>
+    <p class="meta">{p.role} · {p.org}{range && ` · ${range}`}</p>
+    <p class="lede">{p.summary}</p>
+    {
+      p.tags.length > 0 && (
+        <ul class="tags">
+          {p.tags.map((t) => (
+            <li>{t}</li>
+          ))}
+        </ul>
+      )
+    }
+  </header>
+
+  {
+    p.showCover && (p.video ? (
+      <figure class="proj-media photo">
+        <VideoLoop src={p.video} poster={p.cover} label={p.coverAlt ?? p.title} />
+        {p.coverAlt && <figcaption>{p.coverAlt} (video, sped up)</figcaption>}
+      </figure>
+    ) : (
+      p.cover && (
+        <figure class:list={['proj-media', coverStyle]}>
+          <Image src={p.cover} alt={p.coverAlt ?? ''} width={1600} loading="eager" fetchpriority="high" />
+          {p.coverAlt && <figcaption>{p.coverAlt}</figcaption>}
+        </figure>
+      )
+    ))
+  }
+
+  <div class="proj-body">
+    <article class="prose">
+      <Content />
+    </article>
+
+    <aside class="aside">
+      {
+        p.facts.length > 0 && (
+          <section>
+            <h2>At a glance</h2>
+            <dl class="facts">
+              {p.facts.map((f) => (
+                <div>
+                  <dt>{f.label}</dt>
+                  <dd>{f.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )
+      }
+      {
+        p.links.length > 0 && (
+          <section>
+            <h2>Links</h2>
+            <ul>
+              {p.links.map((l) => (
+                <li>
+                  <a href={l.href} target={l.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+      {
+        p.status && (
+          <section>
+            <h2>Status</h2>
+            <p class="note">{p.status}</p>
+          </section>
+        )
+      }
+      {
+        p.credits && (
+          <section>
+            <h2>Credits</h2>
+            <p class="note">{p.credits}</p>
+          </section>
+        )
+      }
+    </aside>
+  </div>
+
+  {
+    pubs.length > 0 && (
+      <section class="section">
+        <div class="section-head">
+          <h2>Publications and talks from this work</h2>
+        </div>
+        <PubList items={pubs} showProject={false} />
+      </section>
+    )
+  }
+</Base>
+
+<script>
+  // Figures in the write-up open full size in a new tab.
+  document.querySelectorAll<HTMLImageElement>('.prose img').forEach((img) => {
+    if (img.closest('a')) return;
+    const link = document.createElement('a');
+    link.href = img.currentSrc || img.src;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.setAttribute('aria-label', `Open full-size image (${img.alt})`);
+    img.replaceWith(link);
+    link.appendChild(img);
+  });
+</script>

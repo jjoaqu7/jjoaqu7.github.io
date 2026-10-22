@@ -1,0 +1,35 @@
+﻿---
+import { profile } from '../data/profile';
+const path = Astro.url.pathname;
+---
+
+<header class="portfolio-masthead">
+  <div class="masthead-row">
+    <div class="masthead-identity">
+      <a class="masthead-name" href="/" aria-label={`${profile.name}, home`}>{profile.name}</a>
+      <p class="masthead-subtitle">Mechanical engineering &amp; research</p>
+    </div>
+    <nav class="masthead-navigation" aria-label="Main">
+      <a href="/" aria-current={path === '/' ? 'page' : undefined}>Home</a>
+      <a href="/projects/" aria-current={path.startsWith('/projects/') ? 'page' : undefined}>Projects</a>
+      <a href="/publications/" aria-current={path === '/publications/' ? 'page' : undefined}>Publications</a>
+      <a href="/cv/" aria-current={path === '/cv/' ? 'page' : undefined}>CV</a>
+      <a href="/#academic-links">Contact</a>
+    </nav>
+  </div>
+  <p class="masthead-specialties">Device design &middot; Fabrication &middot; Experiments &middot; Research software</p>
+</header>
+
+<style>
+  .portfolio-masthead{color:var(--portfolio-heading);background:var(--portfolio-bg)}
+  .masthead-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px 24px;padding:22px 24px 17px;border-bottom:1px solid var(--portfolio-rule)}
+  .masthead-identity{min-width:0}
+  .portfolio-masthead .masthead-name{color:var(--portfolio-heading);font:600 23px/1.2 Georgia,'Times New Roman',serif;letter-spacing:-.5px;text-decoration:none}
+  .portfolio-masthead .masthead-subtitle{margin:6px 0 0;color:var(--portfolio-muted);font:400 12px/1.5 Arial,Helvetica,sans-serif}
+  .masthead-navigation{display:flex;flex-wrap:wrap;align-items:center;gap:16px;font:400 13px/1.5 Arial,Helvetica,sans-serif}
+  .portfolio-masthead .masthead-navigation a{color:var(--portfolio-link);text-decoration:none;padding:4px 0;border-bottom:2px solid transparent;white-space:nowrap}
+  .portfolio-masthead .masthead-navigation a:hover,.portfolio-masthead .masthead-navigation a[aria-current='page']{border-bottom-color:var(--portfolio-link)}
+  .portfolio-masthead .masthead-specialties{margin:0;padding:12px 24px;color:var(--portfolio-muted);font:400 12px/1.4 Georgia,'Times New Roman',serif}
+  @container(max-width:600px){.masthead-row{padding:17px;gap:14px}.masthead-navigation{width:100%;justify-content:space-between;gap:10px}.portfolio-masthead .masthead-name{font-size:22px}.portfolio-masthead .masthead-specialties{padding:10px 17px}}
+  @media print{.portfolio-masthead{display:none}}
+</style>

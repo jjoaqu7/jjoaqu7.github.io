@@ -1,0 +1,106 @@
+# Published work only. Manuscripts under review or in preparation go in the
+# "status" line of the project they belong to, not here.
+#
+# kind: paper | preprint | talk | poster | media
+# date: YYYY or YYYY-MM
+# project: optional folder name under src/content/projects, links the entry to that page
+
+- id: ihtc18-paper
+  kind: paper
+  title: Electrowetting for Multi-Scale Droplet Coalescence and Transport in Dropwise Condensation
+  authors: J. Ramirez-Medina, A. Amirfazli
+  venue: Proceedings of the 18th International Heat Transfer Conference (IHTC-18), Rio de Janeiro, Brazil
+  date: 2026-08
+  note: Paper IHTC18-0611. Presented as an oral talk and a poster.
+  project: electrowetting-condensation
+  selected: true
+
+- id: arxiv-aria
+  kind: preprint
+  title: Accelerating Scientific Research Through a Multi-LLM Framework
+  authors: J. Ramirez-Medina, M. Ataei, A. Amirfazli
+  venue: arXiv preprint arXiv:2502.07960
+  date: 2025-02
+  href: https://arxiv.org/abs/2502.07960
+  project: aria
+  selected: true
+
+- id: ceea-prof-notes
+  kind: paper
+  title: "AI Enabled Automated Student Q&A Tool: Prof Notes AI"
+  authors: A. Asim, J. Ramirez-Medina, A. Amirfazli
+  venue: Proceedings of the Canadian Engineering Education Association (CEEA)
+  date: 2025-07
+  href: https://doi.org/10.24908/pceea.2025.19582
+  note: The published record spells the second author's name as Juaquin.
+  project: prof-notes-ai
+  selected: true
+
+- id: mnm-embryo-rotation
+  kind: paper
+  title: Acoustofluidic Rotational Manipulation of Drosophila Embryos in a Microfluidic Device
+  authors: A. Zabihihesari, J. Ramirez-Medina, P. Rezai
+  venue: IEEE EMBS Micro and Nanotechnology in Medicine (MNM), Hawaii, USA
+  date: 2022
+  project: acute-acoustofluidics
+  selected: true
+
+# Talks and posters
+
+- id: ihtc18-talk
+  kind: talk
+  title: Electrowetting for multi-scale droplet coalescence and transport in dropwise condensation (oral and poster)
+  venue: 18th International Heat Transfer Conference (IHTC-18), Rio de Janeiro, Brazil
+  date: 2026-08
+  href: /files/ramirez-medina-ihtc18-poster.pdf
+  project: electrowetting-condensation
+
+- id: inphyni-seminar
+  kind: talk
+  title: Invited seminar on electrowetting-enhanced dropwise condensation
+  venue: Institut de Physique de Nice (INPHYNI), Université Côte d'Azur, Nice, France
+  date: 2025-12
+  project: electrowetting-condensation
+
+- id: acs-2025
+  kind: talk
+  title: "Application of AI to Accelerate Research Processes: Case of Dropwise Condensation"
+  venue: 99th ACS Colloids and Surface Science Symposium and 18th IACIS Conference, Edmonton
+  date: 2025-06
+  project: aria
+
+- id: lassonde-2024-poster
+  kind: poster
+  title: Prof Notes AI
+  venue: Lassonde Undergraduate Summer Research Conference, York University
+  date: 2024-08
+  project: prof-notes-ai
+
+- id: lassonde-2023-poster
+  kind: poster
+  title: AI for research, applied to dropwise condensation
+  venue: Lassonde Undergraduate Summer Research Conference, York University
+  date: 2023-08
+  project: aria
+
+- id: lassonde-2022-talk
+  kind: talk
+  title: Cardiac dysfunction in Drosophila larvae expressing SARS-CoV-2 ORF3a
+  venue: Lassonde Undergraduate Summer Research Conference, York University
+  date: 2022-08
+  project: acute-acoustofluidics
+
+# Media
+
+- id: ymf-highlight
+  kind: media
+  title: "Student Research Highlight: Electrowetting Innovation at YMF"
+  venue: York University Microfabrication Facility website
+  date: 2026-01
+  project: electrowetting-condensation
+
+- id: lassonde-podcast
+  kind: media
+  title: Exploring AI in Mechanical Engineering with Joaquin Ramirez-Medina
+  venue: This is Lassonde podcast
+  date: 2024-09

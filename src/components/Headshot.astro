@@ -1,0 +1,4 @@
+---
+import { profile } from '../data/profile';
+---
+<figure class="academic-profile-image">{profile.headshot ? <img src={profile.headshot} alt={`Headshot of ${profile.name}`} width="190" height="220"/> : <div class="academic-headshot-placeholder" role="img" aria-label="Headshot placeholder"><svg viewBox="0 0 120 140" fill="none" aria-hidden="true"><circle cx="60" cy="45" r="23" fill="currentColor" opacity=".16"/><path d="M18 123v-8c0-23 19-42 42-42s42 19 42 42v8" fill="currentColor" opacity=".16"/></svg><span>Your photograph</span></div>}</figure>

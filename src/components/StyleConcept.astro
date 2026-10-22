@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import { profile } from '../data/profile';
+import '../styles/style-concepts.css';
+interface Props { theme: string; }
+const { theme } = Astro.props;
+const projects = await getCollection('projects', ({ data }) => !data.draft);
+const ids = ['electrowetting-condensation', 'aria', 'electrowetting-device-fabrication'];
+const selected = ids.map((id) => projects.find((p) => p.id === id)).filter(Boolean);
+const photo = selected[0]?.data.cover;
+const photoSrc = typeof photo === 'string' ? photo : photo?.src;
+const bio = `MASc researcher in the Surface Engineering and Instrumentation Lab (SEiL) at York University, supervised by ${profile.supervisor}.`;
+---
+<article class:list={['concept', theme]}>
+  <div class="concept-inner">
+    <header class="concept-nav">
+      <a class="concept-brand" href="/">JRM<span class="brand-dot">.</span></a>
+      <span class="nav-note">Research &amp; selected work</span>
+      <nav aria-label="Portfolio"><a href="#selected-work">Work</a><a href="/publications/">Publications</a><a href="/cv/">CV ↗</a></nav>
+    </header>
+    <div class="concept-main">
+      <section class="concept-intro">
+        <div class="intro-kicker"><span class="status-dot"></span> Mechanical Engineering · York University</div>
+        <h1>Joaquin <span>Ramirez-Medina<span class="name-period">.</span></span></h1>
+        <div class="intro-copy"><p>{bio}</p><p>My research uses electrowetting to control dropwise condensation. I also build LLM-based software for research.</p></div>
+        <div class="concept-actions"><a href="#selected-work">Explore the work <span>↗</span></a><a href={`mailto:${profile.email}`}>Get in touch <span>↗</span></a></div>
+        <div class="intro-foot"><span>Toronto, Ontario</span><span>Engineering · Research · Software</span></div>
+      </section>
+      <figure class="concept-figure">
+        <div class="figure-top"><span>Observation 001</span><span>Condensation / electrowetting</span></div>
+        <div class="image-window">{photoSrc && <img src={photoSrc} alt={selected[0]?.data.coverAlt} width="900" height="650" loading="eager" />}<span class="image-marker" aria-hidden="true">+</span></div>
+        <figcaption><span>Electrowetting for faster dropwise condensation</span><span>SEiL / York University</span></figcaption>
+        <svg class="coordinate-art" viewBox="0 0 500 320" fill="none" aria-hidden="true"><path d="M30 280H470M50 300V20M30 80H470M30 180H470M150 20V300M250 20V300M350 20V300M450 20V300" stroke="currentColor" opacity=".12"/><circle cx="250" cy="156" r="99" stroke="currentColor"/><circle cx="250" cy="156" r="72" stroke="currentColor" opacity=".4"/><path d="M90 156H410M250 25V285" stroke="currentColor" stroke-dasharray="4 6"/><circle cx="250" cy="156" r="5" fill="currentColor"/><path d="M250 57C296 82 326 126 326 163C326 204 292 234 250 234C208 234 174 204 174 163C174 126 204 82 250 57Z" fill="currentColor" opacity=".07"/><text x="365" y="54" fill="currentColor" font-size="11" font-family="monospace">SURFACE STUDY</text><text x="365" y="70" fill="currentColor" font-size="11" font-family="monospace">01 / SCHEMATIC</text></svg>
+      </figure>
+      <section class="concept-work" id="selected-work">
+        <div class="work-heading"><h2>Selected work<span class="work-period">.</span></h2><span>Research &amp; software / 01–03</span></div>
+        <div class="work-list">{selected.map((project, i) => project && <a class="work-item" href={`/projects/${project.id}/`}><span class="work-number">0{i + 1}</span><div class="work-content"><span class="work-type">{project.data.track === 'research' ? 'Research' : 'Software'}</span><h3>{project.data.title}</h3><p>{project.data.summary}</p></div>{project.data.cover && <img src={typeof project.data.cover === 'string' ? project.data.cover : project.data.cover.src} alt="" width="200" height="150" loading="lazy" />}<span class="work-arrow" aria-hidden="true">↗</span></a>)}</div>
+      </section>
+    </div>
+    <footer class="concept-footer"><span>{profile.name}</span><a href={`mailto:${profile.email}`}>{profile.email} ↗</a><a href={profile.links.github}>GitHub ↗</a><a href={profile.links.linkedin}>LinkedIn ↗</a></footer>
+  </div>
+</article>

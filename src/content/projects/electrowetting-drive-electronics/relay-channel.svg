@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760" role="img" aria-label="AQW614A solid-state relay channel schematic">
+<defs>
+  <marker id="ray" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M 0 0 L 8 4 L 0 8 z" fill="#e0a020"/></marker>
+  <marker id="arrowHV" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto" markerUnits="strokeWidth"><path d="M 0 0 L 9 4.5 L 0 9 z" fill="#c0392b"/></marker>
+</defs>
+<style>text{font-family:Arial,Helvetica,sans-serif}</style>
+<rect x="0" y="0" width="1400" height="760" rx="0" fill="#ffffff" stroke="none" stroke-width="0" />
+<text x="46" y="45" text-anchor="start" font-size="28" font-weight="700" fill="#233244">Solid-state relay channel, from amplifier to one electrode pad</text>
+<text x="46" y="72" text-anchor="start" font-size="16" font-weight="400" fill="#526273">Panasonic AQW614A PhotoMOS (1 Form A + 1 Form B) on the backplane PCB; one of six identical channels</text>
+<polyline points="1050,67 1076,67" fill="none" stroke="#c0392b" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+<text x="1083" y="72" text-anchor="start" font-size="13" font-weight="400" fill="#526273">HV signal</text>
+<polyline points="1165,67 1191,67" fill="none" stroke="#3278b6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+<text x="1198" y="72" text-anchor="start" font-size="13" font-weight="400" fill="#526273">LV logic</text>
+<polyline points="1280,67 1306,67" fill="none" stroke="#233244" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+<text x="1313" y="72" text-anchor="start" font-size="13" font-weight="400" fill="#526273">Ground</text>
+<polyline points="46,86 1354,86" fill="none" stroke="#d7dde1" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+<text x="40" y="132" text-anchor="start" font-size="15" font-weight="600" fill="#526273">Off-board</text>
+<rect x="290" y="110" width="610" height="540" rx="10" fill="#f7fafb" stroke="#9eabb5" stroke-width="1.5" stroke-dasharray="7 5"/>
+<text x="306" y="134" text-anchor="start" font-size="16" font-weight="700" fill="#233244">Backplane PCB</text>
+<text x="426" y="134" text-anchor="start" font-size="14" font-weight="400" fill="#526273"></text>
+<text x="924" y="132" text-anchor="start" font-size="15" font-weight="600" fill="#526273">Off-board harness and chip</text>
+<rect x="40" y="525" width="150" height="70" rx="6" fill="#ffffff" stroke="#233244" stroke-width="2" />
+<text x="115" y="553" text-anchor="middle" font-size="15" font-weight="600" fill="#233244">F20A amplifier</text>
+<text x="115" y="573" text-anchor="middle" font-size="12" font-weight="400" fill="#526273">from signal gen.</text>
+<polyline points="190,560 205,560" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="205,560 207.5,567 212.5,553 217.5,567 222.5,553 227.5,567 232.5,553 237.5,567 242.5,553 247.5,567 252.5,553 257.5,567 262.5,553 265,560" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="265,560 288,560" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<text x="235" y="538" text-anchor="middle" font-size="13" font-weight="600" fill="#233244">R_global</text>
+<text x="235" y="590" text-anchor="middle" font-size="12" font-weight="400" fill="#526273">100 Ω, 5 W</text>
+<text x="235" y="605" text-anchor="middle" font-size="11" font-weight="400" fill="#526273">inline BNC box</text>
+<circle cx="300" cy="560" r="12" fill="#ffffff" stroke="#233244" stroke-width="2.4"/>
+<circle cx="300" cy="560" r="4" fill="#c0392b"/>
+<text x="318" y="590" text-anchor="start" font-size="12" font-weight="600" fill="#233244">J8 BNC</text>
+<text x="318" y="605" text-anchor="start" font-size="11" font-weight="400" fill="#526273">shell = AMP_GND</text>
+<rect x="40" y="150" width="230" height="300" rx="7" fill="#ffffff" stroke="#c3cbd1" stroke-width="1.5" />
+<text x="155" y="176" text-anchor="middle" font-size="14" font-weight="700" fill="#233244">Series resistance per pad</text>
+<polyline points="54,188 256,188" fill="none" stroke="#d7dde1" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" />
+<text x="54" y="212" text-anchor="start" font-size="13" font-weight="600" fill="#c0392b">ON, charging the pad</text>
+<text x="54" y="234" text-anchor="start" font-size="13" font-weight="400" fill="#233244">R_global</text>
+<text x="256" y="234" text-anchor="end" font-size="13" font-weight="400" fill="#233244">100 Ω</text>
+<text x="54" y="254" text-anchor="start" font-size="13" font-weight="400" fill="#233244">Form A (5–6) R_on</text>
+<text x="256" y="254" text-anchor="end" font-size="13" font-weight="400" fill="#233244">≈ 27 Ω</text>
+<text x="54" y="274" text-anchor="start" font-size="13" font-weight="400" fill="#233244">R_pad</text>
+<text x="256" y="274" text-anchor="end" font-size="13" font-weight="400" fill="#233244">1500 Ω</text>
+<text x="54" y="298" text-anchor="start" font-size="13" font-weight="700" fill="#c0392b">Total</text>
+<text x="256" y="298" text-anchor="end" font-size="13" font-weight="700" fill="#c0392b">≈ 1.63 kΩ</text>
+<text x="54" y="338" text-anchor="start" font-size="13" font-weight="600" fill="#233244">OFF, discharging the pad</text>
+<text x="54" y="360" text-anchor="start" font-size="13" font-weight="400" fill="#233244">R_pad</text>
+<text x="256" y="360" text-anchor="end" font-size="13" font-weight="400" fill="#233244">1500 Ω</text>
+<text x="54" y="380" text-anchor="start" font-size="13" font-weight="400" fill="#233244">Form B (7–8) R_on</text>
+<text x="256" y="380" text-anchor="end" font-size="13" font-weight="400" fill="#233244">≈ 27 Ω</text>
+<text x="54" y="404" text-anchor="start" font-size="13" font-weight="700" fill="#233244">Total</text>
+<text x="256" y="404" text-anchor="end" font-size="13" font-weight="700" fill="#233244">≈ 1.53 kΩ</text>
+<polyline points="54,283 256,283" fill="none" stroke="#d7dde1" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="54,389 256,389" fill="none" stroke="#d7dde1" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" />
+<text x="54" y="434" text-anchor="start" font-size="11" font-weight="400" fill="#526273">AQW614 R_on typ. 27 Ω, max. 50 Ω</text>
+<rect x="320" y="170" width="125" height="290" rx="6" fill="#ffffff" stroke="#233244" stroke-width="2" />
+<text x="382" y="298" text-anchor="middle" font-size="15" font-weight="600" fill="#233244">Arduino</text>
+<text x="382" y="316" text-anchor="middle" font-size="15" font-weight="600" fill="#233244">Nano Every</text>
+<text x="382" y="334" text-anchor="middle" font-size="12" font-weight="400" fill="#526273">(U1)</text>
+<text x="437" y="205" text-anchor="end" font-size="13" font-weight="600" fill="#3278b6">D3</text>
+<text x="437" y="345" text-anchor="end" font-size="13" font-weight="600" fill="#3278b6">D2</text>
+<text x="437" y="435" text-anchor="end" font-size="13" font-weight="600" fill="#233244">GND</text>
+<polyline points="445,200 470,200" fill="none" stroke="#3278b6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="470,200 472.5,207 477.5,193 482.5,207 487.5,193 492.5,207 497.5,193 502.5,207 507.5,193 512.5,207 517.5,193 522.5,207 527.5,193 530,200" fill="none" stroke="#3278b6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="530,200 572,200" fill="none" stroke="#3278b6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<text x="500" y="186" text-anchor="middle" font-size="12" font-weight="400" fill="#233244">R2 · 1.2 kΩ</text>
+<polyline points="445,340 470,340" fill="none" stroke="#3278b6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="470,340 472.5,347 477.5,333 482.5,347 487.5,333 492.5,347 497.5,333 502.5,347 507.5,333 512.5,347 517.5,333 522.5,347 527.5,333 530,340" fill="none" stroke="#3278b6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="530,340 572,340" fill="none" stroke="#3278b6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<text x="500" y="326" text-anchor="middle" font-size="12" font-weight="400" fill="#233244">R1 · 1.2 kΩ</text>
+<polyline points="445,430 470,430" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="470,430 470,440" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><polyline points="460,440 480,440" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><polyline points="464,445 476,445" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><polyline points="468,450 472,450" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<text x="484" y="446" text-anchor="start" font-size="12" font-weight="400" fill="#526273">LV GND</text>
+<rect x="580" y="165" width="240" height="310" rx="6" fill="#ffffff" stroke="#233244" stroke-width="2.4" />
+<path d="M 690 165 A 10 10 0 0 0 710 165" fill="#ffffff" stroke="#233244" stroke-width="2"/>
+<text x="700" y="497" text-anchor="middle" font-size="15" font-weight="700" fill="#233244">AQW614A (IC1)</text>
+<text x="700" y="515" text-anchor="middle" font-size="12" font-weight="400" fill="#526273">SMD-DIP-8 · 400 V · 100 mA</text>
+<rect x="572" y="195" width="8" height="10" rx="0" fill="#c8d0d6" stroke="#233244" stroke-width="1" />
+<text x="588" y="193" text-anchor="start" font-size="11" font-weight="400" fill="#526273">1</text>
+<rect x="572" y="255" width="8" height="10" rx="0" fill="#c8d0d6" stroke="#233244" stroke-width="1" />
+<text x="588" y="253" text-anchor="start" font-size="11" font-weight="400" fill="#526273">2</text>
+<rect x="572" y="335" width="8" height="10" rx="0" fill="#c8d0d6" stroke="#233244" stroke-width="1" />
+<text x="588" y="333" text-anchor="start" font-size="11" font-weight="400" fill="#526273">3</text>
+<rect x="572" y="395" width="8" height="10" rx="0" fill="#c8d0d6" stroke="#233244" stroke-width="1" />
+<text x="588" y="393" text-anchor="start" font-size="11" font-weight="400" fill="#526273">4</text>
+<rect x="820" y="195" width="8" height="10" rx="0" fill="#c8d0d6" stroke="#233244" stroke-width="1" />
+<text x="812" y="193" text-anchor="end" font-size="11" font-weight="400" fill="#526273">8</text>
+<rect x="820" y="255" width="8" height="10" rx="0" fill="#c8d0d6" stroke="#233244" stroke-width="1" />
+<text x="812" y="253" text-anchor="end" font-size="11" font-weight="400" fill="#526273">7</text>
+<rect x="820" y="335" width="8" height="10" rx="0" fill="#c8d0d6" stroke="#233244" stroke-width="1" />
+<text x="812" y="333" text-anchor="end" font-size="11" font-weight="400" fill="#526273">6</text>
+<rect x="820" y="395" width="8" height="10" rx="0" fill="#c8d0d6" stroke="#233244" stroke-width="1" />
+<text x="812" y="393" text-anchor="end" font-size="11" font-weight="400" fill="#526273">5</text>
+<polyline points="580,200 625,200" fill="none" stroke="#3278b6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="625,200 625,222.0" fill="none" stroke="#3278b6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><path d="M 615 222.0 L 635 222.0 L 625 238.0 Z" fill="#dbe8f4" stroke="#3278b6" stroke-width="2"/><polyline points="615,238.0 635,238.0" fill="none" stroke="#3278b6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><polyline points="625,238.0 625,260" fill="none" stroke="#3278b6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><polyline points="639,224.0 665,214.0" fill="none" stroke="#e0a020" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ray)"/><polyline points="639,234.0 665,224.0" fill="none" stroke="#e0a020" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ray)"/>
+<polyline points="625,260 580,260" fill="none" stroke="#3278b6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="580,340 625,340" fill="none" stroke="#3278b6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="625,340 625,362.0" fill="none" stroke="#3278b6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><path d="M 615 362.0 L 635 362.0 L 625 378.0 Z" fill="#dbe8f4" stroke="#3278b6" stroke-width="2"/><polyline points="615,378.0 635,378.0" fill="none" stroke="#3278b6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><polyline points="625,378.0 625,400" fill="none" stroke="#3278b6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><polyline points="639,364.0 665,354.0" fill="none" stroke="#e0a020" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ray)"/><polyline points="639,374.0 665,364.0" fill="none" stroke="#e0a020" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ray)"/>
+<polyline points="625,400 580,400" fill="none" stroke="#3278b6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<text x="598" y="290" text-anchor="start" font-size="12" font-weight="400" fill="#526273">LED 1</text>
+<text x="598" y="305" text-anchor="start" font-size="12" font-weight="400" fill="#526273">→ Form B</text>
+<text x="598" y="430" text-anchor="start" font-size="12" font-weight="400" fill="#526273">LED 2</text>
+<text x="598" y="445" text-anchor="start" font-size="12" font-weight="400" fill="#526273">→ Form A</text>
+<polyline points="572,260 556,260" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="556,260 556,270" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><polyline points="546,270 566,270" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><polyline points="550,275 562,275" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><polyline points="554,280 558,280" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="572,400 556,400" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="556,400 556,410" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><polyline points="546,410 566,410" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><polyline points="550,415 562,415" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><polyline points="554,420 558,420" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="685,180 685,460" fill="none" stroke="#9eabb5" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 5"/>
+<text x="633" y="465" text-anchor="middle" font-size="11" font-weight="400" fill="#526273">LV side</text>
+<text x="752" y="465" text-anchor="middle" font-size="11" font-weight="400" fill="#526273">HV side</text>
+<polyline points="820,200 760,200" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="820,260 760,260" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="760,200 760,214" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><polyline points="750,214 770,214" fill="none" stroke="#c0392b" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" /><polyline points="760,260 760,246" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><circle cx="760" cy="246" r="3.5" fill="#c0392b"/><polyline points="760,246 754,214" fill="none" stroke="#c0392b" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" />
+<text x="698" y="226" text-anchor="start" font-size="12" font-weight="600" fill="#233244">Form B</text>
+<text x="698" y="242" text-anchor="start" font-size="12" font-weight="400" fill="#526273">NC</text>
+<polyline points="820,340 760,340" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="820,400 760,400" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="760,340 760,354" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><polyline points="750,354 770,354" fill="none" stroke="#c0392b" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" /><polyline points="760,400 760,386" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" /><circle cx="760" cy="386" r="3.5" fill="#c0392b"/><polyline points="760,386 782,362" fill="none" stroke="#c0392b" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" />
+<text x="698" y="366" text-anchor="start" font-size="12" font-weight="600" fill="#233244">Form A</text>
+<text x="698" y="382" text-anchor="start" font-size="12" font-weight="400" fill="#526273">NO</text>
+<polyline points="828,260 850,260 850,340 828,340" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="850" cy="300" r="4" fill="#c0392b"/>
+<text x="856" y="331" text-anchor="start" font-size="12" font-weight="400" fill="#526273">6 + 7 tied</text>
+<polyline points="850,300 900,300" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="828,200 880,200 880,270 900,270" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<text x="834" y="190" text-anchor="start" font-size="12" font-weight="600" fill="#233244">AMP_GND</text>
+<polyline points="828,400 850,400 850,560" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="312,560 850,560" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<text x="560" y="550" text-anchor="middle" font-size="13" font-weight="600" fill="#c0392b">AMP_OUT (HV trunk)</text>
+<circle cx="760" cy="560" r="4" fill="#c0392b"/>
+<polyline points="760,560 760,596" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrowHV)"/>
+<text x="770" y="618" text-anchor="start" font-size="12" font-weight="400" fill="#526273">to pin 5 of IC2–IC6</text>
+<rect x="900" y="255" width="22" height="60" rx="3" fill="#e9edf0" stroke="#233244" stroke-width="1.8" />
+<circle cx="911" cy="270" r="3.5" fill="#233244"/>
+<circle cx="911" cy="300" r="3.5" fill="#c0392b"/>
+<text x="911" y="354" text-anchor="middle" font-size="12" font-weight="600" fill="#233244">J1 B2P-VH</text>
+<text x="911" y="369" text-anchor="middle" font-size="11" font-weight="400" fill="#526273">1 = BUS1_HV</text>
+<text x="911" y="383" text-anchor="middle" font-size="11" font-weight="400" fill="#526273">2 = AMP_GND</text>
+<polyline points="922,300 990,300" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<text x="956" y="290" text-anchor="middle" font-size="12" font-weight="400" fill="#233244">16 AWG</text>
+<text x="956" y="318" text-anchor="middle" font-size="11" font-weight="400" fill="#526273">~10 cm</text>
+<rect x="990" y="285" width="40" height="30" rx="4" fill="#f4f0e6" stroke="#233244" stroke-width="1.8" />
+<text x="1010" y="334" text-anchor="middle" font-size="12" font-weight="600" fill="#233244">WAGO</text>
+<polyline points="1030,300 1055,300" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="1055,300 1057.5,307 1062.5,293 1067.5,307 1072.5,293 1077.5,307 1082.5,293 1087.5,307 1092.5,293 1097.5,307 1102.5,293 1107.5,307 1112.5,293 1115,300" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<text x="1085" y="270" text-anchor="middle" font-size="13" font-weight="600" fill="#233244">R_pad</text>
+<text x="1085" y="286" text-anchor="middle" font-size="12" font-weight="400" fill="#526273">1.5 kΩ, 7 W</text>
+<text x="1085" y="330" text-anchor="middle" font-size="11" font-weight="400" fill="#526273">24 AWG</text>
+<polyline points="1115,300 1215,300 1215,444" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<text x="1225" y="362" text-anchor="start" font-size="12" font-weight="400" fill="#233244">30 AWG pigtail</text>
+<text x="1225" y="378" text-anchor="start" font-size="11" font-weight="400" fill="#526273">Ag epoxy to pad</text>
+<text x="1275" y="416" text-anchor="middle" font-size="13" font-weight="700" fill="#233244">Electrowetting chip</text>
+<rect x="1190" y="460" width="170" height="60" rx="0" fill="#b7c2c9" stroke="none" stroke-width="0" />
+<rect x="1190" y="452" width="170" height="8" rx="0" fill="#087f82" stroke="none" stroke-width="0" />
+<rect x="1200" y="444" width="110" height="8" rx="0" fill="#c28122" stroke="none" stroke-width="0" />
+<rect x="1240" y="436" width="120" height="8" rx="0" fill="#087f82" stroke="none" stroke-width="0" opacity="0.75"/>
+<rect x="1240" y="430" width="120" height="6" rx="0" fill="#cfc3e6" stroke="none" stroke-width="0" />
+<ellipse cx="1215" cy="444" rx="9" ry="5" fill="#d5d9dc" stroke="#233244" stroke-width="1"/>
+<text x="1275" y="494" text-anchor="middle" font-size="12" font-weight="400" fill="#233244">B-doped Si (ground)</text>
+<text x="1210" y="540" text-anchor="start" font-size="11" font-weight="400" fill="#526273">Fluoropolymer / SiNₓ / Au pad / SiNₓ / Si</text>
+<polyline points="1198,520 1198,672 300,672 300,572" fill="none" stroke="#233244" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+<text x="750" y="690" text-anchor="middle" font-size="13" font-weight="400" fill="#526273">24 AWG ground lead from the J8 BNC shell to the Si substrate (silver epoxy) closes the circuit</text>
+<polyline points="46,700 1354,700" fill="none" stroke="#d7dde1" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+<text x="46" y="728" text-anchor="start" font-size="13" font-weight="400" fill="#526273">Channel 1 shown (D3/D2 → IC1 → BUS1_HV → J1). LED 1 drives 7–8 (N.C.) and LED 2 drives 5–6 (N.O.), per the Panasonic AQW614 datasheet.</text>
+</svg>
