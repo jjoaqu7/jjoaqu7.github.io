@@ -13,6 +13,11 @@ coverAlt: Microfluidic embryo-rotation device and microscopy image from our co-a
 coverStyle: diagram
 showCover: false
 order: 8
+links:
+  - label: Embryo-rotation poster (PDF)
+    href: /files/acoustofluidic-embryo-rotation-poster.pdf
+  - label: Original poster (PowerPoint)
+    href: /files/acoustofluidic-embryo-rotation-poster.pptx
 facts:
   - label: Embryo rotation
     value: Oscillating microbubbles, swept up to 150 kHz and 20 Vpp
@@ -37,6 +42,15 @@ The chip combined a pneumatic trap-and-release valve (PDMS membranes opened by v
 
 ![Rotation speed plotted against drive voltage at 5 kHz](./rotation-response.png)
 *The paper's measured rotation response at 5 kHz. This connects the device to its purpose: controlling rotation by changing the drive signal. Figures show the collaborative research, rather than work attributed solely to me.*
+
+### Bubble control and stepwise rotation
+
+The research poster reports how upstream pressure was used to control the growth of acoustically excited microbubbles. Increasing upstream pressure reduced their growth rate, and the embryos were rotated at 4.5 kPa, where the bubbles were stable enough for rotation.
+
+Pulsing the transducer allowed stepwise rotation for imaging from different angles. The smallest recorded increment was 2.3° per pulse with a 20 ms pulse width. These are results from the collaborative study.
+
+![Research poster showing the embryo-rotation device, experimental setup, pneumatic valve measurements, bubble-growth control and stepwise rotation](./embryo-rotation-poster.png)
+*Research poster by Alireza Zabihihesari, Joaquin Ramirez-Medina and Pouya Rezai. [View the full-resolution poster (PDF)](/files/acoustofluidic-embryo-rotation-poster.pdf) or [download the original PowerPoint](/files/acoustofluidic-embryo-rotation-poster.pptx).*
 
 ### Pneumatic valve deflection
 
@@ -72,7 +86,7 @@ This displacement is inferred from the reported opening.
 
 #### Wall thickness and embryo clearance
 
-For a sample prediction, take the reported channel height as the wall height, *h* = 330 µm, with |ΔP| = 60 kPa and *W*₀ = 150 µm. Assume Sylgard 184 PDMS with ν = 0.495, following [Müller et al. (2019)](https://doi.org/10.1039/C8SM02105H). Use *E* = 2 MPa as a representative value, and 1.32–2.97 MPa as a sensitivity range based on the curing-dependent measurements of [Johnston et al. (2014)](https://doi.org/10.1088/0960-1317/24/3/035017). These are literature-based material assumptions; the original wall thickness and curing-specific modulus have not been recovered.
+For a sample prediction, take the reported channel height as the wall height, *h* = 330 µm, with |ΔP| = 60 kPa and *W*₀ = 150 µm. Assume Sylgard 184 PDMS with ν = 0.495, following [Müller et al. (2019)](https://doi.org/10.1039/C8SM02105H). Use *E* = 2 MPa as a representative value, and 1.32–2.97 MPa as a sensitivity range based on the curing-dependent measurements of [Johnston et al. (2014)](https://doi.org/10.1088/0960-1317/24/3/035017). These are literature-based material assumptions; the curing-specific modulus has not been recovered. The research poster labels the membrane thickness as 150 µm in its schematic. The 105 µm value used below is a separate illustrative assumption based on recollection.
 
 For *t* = 105 µm, substituting these values into the sidewall equation gives a predicted displacement of approximately 17.5 µm per wall. The opening is therefore 150 + 2 × 17.5 = 185 µm, providing approximately 5 µm of total width clearance for a 180 µm-wide embryo.
 
@@ -87,14 +101,14 @@ For *t* = 105 µm, substituting these values into the sidewall equation gives a 
 | 125 µm | 12.9 µm | 175.8 µm | 167.4–189.1 µm |
 | 150 µm | 9.7 µm | 169.3 µm | 163.0–179.3 µm |
 
-**The highlighted 105 µm thickness is used for this calculation based on recollection; the original fabrication dimension remains unconfirmed.**
+**The highlighted 105 µm thickness is used for this illustrative calculation based on recollection. The poster schematic labels the membrane thickness as 150 µm; the calculation does not establish the fabricated thickness.**
 
 <aside class="wall-thickness-callout" aria-label="Valve opening and embryo clearance at 105 micrometres wall thickness">
 <strong>105 µm walls · 150 µm opening at rest → approximately 185 µm under −60 kPa vacuum</strong>
 <p>Each sidewall moves outward by approximately 17.5 µm. For a 180 µm-wide embryo centred in the opening, this provides approximately 5 µm of total width clearance, or 2.5 µm on each side, using E = 2 MPa and ν = 0.495.</p>
 </aside>
 
-Typical *Drosophila melanogaster* embryos are approximately 180 µm wide and 500 µm long, as tabulated by [Telley et al. (2012)](https://pmc.ncbi.nlm.nih.gov/articles/PMC3384421/). With the embryo's long axis aligned with the channel, the 150 µm opening retains it at rest. Applying −60 kPa vacuum moves the sidewalls outward, increasing the calculated opening to approximately 185 µm and providing approximately 5 µm of total width clearance for passage.
+Typical *Drosophila melanogaster* embryos are approximately 180 µm wide and 500 µm long, as tabulated by [Telley et al. (2012)](https://pmc.ncbi.nlm.nih.gov/articles/PMC3384421/). With the embryo's long axis aligned with the channel, the 150 µm opening retains it at rest. In the illustrative calculation with 105 µm walls and E = 2 MPa, applying −60 kPa vacuum increases the predicted opening to approximately 185 µm, providing approximately 5 µm of total width clearance for passage.
 
 ## ORF3a cardiac study
 
