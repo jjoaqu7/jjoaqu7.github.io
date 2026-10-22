@@ -41,7 +41,7 @@ export const personalMedia: PersonalMediaItem[] = [
   {
     id: "L.png",
     src: "/images/personal/L.png",
-    date: "2026",
+    date: "Jul 2026",
     caption: "lm",
     live: true,
   },
@@ -49,7 +49,7 @@ export const personalMedia: PersonalMediaItem[] = [
     id: "ef1dbddbc6d842bb.jpg",
     src: "/images/personal/ef1dbddbc6d842bb.jpg",
     date: "May 2026",
-    caption: "luna",
+    caption: "lm",
     live: true,
   },
   {
