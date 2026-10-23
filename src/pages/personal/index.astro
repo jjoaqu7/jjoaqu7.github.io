@@ -12,15 +12,15 @@ import { profile } from '../../data/profile';
     <title>閒 | {profile.name}</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
-  <body class="view-scroll">
+  <body class="view-grid">
     <a href="/" class="back-home" title="Return to portfolio">&larr; portfolio</a>
 
     <div class="stamp">閒</div>
 
     <nav class="views" aria-label="layout">
-      <button type="button" data-view="scroll" aria-pressed="true">scroll</button>
+      <button type="button" data-view="grid" aria-pressed="true">grid</button>
       <span aria-hidden="true">&middot;</span>
-      <button type="button" data-view="grid" aria-pressed="false">grid</button>
+      <button type="button" data-view="scroll" aria-pressed="false">scroll</button>
     </nav>
 
     <div class="year-tick" id="yearTick"><em>-</em></div>
@@ -765,23 +765,23 @@ import { profile } from '../../data/profile';
         viewButtons.forEach((b) => {
           b.setAttribute('aria-pressed', (b as HTMLElement).dataset.view === view ? 'true' : 'false');
         });
-        try {
-          localStorage.setItem(VIEW_KEY, view);
-        } catch {}
+        if (view === 'scroll') {
+          window.scrollTo(0, 0);
+        }
       }
 
-      const savedView = (() => {
-        try {
-          return localStorage.getItem(VIEW_KEY);
-        } catch {
-          return null;
-        }
-      })();
-      setView(savedView === 'grid' ? 'grid' : 'scroll');
+      // Remove any legacy scroll preference so navigation opens grid first
+      try {
+        localStorage.removeItem(VIEW_KEY);
+      } catch {}
+
+      // Allow hash override (e.g. #scroll), otherwise default to grid
+      const initialView = window.location.hash === '#scroll' ? 'scroll' : 'grid';
+      setView(initialView);
 
       viewButtons.forEach((b) => {
         b.addEventListener('click', () => {
-          const v = (b as HTMLElement).dataset.view || 'scroll';
+          const v = (b as HTMLElement).dataset.view || 'grid';
           setView(v);
         });
       });

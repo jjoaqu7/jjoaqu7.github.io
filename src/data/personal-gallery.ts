@@ -14,21 +14,21 @@ export const personalMedia: PersonalMediaItem[] = [
     id: "dec2026_modena.png",
     src: "/images/personal/dec2026_modena.png",
     date: "Dec 2026",
-    caption: "modena",
+    caption: "emilia-romagna",
     live: true,
   },
   {
     id: "Aug_2026_rio.png",
     src: "/images/personal/Aug_2026_rio.png",
     date: "Aug 2026",
-    caption: "rio",
+    caption: "praia da barra",
     live: true,
   },
   {
     id: "Aug_2026_ecuador.png",
     src: "/images/personal/Aug_2026_ecuador.png",
     date: "Aug 2026",
-    caption: "ecuador",
+    caption: "pichincha",
     live: true,
   },
   {
@@ -36,7 +36,7 @@ export const personalMedia: PersonalMediaItem[] = [
     src: "/images/personal/Aug_2026_peru.png",
     date: "Aug 2026",
     caption: "peru",
-    live: true,
+    live: false,
   },
   {
     id: "L.png",
