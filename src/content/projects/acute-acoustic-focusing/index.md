@@ -33,7 +33,7 @@ links:
 draft: false
 ---
 
-## Why focus particles?
+## The problem
 
 The York-ODI project investigated acoustofluidic handling of microplastics in water. A useful first step is to control where suspended particles travel. Particles spread across a flow channel pass through different positions, making it harder to present them consistently to a downstream observation or collection region.
 

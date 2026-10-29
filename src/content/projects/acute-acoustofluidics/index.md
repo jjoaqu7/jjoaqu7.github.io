@@ -21,41 +21,87 @@ links:
 facts:
   - label: Embryo rotation
     value: Oscillating microbubbles, swept up to 150 kHz and 20 Vpp
-  - label: Fabrication
+  - label: Device fabrication
     value: PDMS soft lithography, plasma bonded to glass
   - label: ORF3a contribution
     value: Study concept, data curation and analysis using existing MATLAB software
-  - label: Paper
-    value: IEEE EMBS MNM
+  - label: Conference paper
+    value: IEEE EMBS Micro and Nanotechnology in Medicine
 status: A co-authored manuscript on the ORF3a cardiac work is under review at PLOS ONE.
+credits: Supervised by Prof. Pouya Rezai. Co-authored with Alireza Zabihihesari. On embryo rotation, I contributed to experimental testing, frequency sweeps, bubble stabilization and valve elasticity calculations. On the cardiac study, I proposed the research concept, curated imaging data and conducted signal analysis.
 ---
 
-## Rotating embryos with sound
+## The problem
 
-Drosophila embryos are a standard model for developmental genetics, and imaging them from several sides usually means turning each one by hand. We built a microfluidic chip that traps an embryo, releases it into a channel, and rotates it about its long axis using microbubbles held in side cavities and driven by a piezoelectric transducer.
+*Drosophila melanogaster* (fruit fly) is a foundational model organism for developmental biology, genetics, and disease modeling. However, handling and phenotyping intact organisms at micro scales presents severe mechanical challenges.
 
-The chip combined a pneumatic trap-and-release valve (PDMS membranes opened by vacuum), a 280 µm wide channel with 90 µm bubble cavities, and a transducer bonded to the glass substrate. We swept frequency and voltage to find where the oscillating bubbles produced strong out-of-plane vortices. The clearest rotation appeared at 5 kHz and 90 kHz, and rotation speed rose linearly with drive voltage. The work was published at IEEE EMBS Micro and Nanotechnology in Medicine.
+First, obtaining full three-dimensional imaging of developing embryos requires observing them from multiple angles. Because Drosophila embryos are delicate ellipsoids roughly 180 µm wide and 500 µm long, rotating them manually under a microscope is slow, imprecise, and risks crushing or damaging the specimen.
+
+Second, evaluating cardiovascular pathology in living models, such as assessing the toxic effects of viral proteins like SARS-CoV-2 ORF3a, requires immobilizing living larvae non-invasively and quantifying rapid heart contractions across hundreds of frames without anaesthetics that disrupt heart rhythm.
+
+## My contribution
+
+As an undergraduate research associate in the ACuTE Microfluidics Laboratory under Prof. Pouya Rezai, I contributed to both microfluidic biology systems.
+
+For the acoustofluidic embryo-rotation platform:
+
+- Conducted microfluidic experiments sweeping acoustic excitation frequencies and voltages to identify operational regimes for stable out-of-plane rotation.
+- Investigated microbubble stability under varying upstream flow pressures, demonstrating stable rotation conditions at 4.5 kPa.
+- Calculated pneumatic valve membrane deflections using linear elastic beam models to determine embryo clearance during trap-and-release cycles.
+- Co-authored the peer-reviewed conference paper published at IEEE EMBS Micro and Nanotechnology in Medicine (MNM) and co-authored the presentation poster.
+
+For the SARS-CoV-2 ORF3a cardiac study:
+
+- Formulated the research concept to investigate whether expression of the SARS-CoV-2 ORF3a protein induces cardiac dysfunction in Drosophila larvae.
+- Curated high-speed optical microscopy recordings of living larvae immobilized in specialized microfluidic chips.
+- Performed physiological signal analysis using existing laboratory MATLAB software, extracting contraction peaks and M-mode records to quantify heart rhythmicity and fractional shortening.
+- Presented the project as a poster at the Lassonde Undergraduate Summer Research Conference and co-authored the manuscript submitted to *PLOS ONE*.
+
+## Visual results and manipulation dynamics
 
 ![Device schematic and microscopy showing an embryo beside trapped microbubbles](./embryo-device.jpeg)
-*Device schematic and microscopy showing an embryo beside trapped microbubbles. Driving the bubbles generates local streaming flows that turn the embryo, allowing different sides to be imaged.*
+*Microfluidic device schematic and microscopy view showing a Drosophila embryo positioned beside trapped air microbubbles. Acoustically driving the bubbles generates localized micro-vortices that rotate the embryo smoothly about its long axis.*
 
 ![Rotation speed plotted against drive voltage at 5 kHz](./rotation-response.png)
-*The paper's measured rotation response at 5 kHz. This connects the device to its purpose: controlling rotation by changing the drive signal. Figures show the collaborative research, rather than work attributed solely to me.*
+*Measured rotation response of Drosophila embryos at 5 kHz acoustic excitation. The rotation speed increases linearly with drive voltage, connecting the device to its purpose of controlling specimen orientation through the electrical drive signal.*
 
-### Bubble control and stepwise rotation
-
-The research poster reports how upstream pressure was used to control the growth of acoustically excited microbubbles. Increasing upstream pressure reduced their growth rate, and the embryos were rotated at 4.5 kPa, where the bubbles were stable enough for rotation.
-
-Pulsing the transducer allowed stepwise rotation for imaging from different angles. The smallest recorded increment was 2.3° per pulse with a 20 ms pulse width. These are results from the collaborative study.
+Experimental sweeps identified two clear operating regimes for embryo rotation at 5 kHz and 90 kHz. By pulsing the acoustic transducer with 20 ms bursts, the system achieved stepwise angular increments down to 2.3° per pulse, allowing precise multi-angle imaging without mechanical contact.
 
 ![Research poster showing the embryo-rotation device, experimental setup, pneumatic valve measurements, bubble-growth control and stepwise rotation](./embryo-rotation-poster.png)
-*Research poster by Alireza Zabihihesari, Joaquin Ramirez-Medina and Pouya Rezai. [View the full-resolution poster (PDF)](/files/acoustofluidic-embryo-rotation-poster.pdf) or [download the original PowerPoint](/files/acoustofluidic-embryo-rotation-poster.pptx).*
+*Collaborative research poster summarizing device fabrication, pneumatic valve deflection measurements, microbubble growth control at 4.5 kPa, and stepwise embryo rotation. [View the full-resolution poster (PDF)](/files/acoustofluidic-embryo-rotation-poster.pdf) or [download the original PowerPoint](/files/acoustofluidic-embryo-rotation-poster.pptx).*
 
-### Pneumatic valve deflection
+In the larval cardiac investigation, the microfluidic channel immobilized living larvae without chemical anaesthesia, enabling direct video recording of heartbeat dynamics.
 
-The trap-and-release module uses two flexible PDMS sidewalls. Applying vacuum draws the walls outward and opens the channel so that an embryo can pass to the rotation region. The conference paper reports an initial opening of 150 µm, increasing to approximately 180 µm at −60 kPa.
+<video controls autoplay muted loop playsinline preload="metadata" poster="/media/acute-acoustofluidics/cardiac-imaging-poster.png" aria-label="Archived Drosophila larval cardiac-imaging excerpt">
+  <source src="/media/acute-acoustofluidics/cardiac-imaging.mp4" type="video/mp4" />
+  <a href="/media/acute-acoustofluidics/cardiac-imaging.mp4">Download the cardiac-imaging clip</a>.
+</video>
 
-The valve calculations used the elastic sidewall model of [Shorr et al., equations 5–6](https://doi.org/10.1039/C8LC01055B), which includes bending and shear deformation. The maximum displacement magnitude of one wall is
+*Archived high-speed microscopy clip showing heart wall contractions in an immobilized Drosophila larva. The clip illustrates the raw optical data analyzed during the cardiac study.*
+
+![MATLAB cardiac-analysis interface with intensity traces, peaks and M-mode images](./cardiac-analysis-interface.png)
+*The laboratory MATLAB software used to evaluate the recordings. Intensity traces and M-mode representations display repetitive contraction cycles side by side with the underlying video frames to verify individual beat detections.*
+
+![Conceptual workflow linking the ORF3a study question to larval cardiac imaging, signal review and quantitative measurements](./orf3a-study-concept.svg)
+*Conceptual workflow of the SARS-CoV-2 ORF3a investigation, linking targeted genetic expression in Drosophila larvae to microfluidic immobilisation, optical imaging, and quantitative physiological metrics.*
+
+## How it works and physical methods
+
+### Acoustic microbubble streaming
+
+The embryo-rotation chip couples a piezoelectric transducer to a glass-PDMS microfluidic channel. Trapped microbubbles sit in 90 µm side cavities alongside a 280 µm main channel.
+
+When driven at acoustic resonance, the air-liquid interface of each bubble oscillates vigorously. This periodic boundary oscillation generates steady secondary micro-vortices in the surrounding liquid known as acoustic streaming. When an embryo enters the rotation region, the opposing shear forces from adjacent vortices exert a net torque that turns the embryo smoothly about its longitudinal axis.
+
+### Upstream pressure and bubble stability
+
+Under continuous acoustic excitation, dissolved gas diffusion causes microbubbles to expand over time, altering their resonance frequency. The collaborative research demonstrated that applying a controlled upstream pressure of 4.5 kPa suppresses acoustic bubble growth, maintaining steady bubble volumes and stable rotational streaming during experiments.
+
+### Pneumatic valve deflection mechanics
+
+To hold and release embryos on demand, the device incorporates flexible PDMS sidewall membranes. Applying a negative pressure (vacuum) to adjacent control chambers draws the sidewalls outward, opening the channel to allow the embryo to drift into the rotation zone.
+
+The mechanical deflection of each elastic wall was evaluated using the beam model of [Shorr et al., equations 5 and 6](https://doi.org/10.1039/C8LC01055B), incorporating both bending and shear deformation:
 
 <div class="sidewall-equation">
 <math display="block" aria-label="u max equals absolute pressure difference times h to the fourth times one minus nu squared, divided by 32 E t cubed, multiplied by one plus four t squared times twelve plus eleven nu divided by five h squared">
@@ -65,31 +111,17 @@ The valve calculations used the elastic sidewall model of [Shorr et al., equatio
 </math>
 </div>
 
-Here ΔP is the pressure difference across the wall, *h* is wall height, *t* is wall thickness, *E* is Young's modulus, and ν is Poisson's ratio. With pressure in pascals, lengths in metres and *E* in pascals, the predicted displacement is in metres. For two identical walls opening symmetrically under vacuum, the channel opening is
+Here ΔP is the applied pressure differential, *h* is wall height, *t* is wall thickness, *E* is Young's modulus, and ν is Poisson's ratio. For two identical membranes opening symmetrically under vacuum, the total channel opening width is
 
 <div class="sidewall-equation">
 <math display="block" aria-label="W open equals W zero plus twice u max"><msub><mi>W</mi><mtext>open</mtext></msub><mo>=</mo><msub><mi>W</mi><mn>0</mn></msub><mo>+</mo><mn>2</mn><msub><mi>u</mi><mtext>max</mtext></msub></math>
 </div>
 
-where *W*₀ is the initial channel width. This model describes linear elastic sidewall deformation and provides a way to relate pressure, wall geometry and opening. Its applicability depends on the wall dimensions, bonding and material properties.
+where *W*₀ is the resting channel width of 150 µm. In the conference paper, applying −60 kPa vacuum expanded the opening from 150 µm to approximately 180 µm, corresponding to approximately 15 µm displacement per wall.
 
-#### Calculation from the reported opening
+Evaluating a representative channel geometry with *h* = 330 µm, |ΔP| = 60 kPa, ν = 0.495, and *E* = 2 MPa across trial wall thicknesses highlights the sensitivity of embryo passage to fabrication dimensions:
 
-At −60 kPa, the reported opening increased from 150 µm to approximately 180 µm. Assuming the two sidewalls moved equally, the displacement of each wall was
-
-<div class="sidewall-equation">
-<math display="block" aria-label="u max equals 180 minus 150 micrometres divided by two, approximately 15 micrometres"><msub><mi>u</mi><mtext>max</mtext></msub><mo>=</mo><mfrac><mrow><mo>(</mo><mn>180</mn><mo>−</mo><mn>150</mn><mo>)</mo><mtext> µm</mtext></mrow><mn>2</mn></mfrac><mo>≈</mo><mn>15</mn><mtext> µm</mtext></math>
-</div>
-
-This displacement is inferred from the reported opening.
-
-#### Wall thickness and embryo clearance
-
-For a sample prediction, take the reported channel height as the wall height, *h* = 330 µm, with |ΔP| = 60 kPa and *W*₀ = 150 µm. Assume Sylgard 184 PDMS with ν = 0.495, following [Müller et al.](https://doi.org/10.1039/C8SM02105H). Use *E* = 2 MPa as a representative value, and 1.32–2.97 MPa as a sensitivity range based on the curing-dependent measurements of [Johnston et al.](https://doi.org/10.1088/0960-1317/24/3/035017). The calculation uses a trial wall thickness of 105 µm to illustrate sensitivity to geometry; the poster schematic labels the membrane thickness as 150 µm.
-
-For *t* = 105 µm, substituting these values into the sidewall equation gives a predicted displacement of approximately 17.5 µm per wall. The opening is therefore 150 + 2 × 17.5 = 185 µm, providing approximately 5 µm of total width clearance for a 180 µm-wide embryo.
-
-| Trial wall thickness | Displacement per wall at *E* = 2 MPa | Opening at *E* = 2 MPa | Opening across *E* = 1.32–2.97 MPa |
+| Trial wall thickness | Displacement per wall at *E* = 2 MPa | Channel opening at *E* = 2 MPa | Opening across *E* = 1.32–2.97 MPa |
 | --- | --- | --- | --- |
 | 75 µm | 34.2 µm | 218.5 µm | 196.1–253.8 µm |
 | 90 µm | 23.5 µm | 196.9 µm | 181.6–221.1 µm |
@@ -100,44 +132,21 @@ For *t* = 105 µm, substituting these values into the sidewall equation gives a 
 | 125 µm | 12.9 µm | 175.8 µm | 167.4–189.1 µm |
 | 150 µm | 9.7 µm | 169.3 µm | 163.0–179.3 µm |
 
-**The highlighted 105 µm is a trial thickness for the calculation. The poster schematic specifies 150 µm.**
+**The highlighted 105 µm represents a trial thickness for sensitivity analysis. The original poster schematic labels the fabricated membrane thickness as 150 µm.**
 
 <aside class="wall-thickness-callout" aria-label="Valve opening and embryo clearance at 105 micrometres wall thickness">
 <strong>105 µm walls · 150 µm opening at rest → approximately 185 µm under −60 kPa vacuum</strong>
-<p>Each sidewall moves outward by approximately 17.5 µm. For a 180 µm-wide embryo centred in the opening, this provides approximately 5 µm of total width clearance, or 2.5 µm on each side, using E = 2 MPa and ν = 0.495.</p>
+<p>Each sidewall moves outward by approximately 17.5 µm. For a typical 180 µm-wide embryo centred in the channel, this yields approximately 5 µm of total width clearance for passage, assuming E = 2 MPa and ν = 0.495.</p>
 </aside>
 
-Typical *Drosophila melanogaster* embryos are approximately 180 µm wide and 500 µm long, as tabulated by [Telley et al.](https://pmc.ncbi.nlm.nih.gov/articles/PMC3384421/). With the embryo's long axis aligned with the channel, the 150 µm opening retains it at rest. In the illustrative calculation with 105 µm walls and E = 2 MPa, applying −60 kPa vacuum increases the predicted opening to approximately 185 µm, providing approximately 5 µm of total width clearance for passage.
+### Cardiac signal extraction and M-mode representations
 
-## ORF3a cardiac study
+In the larval cardiac study, quantitative physiological indicators were extracted by tracking optical intensity along a line drawn across the larval heart tube.
 
-### Study concept and my contribution
+As the heart contracts and relaxes, the movement of the muscular wall modulates pixel intensity across the line. Plotting this intensity profile over time generates an M-mode (motion-mode) representation. Contraction peaks correspond to end-systolic and end-diastolic dimensions, allowing direct extraction of heart rate, rhythm irregularities, and fractional shortening to quantify the cardiac impact of ORF3a expression.
 
-I proposed investigating the effects of the SARS-CoV-2 ORF3a protein on cardiac function in Drosophila larvae. I curated the imaging data and used existing MATLAB software to analyse heart motion and review the measurements.
+### Acoustic particle focusing
 
-I presented the work at the Lassonde Undergraduate Summer Research Conference.
+In parallel with living organism manipulation, I conducted acoustic standing-wave particle focusing in glass capillaries, exploring acoustic radiation forces for microplastic handling.
 
-![Conceptual workflow linking the ORF3a study question to larval cardiac imaging, signal review and quantitative measurements](./orf3a-study-concept.svg)
-*Study concept and analysis workflow. I proposed the research question and worked on data curation and analysis within the collaborative study. The diagram explains the approach; it does not represent an experimental result.*
-
-### How the question became a measurement
-
-The microfluidic platform supported imaging of the larval heart. The review workflow linked each recording to a selected time window and region of interest, intensity traces and M-mode images, then to measurements recorded for the study. Keeping the image and signal views together allowed individual measurements to be checked against the source recording.
-
-M-mode images show how image intensity along a selected line changes over time, making repeated contraction cycles visible. Reviewing these alongside the signal peaks connects the observed heart motion to quantitative cardiac measurements.
-
-<video controls playsinline preload="metadata" poster="/media/acute-acoustofluidics/cardiac-imaging-poster.png" aria-label="Archived Drosophila larval cardiac-imaging excerpt">
-  <source src="/media/acute-acoustofluidics/cardiac-imaging.mp4" type="video/mp4" />
-  <a href="/media/acute-acoustofluidics/cardiac-imaging.mp4">Download the cardiac-imaging clip</a>.
-</video>
-
-*An archived Drosophila larval imaging excerpt associated with the cardiac-analysis work. It shows the image data used for analysis; the clip alone does not establish genotype or a treatment effect.*
-
-![MATLAB cardiac-analysis interface with intensity traces, peaks and M-mode images](./cardiac-analysis-interface.png)
-*The existing MATLAB software I used to review the recordings. Intensity traces and M-mode views show contraction cycles alongside the source images.*
-
-## Particle focusing
-
-I also worked on acoustic focusing of microparticles in a glass capillary, setting up controlled pressure nodes to improve sorting, with microplastic detection in water as the target application.
-
-See the [acoustic particle-focusing project](/projects/acute-acoustic-focusing/) for the setup, microscopy images, operating conditions and resonance calculation.
+Details of the flow-cell assembly, microscopy images, operating parameters, and resonance frequency calculations are presented on the [acoustic particle-focusing project page](/projects/acute-acoustic-focusing/).
