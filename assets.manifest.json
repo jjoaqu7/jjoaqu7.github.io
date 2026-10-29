@@ -4,6 +4,11 @@
   "ffmpeg": "C:/Users/jjoaq/vscode-python/droplet-imaging/.venv/Lib/site-packages/imageio_ffmpeg/binaries/ffmpeg-win-x86_64-v7.1.exe",
   "assets": [
     {
+      "from": "MASc_dir/conference/IHTC18_Poster_JR.pdf",
+      "to": "src/content/projects/electrowetting-device-fabrication/completed-chip.jpeg",
+      "kind": "pdf_image", "page": 1, "image": 13
+    },
+    {
       "from": "C:/Users/jjoaq/OneDrive/Desktop/SEiL/SEiL_23-11-26/Acoustofluidic_Rotational_Manipulation_of_Drosophila_Embryos_in.pptx",
       "to": "public/files/acoustofluidic-embryo-rotation-poster.pptx",
       "kind": "copy"

@@ -27,6 +27,26 @@ All additions use existing research files. Native PDF images are extracted witho
 - Same folder, `results_coverage.png`: existing coverage analysis figure with its original legend.
 - No verified current tracking demonstration video was found in the inspected project files.
 
+## Electrowetting force model and simulation
+- Source folder: `C:/Users/jjoaq/vscode-python/comsol_folder/` and Samsung T7 SSD (`E:/COMSOL_storage/`).
+- `quadratic_mesh_check_2026-10-26/positions_and_energy_pairs.png`: geometry of the three tested droplet placements (L01 gap, P11 edge, W38 apex) under 60 V peak (120 Vpp) 250 Hz excitation for a 50 µm droplet, illustrating full-domain energy subtraction pairs.
+- `E:/COMSOL_storage/ew_triangle_diamond_cell/figures/D50_paper_style/clean_original.png` (also verified in `comsol_folder/output/D50_current_with_centres_2026-10-28/`): full-cell spatial electrical-energy landscape computed across 206 independent COMSOL simulations for a 50 µm spherical cap, mapped with symmetric logarithmic contrast.
+- `ew_analytical/poster_figs/transport_figure_W50.svg`: 2D Python Shapely electrocapillary force model for chevron transport columns.
+
+## Electrowetting drive electronics
+- Source folder: `C:/Users/jjoaq/vscode-python/MASc_dir/circuit/`.
+- `pcb_renders/pcb_iso.png`: 3D isometric render of the six-channel solid-state relay actuation board.
+- `ssr_schematic/ssr_channel.svg`: schematic of one relay channel showing Form A (HV) and Form B (substrate ground clamp).
+- `pcb_renders/pcb_layout_top_blue.svg` / `layout-top.svg`: top copper KiCad layout showing optical isolation and high-voltage trace separation.
+
+## Electrowetting device fabrication
+- Source folder: `C:/Users/jjoaq/vscode-python/MASc_dir/fabrication/`.
+- `MASc_dir/conference/IHTC18_Poster_JR.pdf`, page 1, embedded image 13 (zero-based, PDF xref 61): completed diced electrowetting chip with the poster's original contact-pad and electrode-design annotations. Extracted byte-for-byte as `src/content/projects/electrowetting-device-fabrication/completed-chip.jpeg` (1052 × 572), without cropping or repainting. Used for the cover and results figure.
+- The previously selected `graphics/photo_2026-10-20_09-52-31.jpg` is a wafer-stage cleanroom photograph, not the completed diced chip; it is no longer used for that figure.
+- `fabrication_schematics/01_lpcvd.svg` through `07_wafer_dicing.svg`: seven-stage microfabrication cross-sectional diagrams.
+- `stack.svg`: multi-layer cross-sectional schematic from substrate ground to hydrophobic coating.
+- `mask.png`: full wafer photomask layout with 10 chip designs.
+
 The other project pages already contain experiment images, device photographs, process diagrams, software architecture figures or video. The user-selected acoustic-focusing channel image remains unchanged.
 
 The embryo-rotation poster schematic labels the membrane thickness as 150 µm. The existing project calculation using a recollected 105 µm is retained as an illustrative assumption and is explicitly distinguished from that source dimension.
