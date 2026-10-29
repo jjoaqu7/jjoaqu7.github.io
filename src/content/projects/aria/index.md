@@ -7,8 +7,9 @@ start: 2023-05
 role: Sole software author, MASc thesis chapter
 org: SEiL, York University
 tags: [LLM agents, retrieval-augmented generation, Python, Google Cloud]
-cover: ./modules.svg
-coverAlt: ARIA four modules (Conversation, Retriever, Processor, Suggester) with researcher checkpoints between stages
+cover: ./architecture.png
+coverAlt: ARIA multi-agent architecture showing the four modules, researcher checkpoints, and persistent SQL workspace
+coverStyle: diagram
 featured: true
 order: 3
 facts:
@@ -51,10 +52,14 @@ ARIA forms one of the two core pillars of my MASc thesis.
 
 ## Visual architecture and case-study results
 
-![ARIA four modules showing Conversation, Retriever, Processor and Suggester with researcher checkpoints](./modules.svg)
-*ARIA modular workflow. Specialized agent modules handle scoping, database retrieval, full-text processing, and procedural synthesis, with human-in-the-loop checkpoints between stages.*
+![ARIA multi-agent system architecture showing four modules with human-in-the-loop checkpoints and persistent database](./architecture.png)
+*ARIA multi-agent system architecture (Figure 1 in the journal manuscript). Four LLM-agent-coordinated modules mirror successive stages of early research, with the researcher steering through the UI and all modules sharing a persistent SQL workspace.*
 
-In a surface-engineering case study on enhancing dropwise condensation, ARIA reduced 11,491 candidate article identifiers down to 22 foundational papers and synthesized an initial research procedure with 24 embedded source figures in under two hours. The same scoping and procedural planning conducted manually beforehand by the same researcher took weeks of effort.
+![End-to-end comparison of ARIA and manual workflow on dropwise condensation literature review and procedural planning](./workflow-comparison.png)
+*End-to-end comparison of ARIA and the manual workflow on the dropwise-condensation case study (Figure 3 in the manuscript). ARIA reduced 11,491 candidate article identifiers down to 22 foundational papers and synthesized an initial procedure in under two hours, compared to weeks of unaided manual effort.*
+
+![Domain-expert evaluation of ARIA across five dimensions](./expert-evaluation.png)
+*Domain-expert evaluation of ARIA across five dimensions (Figure 4 in the manuscript). Four independent domain experts spanning doctoral candidates to full professors rated the system across 19 criteria, showing consistent positive evaluations with an overall utility score of 9.63 out of 10 and unanimous consensus on providing an effective procedural starting point.*
 
 Four independent domain experts spanning doctoral candidates to full professors evaluated ARIA across experimental and numerical procedures. Evaluators rated the system across 19 criteria grouped into five dimensions on a 1 to 10 scale.
 

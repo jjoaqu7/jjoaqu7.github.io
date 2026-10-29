@@ -56,6 +56,13 @@ Media comes from existing research files and owner-supplied assets. Native PDF i
 - `stack.svg`: multi-layer cross-sectional schematic from substrate ground to hydrophobic coating.
 - `mask.png`: full wafer photomask layout with 10 chip designs.
 
+## ARIA
+- Source folder: `C:/Users/jjoaq/vscode-python/ARIA/` and submission build `tmp/submission_build/`.
+- `Figure_1.png` (imported as `architecture.png`): multi-agent system architecture with four modules, researcher checkpoints, and persistent SQL database.
+- `Figure_3.png` (imported as `workflow-comparison.png`): end-to-end workflow comparison between ARIA and unaided manual literature review on dropwise condensation.
+- `Figure_4.png` (imported as `expert-evaluation.png`): domain-expert evaluation dot plot across the five dimensions.
+- `Figure_2.png` (imported as `procedure-structure.png`): conceptual three-layer structure of the generated research procedure.
+
 The other project pages already contain experiment images, device photographs, process diagrams, software architecture figures or video. The user-selected acoustic-focusing channel image remains unchanged.
 
 The embryo-rotation poster schematic labels the membrane thickness as 150 µm. The 105 µm value initially came from recollection. Public copy treats 105 µm only as a trial thickness for an illustrative calculation, explicitly separate from the poster's 150 µm dimension.
