@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portfolio Agent"
+  short_description: "Consistent project pages with visual storytelling"
+  default_prompt: "Use $portfolio-agent to refine my portfolio brief and apply its agreed architecture, voice and visual storytelling rules to the requested project pages."

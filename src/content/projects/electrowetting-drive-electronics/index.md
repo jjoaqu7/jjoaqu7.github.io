@@ -1,63 +1,99 @@
 ---
 title: Electrowetting drive electronics
-summary: A six-channel solid-state relay board that routes one high-voltage AC waveform to any electrode row and grounds every row that is off, controlled from an Arduino and a Python GUI.
+summary: A six-channel solid-state relay board that routes one high-voltage AC waveform to any electrode row and actively grounds inactive rows, designed in KiCad and controlled by an Arduino and a Python GUI.
 period: grad
 track: research
 start: 2024-09
 role: MASc thesis research, circuit design and firmware
 org: SEiL, York University
 tags: [PCB design, KiCad, high voltage, Arduino, Python]
-cover: ./cover.jpg
+cover: ./pcb-iso.png
 coverAlt: 3D render of the six-channel relay board, with the BNC high-voltage input, six PhotoMOS relays, output headers and the Arduino Nano Every socket
 order: 3
 facts:
   - label: Channels
     value: Six, one per electrode row
   - label: Relays
-    value: Panasonic AQW614A PhotoMOS, 400 V, 1 Form A and 1 Form B
+    value: Panasonic AQW614A PhotoMOS (400 V, 1 Form A and 1 Form B)
   - label: Drive signal
-    value: 120 Vpp sine at 250 Hz from a ×20 amplifier
-  - label: Control
-    value: Arduino Nano Every firmware and a Python (Tkinter) GUI over USB serial
-  - label: Design tool
-    value: KiCad 9, two-layer board
+    value: 120 Vpp sine at 250 Hz (60 V peak, ×20 linear amplifier)
+  - label: Peak surge current
+    value: Limited to ~37 mA into capacitive loads
+  - label: Controller
+    value: Arduino Nano Every firmware (C++) and Python GUI over serial
 links:
   - label: The condensation experiments it drives
     href: /projects/electrowetting-condensation/
-  - label: The devices it connects to
+  - label: Cleanroom device fabrication
     href: /projects/electrowetting-device-fabrication/
-credits: I designed the circuit and the board and wrote the firmware and the GUI.
+  - label: 3D force and energy model
+    href: /projects/electrowetting-force-model/
+status: Built, bench-tested and operating in the wind-tunnel experimental setup.
+credits: Supervised by Prof. Alidad Amirfazli. I designed the circuit, laid out the PCB in KiCad, assembled and tested the board, wrote the firmware and GUI, and built the chip interconnect harness.
 ---
 
-## What it had to do
+## The problem
 
-The transport mechanism needs electrode rows switched on in a set order, collection rows first and then transport rows one after another. That set four requirements.
+To sweep condensing droplets across a surface, high-voltage electric fields must be switched rapidly across specific electrode rows without allowing unenergized rows to float or drawing dangerous current spikes into capacitive microelectrodes.
 
-1. Connect one high-voltage waveform from a single amplifier to any of six electrode rows.
-2. Hold every row that is off at the potential of the grounded silicon substrate, never leaving it floating.
-3. Switch a row on or off well within a second, without exceeding the current ratings of the amplifier or the relays.
-4. Keep the low-voltage control side galvanically isolated from the high-voltage side.
+This presents three key hardware challenges.
 
-Only AC actuation was used, to limit charge build-up in the dielectric stack.
+First, the system must route a single high-voltage AC signal (120 Vpp, 250 Hz) across multiple rows in a strict sequence (collection first, then transport).
 
-## Signal path
+Second, each electrode row acts as a parallel-plate capacitor across the 100 nm silicon nitride lower dielectric. With metal areas of 5 to 9 mm², the rows present capacitive loads of 3.3 to 6.0 nF. This is 8 to 15 times larger than the maximum capacitive load the laboratory linear amplifier is rated for, risking amplifier instability, overshoot and high surge currents during switching.
 
-A function generator (Koolertron DDS) drives a fixed-gain ×20 linear amplifier (Pendulum F20A, ±150 V). The amplifier output passes through a 100 Ω series resistor and a coaxial cable to a BNC input on the board, where it forms a common high-voltage trunk feeding six relays. Each relay output leaves through a two-pin header and a short harness with a 1.5 kΩ series resistor, and ends at a fine wire bonded to the chip's contact pad with silver epoxy. A separate lead from the BNC shell to the silicon substrate makes the substrate, the coaxial shield and the board's high-voltage ground a single reference node.
+Third, inactive rows cannot simply be disconnected. If an unenergized row is left electrically floating, capacitive coupling from adjacent energized electrodes induces stray voltages that trap droplets instead of letting them move forward.
 
-![Schematic of one relay channel, from the amplifier through the PhotoMOS relay to one electrode pad](./relay-channel.svg)
-*One of the six identical channels. The Form A contact connects the row to the amplifier; the Form B contact ties it to ground when it is off, which also discharges the electrode.*
+## My contribution
 
-## Why the series resistors
+I designed and built the complete electrical actuation subsystem to address these requirements.
 
-Each electrode row is a metal film separated from the grounded substrate by 100 nm of silicon nitride, so electrically it is a parallel-plate capacitor of about 0.66 nF per mm² of metal. Rows of 5 to 9 mm² come to roughly 3 to 6 nF, which is 8 to 15 times the capacitive load the amplifier is specified for. The 100 Ω and 1.5 kΩ resistors limit the charging current when a row switches on and set how quickly it discharges through the Form B contact when it switches off.
+I designed the circuit architecture, selected the solid-state PhotoMOS relays, designed the two-layer printed circuit board in KiCad, and calculated the series damping resistors to protect the amplifier. I wrote the microcontroller firmware in C++ with break-before-make timing, developed the desktop Python control interface, assembled the PCB, and fabricated the wire harness bonded to the silicon chips with conductive silver epoxy.
 
-## Board
+## Visual results and board architecture
 
-The board was laid out in KiCad 9 with the low-voltage and high-voltage sides kept apart. The two ground pours are separated by a gap under the relays, which is where the optical isolation sits, and the high-voltage tracks are wider and spaced further apart than the logic tracks.
+![3D isometric render of the six-channel electrowetting actuation board](./pcb-iso.png)
+*3D render of the assembled six-channel actuation board. The BNC high-voltage input sits at the bottom left, six optically isolated PhotoMOS relays line the top and left edges, and the Arduino Nano Every microcontroller sits at the bottom right.*
 
-![Top copper layout of the relay board](./layout-top.svg)
-*Top copper layout. The BNC input (J8) is at the lower left, the six relays (IC1 to IC6) and their output headers (J1 to J6) along the top and left, and the Arduino Nano Every at the lower right.*
+![Schematic of one relay channel from amplifier input to electrode pad](./relay-channel.svg)
+*Schematic of one relay channel. The Form A contact connects the active row to the high-voltage amplifier, while the Form B contact actively clamps the row to the grounded silicon substrate when switched off.*
 
-## Firmware and GUI
+![Top copper layout of the relay board in KiCad](./layout-top.svg)
+*Top copper layout designed in KiCad. Galvanic isolation divides the board across the relays, keeping high-voltage AC traces physically separated from low-voltage microcontroller logic lines.*
 
-The Arduino drives two LEDs per relay, one for each contact. Switching uses break-before-make with a 200 ms dead time, so a row is never connected to the amplifier and to ground at the same moment, and every row starts clamped to ground at power-up. A Python GUI talks to the Arduino over USB serial. It shows the state of each channel, switches channels individually or all off at once, and runs preset sequences, in which the firmware switches rows off before switching the next ones on.
+## How it works and circuit design
+
+### Signal chain and active grounding
+
+The signal originates at a digital function generator (Koolertron DDS) driving a fixed-gain (×20) linear amplifier (Pendulum F20A, ±150 V, 150 mA maximum continuous output).
+
+From the amplifier, the signal enters the board through a global series resistor and branches into six identical relay channels. Each channel uses a Panasonic AQW614A PhotoMOS solid-state relay containing one normally open (Form A) and one normally closed (Form B) contact.
+
+- **Actuation.** Energizing the channel closes the Form A contact, applying the 120 Vpp waveform to the electrode row.
+- **Discharge and clamping.** De-energizing the channel opens Form A and closes Form B, connecting the row directly to the boron-doped silicon substrate ground. This actively discharges the electrode capacitance in under 50 µs (RC time constant of approximately 9.8 µs), preventing residual charge accumulation and ensuring zero electrowetting force over inactive rows.
+
+### Series resistance and capacitive load damping
+
+Each electrode row has a capacitance of approximately 0.66 nF per mm² over the 100 nm LPCVD silicon nitride film, giving 3.3 to 6.0 nF per row.
+
+To prevent amplifier oscillation and limit switching surges, the signal path incorporates two series resistances, comprising a global series resistor (R_g = 100 Ω, 5 W) between the amplifier and board and an inline series resistor (R_pad = 1.5 kΩ, 7 W) on each channel harness.
+
+Together with the relay on-resistance (27 Ω typical), the total series resistance is approximately 1.63 kΩ. This caps the peak transient surge current.
+
+$$I_{\text{peak}} = \frac{V_0}{R_s} = \frac{60\text{ V}}{1.63\text{ k}\Omega} \approx 36.8\text{ mA}$$
+
+This surge current is well below the 150 mA amplifier limit and the 100 mA relay rating. In steady state at 250 Hz, the capacitive reactance is over 106 kΩ, so the 1.63 kΩ series resistance introduces less than 0.01% voltage attenuation and under 0.8° phase lag at the electrode pad.
+
+### Interconnect and chip packaging
+
+Each channel leaves the PCB through a two-pin JST VH header and a 16 AWG jumper to a WAGO 221 lever terminal. The harness continues through 24 AWG silicone-insulated wire carrying the inline 1.5 kΩ resistor, terminating in a fine 30 AWG pigtail.
+
+The pigtail is bonded to the cleanroom chip contact pad using silver-filled conductive epoxy (MG Chemicals 8331S) and encapsulated in potting epoxy (MG Chemicals 832XFC) for insulation, moisture sealing and strain relief. The conductive silicon substrate is grounded to the BNC shell through a dedicated silver-epoxy bonded lead, forming a single shared reference plane.
+
+### Firmware timing and software control
+
+The Arduino Nano Every microcontroller controls the relays via optocoupled inputs.
+
+Firmware written in C++ (PlatformIO) enforces break-before-make switching with a 200 ms dead-time margin. A row is never connected to the amplifier and ground simultaneously. At power-up, all channels default to the grounded state.
+
+A desktop Python interface (Tkinter) connects over USB serial. It displays live channel statuses, allows manual single-channel toggles or global shut-off, and executes automated stepping sequences synchronized with the high-speed camera in the wind tunnel.
