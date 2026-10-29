@@ -30,8 +30,7 @@ links:
     href: /projects/electrowetting-force-model/
   - label: Drive electronics and switching
     href: /projects/electrowetting-drive-electronics/
-status: Process published in the IHTC-18 paper (August 2026). Featured in a York University Microfabrication Facility student research highlight.
-credits: Fabricated at the York University Microfabrication Facility (YMF). I designed the photomask layout, developed the seven-step cleanroom recipe, established electrical screening checkpoints, and fabricated the chips.
+status: Process published in the IHTC-18 paper. Featured in a York University Microfabrication Facility student research highlight.
 ---
 
 ## The problem

@@ -21,10 +21,9 @@ facts:
   - label: Ingestion
     value: Cloud Run, Adobe PDF Extract API, Pinecone
 links:
-  - label: CEEA 2025 paper (DOI)
+  - label: CEEA paper (DOI)
     href: https://doi.org/10.24908/pceea.2025.19582
-status: Published at CEEA 2025 as a full peer-reviewed paper.
-credits: Developed with A. Asim, first author of the CEEA paper, under Prof. Alidad Amirfazli. The course tutors later continued under the name ProfAnswers.
+status: Published at CEEA as a full peer-reviewed paper.
 ---
 
 ## Idea
@@ -40,4 +39,4 @@ On fluid dynamics questions the system answered in 6 to 9 s.
 
 ## My part
 
-I built the backend services, including the API gateway and the lecture-notes, Wikipedia and YouTube layers, and the PDF ingestion pipeline. I presented the project as a poster at the Lassonde Undergraduate Summer Research Conference in 2024, and the work was published at the Canadian Engineering Education Association conference in 2025.
+I built the backend services, including the API gateway and the lecture-notes, Wikipedia and YouTube layers, and the PDF ingestion pipeline. I presented the project as a poster at the Lassonde Undergraduate Summer Research Conference, and the work was published at the Canadian Engineering Education Association conference.

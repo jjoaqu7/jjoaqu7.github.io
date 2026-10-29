@@ -55,7 +55,7 @@ or rely on a specific model's tools for editorial decisions.
 - Make the purpose and the owner's role easy to find. For collaborative work,
   distinguish what the project achieved from what the owner personally did.
   State the contribution after the problem, and reinforce attribution where
-  individual result claims need it rather than relying solely on credits.
+  individual result claims need it. Do not add a separate Credits section.
 - Avoid repeating the same explanation in the summary, body, caption and
   facts sidebar. Each can serve a different reading need.
 - Preserve page URLs and project relationships unless the task requires a
@@ -79,6 +79,15 @@ or rely on a specific model's tools for editorial decisions.
 - Build a consistent cadence with focused paragraphs, concrete verbs and
   nearby visuals. Let the reader's question determine detail; no fixed word
   count or media-to-text ratio has been agreed.
+- Keep calendar chronology in work-period metadata, displayed as Month Year
+  when the month is known. Do not repeat calendar dates, slide dates or
+  presentation chronology in project narratives, captions or status text.
+  Publication records retain their bibliographic dates. Do not invent a month
+  for a year-only source or infer a degree end date.
+- Omit autobiographical verification phrases such as "I recall" and "based
+  on recollection" from public copy. State supported observations directly;
+  label calculations as estimates or illustrative assumptions where needed,
+  or omit an unsupported detail instead of turning it into a measured fact.
 - Preserve wording and terminology for narrow edits. When a rewrite is
   requested, change structure or style as needed within that scope and explain
   the substantive editorial choices.
@@ -93,16 +102,20 @@ or rely on a specific model's tools for editorial decisions.
 - Inspect the actual asset before making a claim about its contents. If it
   cannot be viewed or played, state that limitation when it affects the work;
   a filename alone does not establish what happened.
-- Place media beside the explanation it supports. Captions should identify
-  what to notice and why it matters, adding conditions, attribution or
-  qualifications when those change interpretation.
+- Place media beside the explanation it supports. Keep captions concise and
+  describe what the image shows. Include technical conditions only when they
+  are needed to interpret it; avoid editing history and generic assurances.
 - Keep enough text to explain motivation, design decisions, personal
   contribution and the meaning of a result. Visual preference does not remove
   the need for those explanations.
 - Distinguish real measurements and demonstration footage from process
   schematics, illustrative calculations, archived examples and AI-retouched
   images. Do not present an illustration or generated visual as experimental
-  evidence. Preserve existing retouching disclosures and selected assets.
+  evidence. Keep editing history and provenance in the internal media-source
+  notes. Do not add public "AI-retouched", "AI-edited", "unaltered" or
+  "no AI" boilerplate to captions or alt text. Preserve selected assets unless
+  the owner requests a replacement, and flag other editing-history text in
+  the source notes when reviewing it.
 - Preserve scale bars, axes, units, legends and relevant context. Cropping or
   annotation must not remove information needed to interpret a result.
 - Keep original research files unchanged. Consult the media-source notes and

@@ -78,7 +78,8 @@ Evaluate the requested pages against the same criteria:
 - **Voice:** Do person, terminology, explanation level and cadence match the
   brief without erasing useful project-specific wording?
 - **Visual storytelling:** Does each prominent visual support a nearby point?
-  Can the caption guide a newcomer without overstating the evidence?
+  Does the caption simply describe what it shows, without editing-history
+  boilerplate or overstated evidence?
 - **Attribution and accuracy:** Are personal and team work distinguished, and
   measured results, estimates, illustrations and status represented accurately?
 - **Implementation:** Does the page use the shared architecture, readable

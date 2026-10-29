@@ -37,7 +37,6 @@ const projects = defineCollection({
         facts: z.array(z.object({ label: z.string(), value: z.string() })).default([]),
         links: z.array(z.object({ label: z.string(), href: z.string() })).default([]),
         status: z.string().optional(),
-        credits: z.string().optional(),
         draft: z.boolean().default(false),
       })
       .refine((p) => !p.cover || p.coverAlt, { message: 'coverAlt is required when cover is set', path: ['coverAlt'] }),

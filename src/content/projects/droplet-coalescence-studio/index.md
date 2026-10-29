@@ -22,7 +22,6 @@ facts:
 links:
   - label: The experiments it analyses
     href: /projects/electrowetting-condensation/
-credits: Builds on image-processing work by an ENSTA (France) intern whom I supervised in the lab.
 ---
 
 ## The problem

@@ -21,10 +21,9 @@ facts:
   - label: Stack
     value: Python, React and Vite, Cloud Run, CockroachDB, Firebase Auth
 links:
-  - label: arXiv preprint (Feb 2025)
+  - label: arXiv preprint
     href: https://arxiv.org/abs/2502.07960
 status: The full study, including the expert evaluation, is written up as a journal manuscript. The earlier framework is available as an arXiv preprint.
-credits: Preprint co-authored with M. Ataei and Prof. Alidad Amirfazli. I wrote the software.
 ---
 
 ## The problem
@@ -60,4 +59,4 @@ To make that possible, ARIA runs as a containerized web application. A React and
 
 ## Background
 
-I led the preliminary version of ARIA as an undergraduate research associate in 2023 and 2024, presented it at the Lassonde Undergraduate Summer Research Conference in 2023, and gave an oral talk on it at the ACS Colloids and Surface Science Symposium in 2025. The current version is one of the two parts of my MASc thesis.
+I led the preliminary version of ARIA as an undergraduate research associate, presented it at the Lassonde Undergraduate Summer Research Conference, and gave an oral talk on it at the ACS Colloids and Surface Science Symposium. The current version is one of the two parts of my MASc thesis.

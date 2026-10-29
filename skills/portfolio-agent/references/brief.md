@@ -43,6 +43,15 @@ Source: the owner's portfolio-agent setup request, interview answers and correct
   task does not include rewriting the project pages.
 - Preserve the owner's wording for narrow edits and distinguish necessary
   corrections from optional style changes, as recorded in root `AGENTS.md`.
+- Public captions should simply describe the image. Remove AI-editing history,
+  "unaltered" assurances and personal-recollection commentary from project
+  copy; keep source and editing records in internal media notes.
+- Remove project-page Credits sections, including the ARIA co-author note.
+  Keep personal contribution clear in the main story and retain bibliographic
+  author records in publication lists.
+- Keep calendar chronology in work-period metadata, using Month Year when
+  known. Remove repeated dates from project narratives, captions and status
+  text. Do not infer missing months or change bibliographic record dates.
 
 ## Provisional direction
 
@@ -114,13 +123,14 @@ examples or a list of verified project claims.
 
 - Eleven project folders share one Astro renderer and content schema.
 - The shared page includes title, role, organization, summary, tags, optional
-  lead media, Markdown body and optional facts, links, status and credits.
+  lead media, Markdown body and optional facts, links and status.
 - Current body structures vary: for example, INPHYNI uses Context and Method;
   Prof Notes AI uses Idea, How it works and My part; acoustic focusing has a
   longer experimental narrative and calculation.
 - Existing media includes experimental footage, microscopy, measurement
   overlays, plots, apparatus photographs, software architecture figures and
-  fabrication diagrams. Some setup images are explicitly AI-retouched.
+  fabrication diagrams. Editing history for setup images is recorded in the
+  internal media-source notes.
 - Media provenance is recorded in `docs/portfolio-media-sources.md` and
   `assets.manifest.json`. Known source folders can be inspected when relevant
   to an authorized media task; do not assume every external path is available.
@@ -173,7 +183,7 @@ examples and avoid making the owner repeat known project facts.
    and technical material where the project supports them.
 
 These are agreed narrative stages, not mandatory literal heading names.
-Optional background, related work, supporting links and credits can be placed
+Optional background, related work and supporting links can be placed
 where they serve the story without reversing the core sequence.
 
 Keep contribution clear again near individual results when needed; the initial
@@ -183,6 +193,7 @@ future work have been agreed.
 
 ## Completed project updates
 
+- **2026-10-29**: Refined acoustic focusing into problem, contribution, focusing results and setup/model sections. Moved the owner-supplied `3_node.png` from the repository root into that project's folder and replaced the three-band figure. Simplified captions, removed calendar dates and public AI-editing commentary, and kept 370 kHz as a model estimate rather than a recorded measurement. Removed Credits sections across project pages and moved editing-history details into the media-source notes.
 - **2026-10-29**: Updated `electrowetting-force-model` (`src/content/projects/electrowetting-force-model/index.md`) to integrate the dual rationale from the droplet-imaging heat-transfer manuscript (`image_processing_ht_manuscript.docx`): the first-order 2D analytical model in Python (Shapely) was used for pre-fabrication photomask layout and chevron hand-off thresholds, while 3D finite-element electro-quasistatic simulations in COMSOL Multiphysics 6.3 across 206 positions were used to rationalize experimental observations of droplet collection potential wells. Validated via the matched-mesh water-minus-air subtraction technique and benchmarked against Pham et al.'s analytical series-capacitance model. Follows the agreed core sequence: problem statement first, personal contribution second, visual results third, and technical formulation fourth.
 - **2026-10-29**: Updated `electrowetting-condensation` (`src/content/projects/electrowetting-condensation/index.md`) using thesis background from `MASc_dir/`. Formatted strictly to the core sequence: problem statement first (NCG diffusion resistance and vapor depletion layer), personal contribution second (distinguishing custom dual-mechanism surface, microfabrication, switching board, and experiments from inherited lab wind-tunnel hardware), visual coarsening results third (star collection vs. chevron transport, 46 s shedding time, IHTC-18 poster), and operating platform fourth.
 - **2026-10-29**: Updated `electrowetting-drive-electronics` (`src/content/projects/electrowetting-drive-electronics/index.md`) using thesis Section 1.5.4 drafts from `MASc_dir/circuit/`. Formatted to the core sequence: problem statement first (switching capacitive microelectrodes without unenergized floating states or current spikes), personal contribution second (schematic, KiCad board, damping calculations, firmware and GUI), visual architecture third (3D PCB render, channel schematic, top copper layout), and electrical design fourth (active grounding via Form A/B relays, series resistor damping for 3.3-6.0 nF row loads, 37 mA surge limiting, chip pigtail bonding with silver epoxy, and 200 ms break-before-make firmware).

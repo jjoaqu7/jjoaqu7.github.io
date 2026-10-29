@@ -29,8 +29,7 @@ links:
     href: /projects/electrowetting-device-fabrication/
   - label: Drive electronics
     href: /projects/electrowetting-drive-electronics/
-status: Numerical validation completed in October 2026. Supporting journal manuscript in preparation.
-credits: Supervised by Prof. Alidad Amirfazli. I developed the first-order 2D geometric model, the 3D finite-element COMSOL simulations, the matched-mesh subtraction method and the analytical validation checks.
+status: Numerical validation completed. Supporting journal manuscript in preparation.
 ---
 
 ## The problem

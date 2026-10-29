@@ -29,7 +29,6 @@ links:
   - label: 3D force and energy model
     href: /projects/electrowetting-force-model/
 status: Built, bench-tested and operating in the wind-tunnel experimental setup.
-credits: Supervised by Prof. Alidad Amirfazli. I designed the circuit, laid out the PCB in KiCad, assembled and tested the board, wrote the firmware and GUI, and built the chip interconnect harness.
 ---
 
 ## The problem

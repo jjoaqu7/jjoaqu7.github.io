@@ -1,6 +1,15 @@
 # Project media sources
 
-All additions use existing research files. Native PDF images are extracted without repainting them. Original source files are unchanged. Reproduction is allowlisted in `assets.manifest.json`; run `python scripts/import_assets.py <project-slug>`.
+Media comes from existing research files and owner-supplied assets. Native PDF images are extracted without repainting them. Original research files are unchanged. Research-folder imports are allowlisted in `assets.manifest.json`; run `python scripts/import_assets.py <project-slug>`. Owner-supplied assets stored directly in project folders are preserved in Git.
+
+## Acoustic particle focusing
+
+- The owner supplied `3_node.png` in the site repository root. It was moved, without modification, to `src/content/projects/acute-acoustic-focusing/3_node.png` and replaces `three-band-focusing.jpg` in the page. It shows three particle bands in a capillary with a 500 µm scale bar. SHA-256 `c0ba131f566294558c12b8549d348507c67e06629e64b5ae3d3be8cf4afa8d45`.
+- The replacement request does not establish its acquisition or processing history. The caption describes only the visible result; the previous figure's ImageJ-composite description is not transferred to it.
+- `flow-cell-closeup-selected.png` is the owner's selected retouched setup image, with tubes and glass connectors removed. The original flow-cell photograph remains in the research presentation and original-image downloads. Editing provenance belongs in these source notes rather than the public caption or alt text.
+- The approximate single-node drive frequency was supplied from recollection rather than a per-image record. Public copy now uses 370 kHz only as the analytical half-wave estimate for a 2 mm channel, keeping it separate from measured test settings.
+- Public AI-editing wording was found only on the acoustic-focusing page, in its cover alt text, flow-cell alt/caption, microscopy captions, extra-image link, closing assurance and Credits metadata. Those public labels have been removed.
+- Additional AI-named image variants are present but not referenced by any active page: `bench-setup-ai.png`, `capillary-setup-ai.png`, `flow-cell-closeup-ai.png`, `flow-cell-closeup-ai-v2.png` and `flow-cell-closeup-ai-v3.png`, all in the acoustic-focusing folder.
 
 ## INPHYNI contact angles
 - Source folder: `C:/Users/jjoaq/vscode-python/CA_measure/`.
@@ -49,4 +58,4 @@ All additions use existing research files. Native PDF images are extracted witho
 
 The other project pages already contain experiment images, device photographs, process diagrams, software architecture figures or video. The user-selected acoustic-focusing channel image remains unchanged.
 
-The embryo-rotation poster schematic labels the membrane thickness as 150 µm. The existing project calculation using a recollected 105 µm is retained as an illustrative assumption and is explicitly distinguished from that source dimension.
+The embryo-rotation poster schematic labels the membrane thickness as 150 µm. The 105 µm value initially came from recollection. Public copy treats 105 µm only as a trial thickness for an illustrative calculation, explicitly separate from the poster's 150 µm dimension.

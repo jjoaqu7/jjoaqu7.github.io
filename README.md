@@ -26,8 +26,7 @@ To add a headshot, place the image at `public/images/headshot.jpg`, then set
 value displays the placeholder. The portrait uses a 190 by 220 crop.
 
 The introduction describes the current MASc research without assuming the degree
-has been completed. Lab affiliations and supervisor credit remain in the CV and
-project pages.
+has been completed. Lab affiliations and supervision information remain in the CV.
 
 ## Add a project
 
@@ -56,7 +55,6 @@ links:                # optional
   - label: Paper
     href: https://doi.org/...
 status: Optional line, e.g. a manuscript in preparation.
-credits: Optional line naming collaborators.
 ---
 ```
 
@@ -68,6 +66,11 @@ credits: Optional line naming collaborators.
 ```
 
 Several image lines in a row, followed by one caption line, become a grid.
+
+Keep captions focused on what the image shows. Record editing history and media
+provenance in `docs/portfolio-media-sources.md`. Project pages do not have a
+Credits section. Keep project chronology in the work-period metadata rather
+than repeating calendar dates in the main narrative and captions.
 
 The build stops with a clear message if a field is missing or a date is malformed. Set `draft: true` to hide a page without deleting it.
 

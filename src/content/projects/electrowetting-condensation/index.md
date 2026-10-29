@@ -30,8 +30,7 @@ links:
     href: /projects/electrowetting-force-model/
   - label: Drive electronics and switching
     href: /projects/electrowetting-drive-electronics/
-status: Presented at IHTC-18 (August 2026). Journal manuscript in preparation for the International Journal of Heat and Mass Transfer.
-credits: Supervised by Prof. Alidad Amirfazli. The closed-loop mini wind tunnel and its baseline instrumentation were developed during an earlier PhD project in the laboratory. The dual-mechanism active surface strategy, electrode designs, microfabrication, drive electronics, sequencing software and experiments described here are my work.
+status: Presented at IHTC-18. Journal manuscript in preparation for the International Journal of Heat and Mass Transfer.
 ---
 
 ## The problem
@@ -61,7 +60,7 @@ The chip couples two complementary active mechanisms to clear condensate rapidly
 Together, the two stages brought droplets to shedding scale (roughly 800 µm diameter) in approximately 46 s under 1 m/s airflow. Three recent electrowetting condensation studies reported roughly 570 to 900 s for the same stage, while also requiring higher voltage, frequency, airflow velocity or condensation potential.
 
 [![IHTC-18 poster summarizing the collection and transport mechanism, experimental setup and results](./poster.jpg)](/files/ramirez-medina-ihtc18-poster.pdf)
-*IHTC-18 conference poster presented in Rio de Janeiro, August 2026. Select the image to view the full PDF.*
+*IHTC-18 conference poster showing the experimental setup, electrode design and droplet-coarsening results. Select the image to view the full PDF.*
 
 ## How it works and experimental platform
 
