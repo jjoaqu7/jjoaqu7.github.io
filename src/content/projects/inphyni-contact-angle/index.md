@@ -42,7 +42,7 @@ During the visit, I also delivered an invited research seminar at INPHYNI on my 
 
 ## Visual results and diagnostic tracking
 
-<video controls playsinline preload="metadata" poster="/media/inphyni-contact-angle/vibrating-droplets-poster.png" aria-label="High-speed recording of a vibrating droplet, played in slow motion">
+<video controls autoplay muted loop playsinline preload="metadata" poster="/media/inphyni-contact-angle/vibrating-droplets-poster.png" aria-label="High-speed recording of a vibrating droplet, played in slow motion">
   <source src="/media/inphyni-contact-angle/vibrating-droplets.mp4" type="video/mp4" />
   <a href="/media/inphyni-contact-angle/vibrating-droplets.mp4">Download the droplet video</a>.
 </video>
