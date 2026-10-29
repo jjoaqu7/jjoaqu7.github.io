@@ -13,7 +13,7 @@ export const personalMedia: PersonalMediaItem[] = [
   {
     id: "dec2026_modena.png",
     src: "/images/personal/dec2026_modena.png",
-    date: "Dec 2026",
+    date: "Dec 2025",
     caption: "emilia-romagna",
     live: true,
   },
