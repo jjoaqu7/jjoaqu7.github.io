@@ -17,7 +17,7 @@
   .academic-profile-research{grid-column:1 / -1;margin-top:0}
   .academic-profile-copy{display:contents}
   .academic-profile-copy>h1,.academic-profile-copy>p{grid-column:2;margin:0}
-  .academic-profile-image{grid-row:1 / 6}
+  .academic-profile-image{grid-row:1 / 5}
   .academic-profile{column-gap:16px;row-gap:8px}
 }
 @container(max-width:400px){

@@ -12,7 +12,6 @@ const { showChrome = true, colorway } = Astro.props;
 const effectiveColorway = colorway ?? (showChrome ? defaultColorway : undefined);
 const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order);
 const featured = projects.filter(p => p.data.featured);
-const remaining = projects.filter(p => !p.data.featured);
 const publications = (await getCollection('publications', ({ data }) => data.selected)).sort((a, b) => b.data.date.localeCompare(a.data.date));
 ---
 <article class="academic-classic" data-colorway={effectiveColorway}>
@@ -23,24 +22,21 @@ const publications = (await getCollection('publications', ({ data }) => data.sel
         <Headshot/>
         <div class="academic-profile-copy">
           <h1 id="academic-name">{profile.name}</h1>
-          <p class="academic-role">Device design &middot; Fabrication &middot; Experimental methods</p>
-          <p>MASc research in Mechanical Engineering, York University<br/>{profile.location}</p>
-          <p class="academic-contact"><a href={`mailto:${profile.email}`}>{profile.email}</a></p>
-          <p class="academic-profile-links"><a href="/cv/">Curriculum vitae</a><span>&middot;</span><a href={profile.links.github}>GitHub</a><span>&middot;</span><a href={profile.links.linkedin}>LinkedIn</a></p>
+          <p class="academic-role">{profile.headline}</p>
+          <p>{profile.location}</p>
+          <p class="academic-profile-links"><a href="/cv/">Curriculum vitae</a><span aria-hidden="true">&middot;</span><a id="academic-links" href="/contact/">Contact</a></p>
           <div class="academic-profile-research">
-            <p class="academic-summary">My research uses electrowetting to control dropwise condensation. The work covers electrode design and modelling, cleanroom fabrication, drive electronics and high-speed imaging in a mini wind tunnel.</p>
-            <p class="academic-summary">I also build LLM-based software for research, including ARIA, a multi-agent system for literature review and research planning.</p>
+            <p class="academic-summary">I study how electric fields can move and merge condensed water droplets, helping clear cooled surfaces for new droplets to form. This electrowetting research combines electrode design and modelling, cleanroom fabrication, drive electronics and high-speed imaging.</p>
+            <p class="academic-summary">I also build software to support research. ARIA helps researchers review scientific literature and develop research plans.</p>
           </div>
         </div>
       </section>
 
       <section class="academic-section" id="work"><h2>Selected projects <a href="/projects/">(All projects)</a></h2>{[{ id: 'research', title: 'Devices & experiments', track: 'research' }, { id: 'software', title: 'Research software', track: 'software' }].map(group => <div id={group.id}><h3>{group.title}</h3><ul class="academic-projects">{featured.filter(p => p.data.track === group.track).map(project => <li><a href={`/projects/${project.id}/`}>{project.data.title}</a><p>{project.data.summary}</p></li>)}</ul></div>)}</section>
       <section class="academic-section"><h2>Technical experience</h2><dl class="academic-skills">{skills.filter(group => group.group !== 'Languages').map(group => <div><dt>{group.group}</dt><dd>{group.items}</dd></div>)}</dl></section>
-      {remaining.length > 0 && <section class="academic-section"><h2>More projects</h2><ul>{remaining.map(project => <li><a href={`/projects/${project.id}/`}>{project.data.title}</a></li>)}</ul></section>}
       <section class="academic-section"><h2>Education <a href="/cv/">(Complete curriculum vitae)</a></h2><ul>{education.map(item => <li><strong>{item.degree}</strong>, {item.school}<br/><span class="academic-detail">{item.dates}</span></li>)}</ul></section>
       <section class="academic-section"><h2>Research experience</h2><ul>{positions.map(item => <li><strong>{item.title}</strong>, {item.org}<br/><span class="academic-detail">{item.dates}</span></li>)}</ul></section>
       <section class="academic-section" id="academic-publications"><h2>Selected publications</h2><ol class="academic-publications">{publications.map(({ data: publication }) => <li>{publication.authors} ({fmtWhen(publication.date)}). <strong>{publication.title}.</strong> <em>{publication.venue}.</em>{publication.href && <> [<a href={publication.href}>{publication.href.includes('arxiv') ? 'arXiv' : 'Link'}</a>]</>}{publication.project && <> [<a href={`/projects/${publication.project.id}/`}>Project</a>]</>}</li>)}</ol><p><a href="/publications/">All publications, talks and posters</a></p></section>
-      <section class="academic-section" id="academic-links"><h2>Contact</h2><ul><li><a href={`mailto:${profile.email}`}>{profile.email}</a></li><li><a href={profile.links.github}>GitHub</a> · <a href={profile.links.linkedin}>LinkedIn</a></li><li><a href="/files/ramirez-medina-cv.pdf">Curriculum vitae (PDF)</a></li></ul></section>
       {showChrome && <footer class="academic-footer"><span>{profile.name} · {profile.location}</span><a href="#academic-home">Back to top</a></footer>}
     </div>
   </div>

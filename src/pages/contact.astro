@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import { profile } from '../data/profile';
+---
+
+<Base title="Contact" description={`Contact ${profile.name} by email, LinkedIn or GitHub.`}>
+  <header class="proj-head">
+    <h1>Contact</h1>
+  </header>
+
+  <dl class="contact-details">
+    <div>
+      <dt>Email</dt>
+      <dd><a href={`mailto:${profile.email}`}>{profile.email}</a></dd>
+    </div>
+    <div>
+      <dt>LinkedIn</dt>
+      <dd><a href={profile.links.linkedin} rel="me noopener" target="_blank">{profile.name}</a></dd>
+    </div>
+    <div>
+      <dt>GitHub</dt>
+      <dd><a href={profile.links.github} rel="me noopener" target="_blank">{profile.links.github.split('/').pop()}</a></dd>
+    </div>
+    <div>
+      <dt>Location</dt>
+      <dd>{profile.location}</dd>
+    </div>
+  </dl>
+</Base>
+
+<style>
+  .contact-details { margin: 28px 0 0; display: grid; gap: 24px; }
+  .contact-details > div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 8px 24px; }
+  .contact-details dt { font-family: Arial, Helvetica, sans-serif; font-weight: 600; }
+  .contact-details dd { margin: 0; overflow-wrap: anywhere; }
+  @media (max-width: 520px) {
+    .contact-details > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  }
+</style>

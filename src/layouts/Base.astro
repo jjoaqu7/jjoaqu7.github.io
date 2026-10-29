@@ -53,9 +53,7 @@ const ogImage = new URL(image, Astro.site);
 
       <footer class="footer">
         <span class="grow">{profile.name}, {profile.location}</span>
-        <a href={`mailto:${profile.email}`}>{profile.email}</a>
-        <a href={profile.links.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
-        <a href={profile.links.github} rel="me noopener" target="_blank">GitHub</a>
+        <a href="/contact/">Contact</a>
       </footer>
     </div>
   </body>
