@@ -6,7 +6,7 @@
 .academic-projects li > a::after{content:": ";display:inline-block;white-space:pre;color:var(--portfolio-muted)}
 
 /* Keep the portrait centred on the face while cropping the panorama. */
-.academic-profile-image img{object-position:12% center}
+.academic-profile-image img{object-position:center}
 
 .academic-profile-copy{min-width:0}
 .academic-profile-research{margin-top:12px}

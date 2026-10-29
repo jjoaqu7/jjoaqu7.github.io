@@ -3,7 +3,7 @@
 
 export const profile = {
   name: 'Joaquin Ramirez-Medina',
-  headshot: '/images/joaquin-rio.png',
+  headshot: '/images/headshot.jpg',
   shortName: 'Joaquin Ramirez-Medina',
   location: 'Toronto, Ontario',
   email: 'jram18@yorku.ca',
