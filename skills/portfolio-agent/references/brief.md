@@ -54,6 +54,16 @@ Source: the owner's portfolio-agent setup request, interview answers and correct
   known. Remove repeated dates from project narratives, captions and status
   text. Do not infer missing months or change bibliographic record dates.
 
+- Project copy must sound like the owner, not like generic AI prose. The
+  owner named their own writing (for example the IHTC-18 abstract and
+  manuscript drafts) as the reference for cadence, formatting and vocabulary
+  (2026-11-01). Observed traits: plain declaratives of moderate length,
+  inline definitions with parentheses or "i.e.", ordinary connectives
+  (However, As such, Thus), calibrated claims and approximate numbers with
+  their conditions. Avoid inflated absolutes, purpose-clause selling,
+  trailing ", enabling ..." clauses, slide-title headings and captions that
+  argue rather than describe.
+
 ## Provisional direction
 
 - **Writing person:** Direct first person is the starting point. The owner
@@ -193,6 +203,8 @@ number of figures, text budget, autoplay rule or requirements for lessons and
 future work have been agreed.
 
 ## Completed project updates
+
+- **2026-11-01**: Voice and structure pass on all eleven project pages, one agent per page, checking claims against source material. Removed AI-sounding phrasing, moved summaries to problem then action, added `showCover: false` where lead media preceded the problem, corrected factual and attribution errors found in sources, and restructured `shield-capstone` to the core sequence. Several attribution and evidence questions remain open for the owner (see that session's report); treat those page claims as unconfirmed until answered.
 
 - **2026-10-29**: Updated both Cluster 4 ACuTE microfluidics and acoustofluidics projects (`acute-acoustofluidics` and `acute-acoustic-focusing`). Formatted `acute-acoustofluidics` to the core sequence: problem statement first (intact micro-organism handling hurdles for multi-angle embryo imaging and non-invasive larval cardiac phenotyping), personal contribution second (sweeping frequencies/voltages, bubble growth stability at 4.5 kPa, valve elasticity calculations, proposing the ORF3a cardiac concept, data curation and MATLAB signal analysis), visual results third (microscopy of trapped embryo with microbubbles, linear rotation response at 5 kHz, poster with 2.3°/pulse increment, autoplaying larval cardiac video, and MATLAB M-mode interface), and physical methods fourth (acoustic microbubble streaming, Shorr et al. beam deflection equations and embryo clearance sensitivity table, and M-mode signal extraction). Standardized `acute-acoustic-focusing` with matching core sequence headings (`The problem`, `My contribution`, `Focusing results`, `How the setup worked`). Both Cluster 4 projects are now aligned.
 

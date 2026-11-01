@@ -1,6 +1,6 @@
 ---
 title: ARIA, multi-LLM agents for literature review and research planning
-summary: A four-module system of cooperating language-model agents that turns a research question into a screened set of papers and a draft research procedure, with the researcher approving each stage.
+summary: Reviewing the literature and planning the work for a new research project can take months. I built ARIA, a multi-LLM agent system that finds and screens the relevant papers and drafts a procedure plan grounded in them, with the researcher reviewing its work at three checkpoints.
 period: grad
 track: software
 start: 2023-05
@@ -8,60 +8,59 @@ role: Sole software author, MASc thesis chapter
 org: SEiL, York University
 tags: [LLM agents, retrieval-augmented generation, Python, Google Cloud]
 cover: ./architecture.png
-coverAlt: ARIA multi-agent architecture showing the four modules, researcher checkpoints, and persistent SQL workspace
+coverAlt: Diagram of ARIA's four modules, each coordinated by an LLM agent, connected to the researcher's user interface, a shared SQL database and external academic database APIs
 coverStyle: diagram
+showCover: false
 featured: true
 order: 3
 facts:
   - label: Case study
-    value: 11,491 candidate papers narrowed to 22 in under two hours
+    value: 11,491 candidate article identifiers screened to 22 key articles, and a procedure plan drafted, in about 1 h 50 min
   - label: Manual baseline
-    value: Weeks to months for the same scoping
+    value: About three months for the same research question
   - label: Expert evaluation
-    value: 8.56 to 9.63 out of 10 across five evaluation dimensions
-  - label: Architecture
-    value: Researcher-in-the-loop multi-agent system with four modular stages
+    value: Mean scores of 8.56 to 9.63 out of 10 across five dimensions (four experts)
+  - label: Design
+    value: Four modules, each coordinated by an LLM agent, with three researcher checkpoints
   - label: Stack
     value: Python (FastAPI), React and Vite, Google Cloud Run, CockroachDB, Firebase
 links:
   - label: arXiv preprint (Feb 2025)
     href: https://arxiv.org/abs/2502.07960
-status: The full multi-agent system and expert evaluation study are written up as a journal manuscript, following our initial arXiv preprint.
+status: The full system and the expert evaluation are written up in a journal manuscript that extends our earlier arXiv preprint.
 credits: Co-authored with M. Ataei (Autodesk Research) and Prof. Alidad Amirfazli (SEiL, York University). I am the sole software author and system architect.
 ---
 
 ## The problem
 
-Early-stage scientific research begins with an exhaustive literature review to establish foundational theories, identify state-of-the-art experimental methods, and formulate actionable research plans.
+A new research project usually starts with a literature review, followed by planning how the work will be done. Both steps are slow, and they become harder as the literature grows; more than three million science and engineering articles are now published each year. For a researcher new to a topic, finding the relevant studies, screening them and turning them into a procedure can take months.
 
-With global science and engineering publications exceeding three million articles per year, this process has become slow and methodical. Relevant studies are difficult to retrieve, screen, and synthesize into laboratory workflows. While commercial deep-search tools and general-purpose large language models can answer broad questions, their reliance on open web searches introduces unverified claims, hallucinated citations, and no mechanism to generate traceable, literature-grounded procedures tailored to a researcher's physical apparatus and experimental constraints.
+Large language models (LLMs) can help, but in niche scientific fields they can misread specialized terms and produce fabricated content (so-called "hallucinations"). Commercial "deep search" tools add web searches, but they draw on general web sources such as blogs and press releases, and studies of these tools report citation accuracy of only 40 to 80%. Neither produces a step-by-step procedure that is traceable to its sources and tailored to the researcher's goals and constraints.
 
 ## My contribution
 
-As the sole software architect and developer, I created the Artificial Research Innovator Assistant (ARIA). ARIA is a researcher-in-the-loop, multi-agent system that mirrors early-stage research by breaking down research scope, retrieving and screening literature, extracting technical content from text and figures, and synthesizing tailored procedural guidance.
+I built the Artificial Research Innovator Assistant (ARIA), a multi-LLM agent system that carries out the literature review and procedure planning together with the researcher. I wrote all of ARIA's software; the concept and methodology were developed with my co-authors.
 
-My work spanned the complete system lifecycle:
+Specifically, I (1) built the four modules that search, screen and process the literature and write the plan, including the LLM prompts behind them, (2) deployed ARIA as a multi-user web application on Google Cloud, (3) ran a case study on my own MASc topic and compared it with a manual workflow on the same question, and (4) designed the evaluation in which four domain experts used ARIA on research questions from their own fields.
 
-- Designed the four-module agent architecture (Conversation, Retriever, Processor, and Suggester) incorporating mandatory researcher approval gates at every transition.
-- Built the end-to-end cloud infrastructure, including a React and Vite web interface, containerized Python FastAPI services on Google Cloud Run, CockroachDB for isolated persistent user workspaces, and Firebase authentication.
-- Implemented multimodal retrieval-augmented generation pipelines that extract text passages, equations, and figure-caption pairs from PDFs while preserving strict citation provenance.
-- Built a multi-LLM procedural synthesis engine where specialized agents (Detailer, Innovator, and Integrator) collaborate to turn indexed technical passages into step-by-step procedures.
-- Conducted a full case study on dropwise condensation and designed an evaluation study with four independent domain experts across different engineering fields.
+## Results
 
-ARIA forms one of the two core pillars of my MASc thesis.
+For the case study, the research question was how electrowetting could be used to enhance [dropwise condensation under shear airflow](/projects/electrowetting-condensation/), which is the subject of my MASc experiments.
 
-## Visual architecture and case-study results
+![Side-by-side stages of ARIA and the manual workflow, with article counts and completion times for each stage](./workflow-comparison.png)
+*ARIA and the manual workflow on the same research question. (a) Search and screening. (b) Processing and procedure planning. Completion times are approximate.*
 
-![ARIA multi-agent system architecture showing four modules with human-in-the-loop checkpoints and persistent database](./architecture.png)
-*ARIA multi-agent system architecture (Figure 1 in the journal manuscript). Four LLM-agent-coordinated modules mirror successive stages of early research, with the researcher steering through the UI and all modules sharing a persistent SQL workspace.*
+ARIA expanded 12 search phrases into 48 queries, which returned 660 articles. Following the references and citations of these articles grew the pool to 11,491 identifiers (duplicates included). Screening then reduced the pool to 22 key articles in about 50 minutes. These 22 included all 7 key articles found in the first month of the manual workflow, plus 15 more. The full workflow, up to a written procedure plan, took about 1 h 50 min, compared with about three months by hand. It should be noted that the manual workflow ended with notes, slides and code rather than a single written plan. Moreover, only 12 of the 22 full texts were available to ARIA for building the plan.
 
-![End-to-end comparison of ARIA and manual workflow on dropwise condensation literature review and procedural planning](./workflow-comparison.png)
-*End-to-end comparison of ARIA and the manual workflow on the dropwise-condensation case study (Figure 3 in the manuscript). ARIA reduced 11,491 candidate article identifiers down to 22 foundational papers and synthesized an initial procedure in under two hours, compared to weeks of unaided manual effort.*
+![Three-layer structure of the procedure plan ARIA generated for the condensation case study](./procedure-structure.png)
+*Structure of the procedure plan ARIA generated for the case study, organized into three layers. Grey text gives examples from the plan.*
 
-![Domain-expert evaluation of ARIA across five dimensions](./expert-evaluation.png)
-*Domain-expert evaluation of ARIA across five dimensions (Figure 4 in the manuscript). Four independent domain experts spanning doctoral candidates to full professors rated the system across 19 criteria, showing consistent positive evaluations with an overall utility score of 9.63 out of 10 and unanimous consensus on providing an effective procedural starting point.*
+The plan covered nine sections addressing the 12 topics I selected. Throughout the plan, ARIA embedded 24 figures from the source articles and added three starter code snippets in Python, Arduino and MATLAB.
 
-Four independent domain experts spanning doctoral candidates to full professors evaluated ARIA across experimental and numerical procedures. Evaluators rated the system across 19 criteria grouped into five dimensions on a 1 to 10 scale.
+![Dot plot of four experts' scores across five evaluation dimensions on a 1 to 10 scale](./expert-evaluation.png)
+*Ratings from four domain experts across five dimensions, on a 1 to 10 scale. Each coloured dot is one expert's mean score for that dimension; the black triangle is the mean of the four experts.*
+
+The four experts worked in water treatment, fluid mechanics, nuclear thermohydraulics and separation science, and included a PhD student, a postdoctoral researcher and two professors. Each used ARIA on a research question from their own field, with experimental or numerical procedures, and rated it on 19 criteria grouped into five dimensions.
 
 | Evaluation dimension | Mean score | Standard deviation |
 |---|---|---|
@@ -71,32 +70,33 @@ Four independent domain experts spanning doctoral candidates to full professors 
 | Presentation quality | 8.58 | 1.66 |
 | Output quality | 8.56 | 1.69 |
 
-All four domain experts agreed unanimously (10.00 out of 10, SD 0.00) that ARIA provides an effective procedural starting point that broadens research understanding and gives material researchers can build upon directly.
+All four experts gave the top score (10) to the statement that the procedure was a good starting point they could build on and explore further. Output quality scored lowest and varied most. Within it, the criteria on suggested novel ideas scored lowest (7.75 to 8.25). The lower presentation scores, and the comments behind them, concerned navigating the interface rather than the outputs. With four evaluators, these results are preliminary and do not establish how well ARIA generalizes to other fields.
 
-## How it works and multi-agent system
+## How it works
+
+![ARIA's four modules, each with an LLM agent, connected to the user interface, a shared SQL database and external APIs](./architecture.png)
+*ARIA's four modules. Each module has an LLM agent (orange) that coordinates its steps. The researcher works through the user interface, and all modules share an SQL database.*
+
+ARIA follows the order in which a researcher usually starts a project, i.e., define the question, search the literature, read the key papers and plan the work. Each module has an LLM agent that coordinates its steps, while separate LLM calls handle narrow tasks such as screening one abstract.
 
 ### Conversation module
 
-The Conversation module breaks a raw scientific question into a structured research scope. It generates natural-language search phrases, identifies key investigation parameters, and proposes research specifications. The researcher reviews and edits these phrases directly in the interface before any external search is executed.
+The Conversation module breaks the researcher's question into its key concepts and how they interact (the "breakdown"), then expresses these as natural-language search phrases. The researcher reviews the breakdown and selects, edits or adds search phrases before any search is run; these are the first two checkpoints. After the papers are processed, the module proposes specifications, i.e., the procedural topics the plan should cover (e.g., sample preparation or a mesh convergence study). Choosing them is the third checkpoint.
 
 ### Retriever module
 
-The Retriever module converts approved phrases into optimized Boolean queries for scholarly databases (such as OpenAlex and arXiv). To ensure comprehensive coverage, it runs citation snowballing to uncover related work cited by or citing candidate articles.
+The Retriever module converts the approved phrases into Boolean queries for academic database APIs, such as OpenAlex, Semantic Scholar and arXiv. It then follows both the references and the citing articles of each result (so-called snowballing) to widen the search.
 
-To handle large candidate pools without excessive API costs, the system applies computationally inexpensive rule-based metadata pruning, narrowing thousands of candidates to hundreds. A multi-prompt LLM abstract screening pipeline then adjudicates relevance against the agreed scope, passing only verified key papers to the next stage.
+LLM screening becomes costly at this scale, so the module first narrows thousands of candidates to a few hundred with inexpensive steps. It compares each available abstract with the research focus using text embeddings, and ranks the remaining articles by how often and by which route they were retrieved. In the case study, these steps removed ~98% of the pool before any LLM screening. Two LLMs then judge each remaining abstract against different criteria (the core objectives and the additional aspects of interest), and a third, more capable LLM makes the final decision from their decisions and reasons. Finally, the module retrieves the full texts of the selected articles.
 
 ### Processor module
 
-The Processor module fetches full-text articles and extracts procedure text, mathematical equations, and figure-caption pairs. Extracted elements are indexed in a multimodal retrieval-augmented generation vector store that maintains the exact source paper and section for every passage, preventing fabricated citations.
+The Processor module extracts procedure text, equations and figures with their captions from each full text. It uses rule-based pattern matching, followed by an LLM check of each match. The extracted content is stored in separate text and image indices for retrieval-augmented generation (RAG), where relevant passages are retrieved and passed to an LLM as context. Every entry keeps its source article. As such, the plan cites only articles that ARIA retrieved and screened, and each step can be traced to a paper the researcher can check.
 
 ### Suggester module
 
-The Suggester module translates the indexed evidence into an actionable procedure tailored to user-selected specifications. Multiple specialized language model agents collaborate through defined roles:
+The Suggester module writes the plan one specification at a time. For each specification, it retrieves the most relevant text and figures; a Filter LLM flags poor matches, and an Optimizer LLM rewrites the query to retrieve better ones. Two Synthesizer LLMs then draft that section of the plan, the first from the text and the second adding source figures that show how a step is performed or measured. An Innovator LLM develops the researcher's proposed novelty, or suggests one where the literature supports it. Finally, an Editor LLM combines the sections into one plan and checks it for consistency and repetition.
 
-1. A Detailer agent gathers and drafts foundational procedural steps directly grounded in retrieved passages.
-2. An Innovator agent suggests novel modifications or creative variations justified by the literature.
-3. An Integrator agent harmonizes the steps, embeds relevant source figures to illustrate apparatus setups, and formats the output into a comprehensive procedure plan.
+### Web application
 
-### Cloud deployment and human oversight
-
-ARIA runs as a secure multi-user web application. Researchers work within private persistent sessions, approving search phrases, screening thresholds, and procedural specifications at dedicated checkpoint gates. This ensures that artificial intelligence accelerates literature processing while the researcher maintains complete scientific direction.
+So that other researchers could use ARIA for the evaluation, I deployed it as a multi-user web application. Each researcher signs in and works in a private workspace, and their inputs, selections and outputs are saved between sessions.

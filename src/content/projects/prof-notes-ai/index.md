@@ -1,6 +1,6 @@
 ---
 title: Prof Notes AI, course tutors built on lecture notes
-summary: LLM-agent tutors that answer engineering course questions grounded strictly in the instructor's own lecture slides, supplemented by curated open educational resources from Wikipedia and YouTube.
+summary: LLM-agent tutors that answer engineering course questions from the instructor's own lecture slides first, with supporting material from Wikipedia and YouTube.
 period: undergrad
 track: software
 start: 2023-05
@@ -9,16 +9,17 @@ role: Co-developer, backend services and document pipeline
 org: SEiL, York University
 tags: [LLM agents, education, Python, Google Cloud, Pinecone]
 cover: ./architecture.svg
-coverAlt: Prof Notes AI architecture showing lecture slide extraction through Cloud Run and Pinecone alongside multi-service answering on Google App Engine
+coverAlt: Prof Notes AI architecture showing lecture slide extraction on Cloud Run into Pinecone, and student questions passing through an API gateway on Google App Engine to lecture-notes, Wikipedia and YouTube services
+showCover: false
 order: 4
 facts:
-  - label: Target courses
+  - label: Courses
     value: MECH 3202 Fluid Dynamics and MECH 2201 Thermodynamics
-  - label: Average response time
-    value: 6 to 9 seconds on technical fluid dynamics queries
-  - label: Backend platform
+  - label: Average response time in user testing
+    value: 5.7 s for syllabus questions, 10.5 s for technical questions
+  - label: Backend
     value: Python microservices on Google App Engine and Cloud Run
-  - label: Ingestion pipeline
+  - label: Ingestion
     value: Adobe PDF Extract API and Pinecone vector database
 links:
   - label: CEEA 2025 paper (DOI)
@@ -29,47 +30,39 @@ credits: Co-developed with a software engineering student. Supervised by Prof. A
 
 ## The problem
 
-Engineering students frequently struggle with foundational coursework in subjects like Fluid Dynamics and Thermodynamics. When seeking help outside lecture hours, general-purpose commercial chatbots often provide generic or contradictory textbook formulations that conflict with the specific notations, assumptions, and pedagogical methods used by the course instructor.
+Engineering students often need answers to course questions outside lecture and office hours. They then turn to Wikipedia, YouTube or general-purpose chatbots such as ChatGPT. These are useful, but they do not follow the instructor's notation, vocabulary or approach, and they do not know course details such as assignment deadlines or exam structure.
 
-Instructors need automated question-answering tools that answer student inquiries using the instructor's own slide decks first. However, lecture slides present major extraction challenges because technical content is densely packed with mathematical equations, custom diagrams, and brief bullet points, mixed with decorative template borders and institutional logos that corrupt standard document parsers.
+Prof Notes AI answers from the instructor's own lecture slides and course outline first. We built separate tutors for two York University courses, MECH 3202 (Fluid Dynamics) and MECH 2201 (Thermodynamics).
 
 ## My contribution
 
-As co-developer, I engineered the backend cloud architecture and document ingestion pipeline for Prof Notes AI, an artificial-intelligence tutor system built for engineering education.
+I co-developed Prof Notes AI with a student I mentored, under the supervision of Prof. Alidad Amirfazli. I built the backend services. These include the ingestion pipeline, which turns the instructor's slides into a searchable index for each course, and the API gateway, which passes each student question to separate lecture-notes, Wikipedia and YouTube services that I also built. I co-authored the CEEA 2025 paper on the system.
 
-My contributions included:
-
-- Designing the automated slide ingestion pipeline on Google Cloud Run, integrating the Adobe PDF Extract API to parse slide layouts, extract text and equations, and isolate technical figures.
-- Implementing an automated filtering stage that discards decorative graphics, slide master templates, and institutional logos before embedding generation.
-- Building the course-specific knowledge base by transforming structured slide content into vector embeddings stored in dedicated Pinecone indexes.
-- Developing the central API gateway on Google App Engine, orchestrating parallel retrieval across course lecture slides, Wikipedia articles, and educational YouTube video transcripts.
-- Co-authoring the peer-reviewed conference paper presented and published at the Canadian Engineering Education Association (CEEA 2025) annual conference.
-
-## Visual architecture and tutor performance
+## Results
 
 ![Prof Notes AI architecture diagram showing slide ingestion and multi-source answering](./architecture.svg)
-*Prof Notes AI system architecture. Instructor slide decks are extracted and indexed into course-specific vector stores, while student inquiries are resolved through an API gateway coordinating lecture notes, Wikipedia, and YouTube services.*
+*Prof Notes AI architecture. Top, instructor slides are extracted and indexed in a Pinecone index for each course. Bottom, a student question goes through the API gateway to the lecture-notes, Wikipedia and YouTube services.*
 
-The system was deployed across two core undergraduate engineering courses at York University, serving students in MECH 3202 (Fluid Dynamics) and MECH 2201 (Thermodynamics).
+We tested the fluid dynamics tutor in two rounds of in-person user testing, with eight users and then ten, including undergraduate, master's and PhD students and professors. Answers took 5.7 s on average for syllabus questions and 10.5 s for technical questions. Technical questions take longer because the system searches several sources and writes a longer explanation. Between the two rounds we added caching for repeated questions, and fewer users reported delays in the second round.
 
-In practical classroom evaluations, the pipeline answered complex student queries in 6 to 9 seconds. By anchoring responses directly in the course's proprietary slide decks, the tutor provided immediate, contextually consistent guidance while citing the specific lecture slides that addressed each question.
+Each answer names the lecture and page it draws on. For example, a question on Bernoulli's equation returned an explanation, the equation and a figure from "Lecture 5, page 3". The system also sorted every test question correctly as technical or syllabus-related. Answers to complex, multi-step questions still need improvement.
 
-## How it works and document pipeline
+## How it works
 
-### Automated slide extraction and filtering
+### From lecture slides to a course index
 
-When an instructor uploads a course presentation, a containerized Cloud Run service submits the document to the Adobe PDF Extract API. The service parses each slide individually, extracting textual explanations, mathematical formulas, and embedded technical figures.
+When an instructor uploads lecture slides as a PDF, a Cloud Run service sends the file to the Adobe PDF Extract API and organizes the output slide by slide, keeping text, equations and figures.
 
-A custom filtering module analyzes each graphical element. Logos, headers, footers, and decorative slide borders are automatically stripped out, ensuring that only substantive technical diagrams and equations are retained. The remaining content is split into semantic chunks and indexed in a course-dedicated Pinecone vector database.
+Slides are harder to process than ordinary documents. Equations, diagrams and short bullet points sit alongside slide templates, borders and logos, which would otherwise be indexed as course content. A filtering step therefore passes each figure to an LLM that labels it as meaningful or decorative, and drops the decorative ones. The remaining content is split into chunks by meaning and stored in a Pinecone index for that course, i.e., a database that finds passages by similarity of meaning rather than exact wording. Course outlines go to a separate index, so the tutor can also answer syllabus questions.
 
-### Multi-source query answering
+### Answering a question
 
-When a student submits a question through the course interface, the request hits the API gateway running on Google App Engine. The gateway coordinates three distinct retrieval services in parallel:
+A student's question goes to the API gateway on Google App Engine. An LLM first sorts the question as technical, syllabus-related or unrelated to the course. The gateway then queries three services at the same time.
 
-1. **Course lecture notes service:** Searches the Pinecone index to retrieve the most relevant slide segments, ensuring the primary response adopts the professor's notation and course scope.
-2. **Wikipedia service:** Queries relevant encyclopedia entries to provide supplementary conceptual background for students needing foundational definitions.
-3. **YouTube service:** Searches curated educational channels to identify specific video timestamps that demonstrate related physical principles.
+1. The lecture-notes service searches the course index for the most relevant slide content, and an LLM writes the answer from it.
+2. The Wikipedia service finds related articles through the Wikipedia API and extracts the relevant text and figures.
+3. The YouTube service searches YouTube, reads the transcripts of the results and returns the video segment, with its timestamp, that addresses the question.
 
-### Prioritizing course material
+### Keeping answers tied to the course
 
-To avoid overwhelming students or generating conflicting advice, the answering engine strictly prioritizes the instructor's slides. The system presents the course-grounded explanation as the authoritative answer, offering supplementary external resources only as optional secondary context for further study.
+In early testing, the model sometimes completed answers from its own general knowledge. These answers were usually correct but did not follow the course material. We changed the lecture-notes service to rely primarily on the professor's notes and syllabus, which brought answers closer to the course and reduced overly general content. Wikipedia and YouTube results are returned alongside the course answer as supporting material.

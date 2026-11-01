@@ -1,6 +1,6 @@
 ---
 title: Contact angles of vibrating droplets from high-speed video
-summary: A Python and OpenCV pipeline that measures the dynamic contact angle of an oscillating droplet in every frame of an 8,000 frame-per-second video stack, paired with an interactive inspection interface.
+summary: When a droplet vibrates, its contact angle changes too quickly to measure by hand. I wrote a Python and OpenCV script that measures it frame by frame in high-speed video, with a clickable plot for checking each measurement.
 period: grad
 track: software
 start: 2025-11
@@ -19,58 +19,64 @@ facts:
   - label: Slow-motion playback
     value: 20 frames per second (400× slow-down, 25.5 ms physical duration)
   - label: Measurement output
-    value: Dynamic contact angle against time, frame by frame
-  - label: Quality control
-    value: Interactive clickable plot opening diagnostic frame overlays
+    value: Left contact angle of one droplet against time, one value per frame
+  - label: Checking
+    value: Clickable plot that opens the overlay image for each frame
   - label: Software stack
     value: Python, OpenCV, NumPy, Matplotlib, ImageJ (Fiji)
 ---
 
 ## The problem
 
-When a liquid droplet rests on a solid surface, the angle between the liquid-vapor interface and the substrate is its contact angle, which defines how well the liquid wets the material.
+When a liquid droplet rests on a solid surface, the angle between the liquid-vapor interface and the surface is its contact angle, which describes how well the liquid wets the material (a small angle means the liquid spreads, and a large angle means it beads up).
 
-On a vibrating surface, the droplet deforms and oscillates rapidly, causing its contact angle to fluctuate hundreds of times per second. Measuring these shape changes manually across thousands of frames is impossible. At the same time, standard commercial contact-angle instruments assume static or slowly evolving droplets, failing when optical reflections, moving contact lines, and severe interfacial deformations appear at 8,000 frames per second.
+On a vibrating surface, the droplet deforms, and its contact angle changes within a few milliseconds. At 8,000 frames per second, a ~25 ms recording already contains ~200 frames. Automating the measurement is also difficult, because the floor moves with the vibration, the droplet's reflection sits directly below it, and the background can be mistaken for the floor line.
 
 ## My contribution
 
-During a two-month research internship at the Institut de Physique de Nice (INPHYNI), I built an automated Python and OpenCV image-processing tool to track and measure dynamic contact angles frame by frame.
+During a two-month research internship at the Institut de Physique de Nice (INPHYNI), I wrote a Python and OpenCV script that follows these changes frame by frame. In each frame, it finds the floor and the point where the droplet meets it, then measures the contact angle at that point.
 
-To ensure researchers could inspect and trust each measurement, I developed an interactive verification interface in Matplotlib. Clicking any data point on the contact-angle time trace instantly loads the corresponding raw video frame with the detected substrate floor, contact point, and fitted local tangent overlay. This allowed immediate visual verification of edge detection and rapid inspection of outliers.
+Because automatic edge detection can be wrong on individual frames, I also made the contact-angle plot clickable. Each value can then be checked against the image it came from.
 
-During the visit, I also delivered an invited research seminar at INPHYNI on my electrowetting condensation research.
+During the internship, I also gave an invited seminar at INPHYNI on my electrowetting condensation research.
 
-## Visual results and diagnostic tracking
+## Video and measurements
 
-<video controls autoplay muted loop playsinline preload="metadata" poster="/media/inphyni-contact-angle/vibrating-droplets-poster.png" aria-label="High-speed recording of a vibrating droplet, played in slow motion">
+<video controls autoplay muted loop playsinline preload="metadata" poster="/media/inphyni-contact-angle/vibrating-droplets-poster.png" aria-label="High-speed recording of two droplets on a vibrating surface, played in slow motion">
   <source src="/media/inphyni-contact-angle/vibrating-droplets.mp4" type="video/mp4" />
   <a href="/media/inphyni-contact-angle/vibrating-droplets.mp4">Download the droplet video</a>.
 </video>
 
-*The original droplet sequence showing 204 consecutive frames recorded at 8,000 frames per second and played back at 20 frames per second (400 times slower). The clip spans about 25.5 ms of physical vibration, showing the rapid interfacial oscillations that require frame-by-frame measurement.*
+*Two droplets on the vibrating surface, with their reflections below the floor line, played 400 times slower than real time (204 frames, ~25.5 ms).*
+
+The script measures the left edge of the left droplet. For each frame, it saves an image of what it detected, like the one below.
 
 ![Experimental frame with detected floor, contact point and contact-angle tangent](./contact-angle-overlay.png)
-*A saved diagnostic frame from the Python analysis. The overlay marks the detected substrate baseline, the contact point, and the local boundary tangent. The numerical readout shows the calculated geometric contact angle for this individual frame.*
+*Frame 75 of the clip, cropped to the left droplet and its reflection, with the detected floor (green line), contact point (magenta) and fitted tangent (yellow dashed line). The measured contact angle for this frame is 66.2°.*
+
+Plotting these angles against time gives the trace below. Over this clip, the angle varies from ~40° to ~130°. The trace is a diagnostic output and has not been validated against another measurement. Single-frame spikes, such as those near 12 ms and 16 ms, may come from a detection error rather than a real change in the droplet, and they are the points to open and check against their frame images.
 
 ![Contact-angle time trace from the original method documentation](./contact-angle-curve.png)
-*Diagnostic contact-angle trace across consecutive frames from the method documentation. Because high-frequency excursions can reflect local surface noise or lighting artifacts, the curve serves as a navigational tool to inspect the underlying raw frames rather than an unverified final benchmark.*
+*Left contact angle of the left droplet against time, one point per frame, in the script's Matplotlib window.*
 
-## How it works and inspection workflow
+## How it works
 
-### Pre-processing and region selection
+### Preparing the image stacks
 
-Video sequences are first cropped and organized in Fiji (ImageJ). One image stack is binarized with thresholding operations to yield clear droplet outlines, while the raw grayscale stack is preserved alongside it for visual verification.
+Each high-speed image stack is cropped in Fiji (ImageJ) and saved twice with the same crop. One copy keeps the raw grayscale images. The other is thresholded and cleaned up with binary operations to give a black-and-white mask of the droplet outlines. The script reads both stacks frame by frame. The mask locates the droplet, and the raw images are used to find the floor and to draw the overlays.
 
-At the start of a run, the user defines a single bounding box on the initial frame. This region of interest encompasses the oscillating droplet, the solid substrate baseline, and the optical reflection below the floor, focusing computation on the active wetting boundary across the entire sequence.
+At the start of a run, the user draws one rectangle on the first frame around the left droplet, the floor and the droplet's reflection below the floor. In these recordings, the left droplet is the cleanest, with the least background behind it. The same region is used for every frame.
 
-### Floor and contact-point identification
+### Finding the floor and the contact point
 
-In each frame, the algorithm scans the region of interest to locate the substrate baseline. Once the horizontal floor line is determined, the script traces the droplet boundary to detect where the liquid outline first intersects the solid substrate on the contact side.
+On the first frame, the floor is placed at the sharpest change in brightness between the droplet and its reflection. A small patch of the image around that line is stored as a template, and in later frames the script finds the floor by matching this template (OpenCV template matching). If the match jumps by more than 6 pixels from the previous frame, the script falls back to the mask-based estimate or keeps the previous floor position. The floor is then moved to the strongest nearby brightness edge and lightly smoothed between frames. The contact point is the leftmost droplet pixel just above this floor line.
 
-### Tangent fitting and geometric angle calculation
+### Measuring the angle
 
-Near the detected contact point, the local slope of the liquid-gas interface is evaluated using adjacent boundary pixels. The algorithm converts this local vector orientation relative to the horizontal floor into a geometric contact angle, recording the angle and time stamp for every frame.
+Canny edge detection on the mask gives the pixels along the droplet edge. In three thin bands just above the floor, the script fits a straight line to the edge pixels nearest the contact point and converts its slope into a contact angle between 0° and 180°. If the three angles agree closely, the script uses the one closest to their average. Otherwise, it uses the fit with the smallest error. A nearly vertical edge is recorded as 90°, and frames with no reliable fit are skipped. Each angle is stored with its time, calculated from the frame number and the 8,000 frames-per-second rate.
 
-### Interactive verification interface
+### Checking measurements
 
-Automated edge-finding algorithms can occasionally catch a glare or follow a drop reflection. To prevent undetected measurement errors, the pipeline plots contact angle versus time in an interactive Matplotlib window. Selecting any recorded point immediately loads the raw image frame and overlays the detected baseline, contact point, and tangent vector. Researchers can verify questionable measurements in seconds, combining the speed of batch processing with human-in-the-loop oversight.
+The background and the moving floor can still interfere with detection. For this reason, the script saves an overlay image for every frame and plots the contact angle against time in a Matplotlib window. Clicking a point on the plot opens the overlay for the closest frame, titled with the frame number, time and measured angle.
+
+The method can still be improved. The fitted line sometimes snaps to the floor or the droplet contour, which shifts the angle slightly, and the script has not yet been tested on recordings with different lighting and backgrounds.
